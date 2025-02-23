@@ -1,0 +1,57 @@
+.episode-section-container {
+    margin-block: 10em;
+    /* background-color: silver; */
+}
+
+.episode-list-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.9em;
+    flex-wrap: wrap;
+}
+
+.episodes-h2-title {
+    text-align: center;
+    font-size: 1.9em;
+    margin-bottom: 0.7em;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #fefefece;
+    font-weight: 500;
+}
+
+.season-select {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.episode-title-season-select-container {
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.custom-select {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center; /* Центрира хоризонтално */
+    align-items: center; /* Центрира вертикално */
+    margin: 20px auto; /* Автоматичен margin за центриране */
+    width: 200px; /* Фиксирана ширина */
+}
+
+.custom__control {
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+.custom__menu {
+    width: 200px !important; /* Опциите няма да заемат целия екран */
+    border-radius: 8px !important;
+    margin-top: 5px !important;
+}
+
+.custom__option {
+    text-align: center !important;
+}
