@@ -1,0 +1,61 @@
+.genre-categories-container {
+    width: 93%;
+    height: 4em;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.genre-categories-container h3 {
+    background-color: #1F1F1F;
+    width: fit-content;
+    color: #E7E7E7;
+    padding: 8px 17px; /* Намалено padding */
+    margin: 0; /* Премахнат margin */
+    border-radius: 1em;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+
+
+/* Малки стрелки + повече отстояние */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 12px;
+    height: 12px;
+    z-index: 10; /* По-голям z-index, за да се кликат правилно */
+    top: 50%; /* Центриране спрямо височината */
+    transform: translateY(-50%);
+    padding-right: 9em;
+}
+
+/* Намалява размера на иконките вътре в стрелките */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 12px;
+}
+
+/* Добавяне на отстояние от контента */
+.swiper-button-next {
+    right: 25px; /* Отдалечава стрелката от съдържанието */
+    position: relative;
+}
+
+.swiper-button-prev {
+    position: relative;
+    left: 25px; /* Отдалечава другата стрелка */
+}
+
+/* Преместване на пагинацията (точките) по-надолу */
+.swiper-pagination {
+    display: none !important;
+}
+
+/* Намалява точките, ако искаш */
+.swiper-pagination-bullet {
+    width: 4px;
+    height: 4px;
+}
