@@ -1,0 +1,11 @@
+.cinema-record-container {
+    cursor: pointer;
+}
+
+
+.poster-img {
+    width: 16em;
+    height: 24em;
+    object-fit: cover;
+    border-radius: 10px;
+}
