@@ -1,0 +1,20 @@
+
+
+.player-section-container {
+    height: 40em;
+    margin-bottom: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px solid #000;
+}
+
+.player-section-container iframe {
+    width: 64.5em;
+    height: 38.6em;
+    border-radius: 0.54em;
+    object-fit: cover;
+    border: none;
+    box-shadow: 0px 2px 6px rgba(255, 255, 255, 0.2);
+    margin-top: 5em;
+}
