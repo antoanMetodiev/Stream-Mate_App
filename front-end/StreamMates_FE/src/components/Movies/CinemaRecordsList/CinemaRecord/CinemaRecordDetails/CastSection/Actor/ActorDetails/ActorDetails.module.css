@@ -1,0 +1,108 @@
+.background-img {
+    position: fixed; /* Поставя снимката на фона на екрана */
+    top: 0;
+    left: 0;
+    width: 100vw; /* 100% от ширината на екрана */
+    height: 100vh; /* 100% от височината на екрана */
+    background-size: cover; /* Изрязва и мащабира снимката, за да покрие целия екран */
+    background-position: center; /* Центрира снимката */
+    filter: blur(5.6px);
+    z-index: -2; /* Поставя снимката зад всички други елементи */
+}
+
+.background-img-shadow {
+    position: fixed; /* Поставя снимката на фона на екрана */
+    top: 0;
+    left: 0;
+    width: 100vw; /* 100% от ширината на екрана */
+    height: 100vh; /* 100% от височината на екрана */
+    background-color: #000000e0;
+    opacity: 0.76;
+    z-index: -1;
+}
+
+.details-container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.2em 0em 1.5em 0em;
+    color: #fefefe;
+}
+
+.actor-image {
+    width: 13em;
+    height: 20em;
+    object-fit: cover;
+    border-radius: 1em;
+}
+
+.actor-image {
+    transition: transform 0.3s ease-in-out; /* Плавен ефект */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+.actor-image:hover {
+    transform: scale(0.95); /* Намалява изображението до 90% */
+}
+
+.actor-real-name {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.4em;
+    margin-block: 0.5em;
+}
+
+.biography {
+    width: 58em;
+    line-height: 28px;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #fff;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 0.5em;
+}
+
+.external-links {
+    display: flex;
+    gap: 9px;
+    margin: 4px 0px 10px 0px;
+}
+
+.external-links img {
+    width: 2.4em;
+    height: 2.4em;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.external-links img:hover {
+    transform: scale(1.15); 
+}
+
+.meta-info-information-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    align-items: center;
+}
+
+.diff-color {
+    color: #898182;
+    margin-left: 2px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+
+
