@@ -1,0 +1,78 @@
+
+
+.welcome-component-container {
+    width: 100%;
+    height: 42em;
+    position: relative;
+}
+
+
+.background-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.background-video-shadow {
+    display: block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.776);
+    opacity: 0.45;
+    width: 100%;
+    height: 100%;
+}
+
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.site-info-container {
+    position: absolute;
+    z-index: 2;
+    top: 8.3em;
+    left: 8em;
+    color: #F9F9F9;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.site-info-container > h2 {
+    font-size: 3.5em;
+    width: 10em;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    letter-spacing: 2.4px;
+}
+
+.site-info-container > h5 {
+    font-size: 1.4em;
+    width: 20em;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    color: #F9F9F9;
+}
+
+.site-info-container > button {
+    width: 12em;
+    padding: 0.5em 1em;
+    background-color: #000000c7;
+    border: 0.2px solid silver;
+    color: #fefefe;
+    border-radius: 1em;
+}
+
+.phone-store-images {
+    display: flex;
+    gap: 1em;
+}
+
+.phone-store-images > img {
+    width: 10.2em;
+    border: 0.1px solid silver;
+    border-radius: 0.4em;
+    height: 3em;
+    object-fit: cover;
+}
