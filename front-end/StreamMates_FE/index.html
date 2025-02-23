@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Stream Mates</title>
+	<style>
+		/* За всички браузъри, които поддържат WebKit (Chrome, Edge, Safari) */
+		::-webkit-scrollbar {
+			width: 6px;
+			/* Тънък скролбар */
+		}
+
+		/* Стил на скрол лентата (пистата) */
+		::-webkit-scrollbar-track {
+			background: #1e1e1e;
+			/* Тъмен фон на скролбара */
+			border-radius: 10px;
+			/* Закръглени ръбове */
+		}
+
+		/* Стил на плъзгача (дръжката) */
+		::-webkit-scrollbar-thumb {
+			background: #555;
+			/* По-светъл тъмен цвят за контраст */
+			border-radius: 10px;
+			/* Закръглени ръбове за елегантен вид */
+		}
+
+		/* Ефект при hover върху плъзгача */
+		::-webkit-scrollbar-thumb:hover {
+			background: #777;
+			/* Още по-светъл при задържане */
+		}
+
+		/* За Firefox */
+		* {
+			scrollbar-width: thin;
+			/* Прави скролбара тънък */
+			scrollbar-color: #555 #1e1e1e;
+			/* Thumb | Track */
+		}
+	</style>
+</head>
+
+<body>
+	<div id="root"></div>
+	<script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
