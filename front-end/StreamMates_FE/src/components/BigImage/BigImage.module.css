@@ -1,0 +1,70 @@
+.big-image-container-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 1;
+}
+
+.shadow {
+    position: fixed; /* Вместо absolute, за да покрива всичко */
+    z-index: 2; /* Давайки му висок индекс, ще е над всичко */
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.95) 20%, rgba(0, 0, 0, 1) 80%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* За да не блокира интеракцията с елементите отдолу */
+}
+
+
+/* STYLES FOR: */
+
+
+
+.backdrop {
+    position: fixed;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 63em;
+    height: 35em;
+    object-fit: cover;
+    border-radius: 1em;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2), 0 0 60px rgba(255, 255, 255, 0.1);
+
+    animation: fadeInScale 0.3s ease-out;
+}
+
+.poster {
+    position: fixed;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 27em;
+    height: 38em;
+    object-fit: cover;
+    border-radius: 1em;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2), 0 0 60px rgba(255, 255, 255, 0.1);
+    animation: fadeInScale 0.3s ease-out;
+}
+
+.actor {
+    position: fixed;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22em;
+    height: 35em;
+    object-fit: cover;
+    border-radius: 1em;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2), 0 0 60px rgba(255, 255, 255, 0.1);
+    animation: fadeInScale 0.3s ease-out;
+}
