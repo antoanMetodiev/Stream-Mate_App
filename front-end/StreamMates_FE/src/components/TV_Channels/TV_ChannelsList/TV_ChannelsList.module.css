@@ -1,0 +1,8 @@
+
+
+.tv-channels-list-container {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    padding: 1.3em 1.5em;
+}
