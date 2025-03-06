@@ -3,6 +3,7 @@ package bg.stream_mates.backend.feather.movies.controllers;
 import bg.stream_mates.backend.feather.commonData.dtos.CinemaRecRequestDto;
 import bg.stream_mates.backend.feather.movies.models.entities.Movie;
 import bg.stream_mates.backend.feather.movies.services.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -17,19 +18,16 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @CrossOrigin(origins = "http://localhost:5173") // Позволява заявки от localhost:5173
     @PostMapping("/get-movies")
-    public List<Movie> getMovies(@RequestBody CinemaRecRequestDto cinemaRecRequestDto) throws IOException, InterruptedException {
+    public List<Movie> getMovies(@RequestBody @Valid CinemaRecRequestDto cinemaRecRequestDto) throws IOException, InterruptedException {
         List<Movie> movies = new ArrayList<>();
         if (cinemaRecRequestDto.getRecordName().trim().isEmpty()) return movies;
 
         return this.movieService.getMovies(cinemaRecRequestDto.getRecordName());
     }
 
-
-    @CrossOrigin(origins = "http://localhost:5173") // Позволява заявки от localhost:5173
     @PostMapping("/search-movies")
-    public String searchMovies(@RequestBody CinemaRecRequestDto cinemaRecRequestDto) throws IOException, InterruptedException {
+    public String searchMovies(@RequestBody @Valid CinemaRecRequestDto cinemaRecRequestDto) throws IOException, InterruptedException {
         this.movieService.searchForMovies(cinemaRecRequestDto.getRecordName());
         return "";
     }
