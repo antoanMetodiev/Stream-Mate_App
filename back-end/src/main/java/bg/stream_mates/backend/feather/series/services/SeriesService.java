@@ -4,7 +4,6 @@ import bg.stream_mates.backend.feather.commonData.entities.Actor;
 import bg.stream_mates.backend.feather.commonData.enums.ImageType;
 import bg.stream_mates.backend.feather.commonData.repositories.ActorRepository;
 import bg.stream_mates.backend.feather.commonData.utils.UtilMethods;
-import bg.stream_mates.backend.feather.movies.models.entities.Movie;
 import bg.stream_mates.backend.feather.series.models.Episode;
 import bg.stream_mates.backend.feather.series.models.Series;
 import bg.stream_mates.backend.feather.series.models.SeriesImage;
