@@ -1,7 +1,9 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import style from "./Chat.module.css";
 
+import audioCallingImg from "../../images/audio-call.png";
 import videoCallImg from "../../images/video_call.png";
+import deffaultBackground from "../../images/deffault-chat-component-img.jpg";
 
 import { User } from "../../types/User";
 import { Message } from "../../types/Message";
@@ -9,12 +11,11 @@ import { VideoCall } from "./VideoCall/VideoCall";
 
 import { v4 as uuidv4 } from "uuid"; // За генериране на уникално callId
 import { CallNotification } from "../../types/CallNotification";
-
+import { MessageType } from "../../types/enums/MessageType";
 
 interface ChatProps {
     user: User | null;
 };
-
 
 export const Chat = ({
     user,
@@ -23,12 +24,14 @@ export const Chat = ({
     const [incomingCall, setIncomingCall] = useState<CallNotification | null>(null);
     const [socket, setSocket] = useState<WebSocket | null>(null);
     const textMessageRef = useRef<HTMLInputElement | null>(null);
-    const receiverRef = useRef<HTMLHeadElement | null>(null);
+    const receiverRef = useRef<HTMLHeadingElement | null>(null);
 
     useEffect(() => {
         if (!user) return;
         const username = user.username;
-        const ws = new WebSocket(`ws://localhost:8080/chat?username=${username}`);
+
+        const BASE_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://streammate-org.onrender.com";
+        const ws = new WebSocket(BASE_URL + `/chat?username=${username}`);
 
         ws.onopen = () => {
             console.log("Connected to WebSocket");
@@ -56,31 +59,34 @@ export const Chat = ({
     }, [user]);
 
     // Изпращане на текстови съобщения (ако има чат функционалност)
-    const sendMessage = (event: FormEvent) => {
+    const sendTextOrImageMessage = (event: FormEvent) => {
+        debugger;
         event.preventDefault();
         if (!socket || !textMessageRef.current || !user || !receiverRef.current) return;
 
         const message: Message = {
             messageText: textMessageRef.current.value,
             owner: user.username,
-            receiver: receiverRef.current.textContent || ""
+            receiver: receiverRef.current.textContent || "",
+            messageType: MessageType.TEXT,
         };
 
         socket.send(JSON.stringify(message));
     };
 
     // Тази функция се извиква, когато ти (caller) щракнеш на иконката за видео обаждане.
-    const openCallSectionHandler = () => {
-        // Ако все още не е отворена секцията, създаваме call notification обект
+    const openCallSectionHandler = (receivedCallType: string) => {
+        // Отваряме Call Секцията:
         if (!openCallSection) {
             const videoCallNotification: CallNotification = {
                 caller: user!.username,
                 receiver: receiverRef.current?.textContent || "",
                 callId: uuidv4(),
-                callType: "VIDEO_CALL",
+                callType: receivedCallType,
                 channelName: `call_${user!.username}_${receiverRef.current?.textContent}`,
                 timestamp: new Date().toISOString()
             };
+
             // Записваме данните, за да ги подадем на VideoCall компонента
             setIncomingCall(videoCallNotification);
             // Изпращаме известие към сървъра
@@ -131,7 +137,7 @@ export const Chat = ({
                         ref={receiverRef}
                         className={style["username-title"]}
                     >
-                        {user && user.username == "manuel_metodiev" ? "antoanMetodiev" : "manuel_metodiev"}
+                        {user && user.username == "manuelMetodiev" ? "antoanMetodiev" : "manuelMetodiev"}
                     </h2>
                     <p className={style["online-label"]}>online</p>
                     <img
@@ -163,8 +169,15 @@ export const Chat = ({
                     </div>
 
                     <img
-                        onClick={openCallSectionHandler}
-                        className={style["back-to-users-list"]}
+                        onClick={() => { openCallSectionHandler("AUDIO_CALL") }}
+                        className={style['audio-call-img']}
+                        src={audioCallingImg}
+                        alt="audioCallingImg"
+                    />
+
+                    <img
+                        onClick={() => { openCallSectionHandler("VIDEO_CALL") }}
+                        className={style["video-call-img"]}
                         src={videoCallImg}
                         alt="videoCallImg"
                     />
@@ -187,12 +200,10 @@ export const Chat = ({
 
                     <p className={style['shadow']}></p>
 
-                    <video
-                        className={style['message-section-wallper-video']}
-                        // src={backgoundImage}
-                        autoPlay
-                        loop
-                        muted
+                    <img
+                        className={style['message-section-wallper-img']}
+                        src={deffaultBackground}
+                        alt="deffaultBackground"
                     />
 
                     {/* {allMessagesForCurrentConversation.map((msg) => (
@@ -235,7 +246,7 @@ export const Chat = ({
                 </section>
 
                 <form
-                    onSubmit={sendMessage}
+                    onSubmit={sendTextOrImageMessage}
                     className={style["chat-form"]}
                 >
                     <input
@@ -247,7 +258,7 @@ export const Chat = ({
                         placeholder="Type Something..."
                     />
                     <img
-                        // onClick={sendMessage}
+                        // onClick={sendTextOrImageMessage}
                         className={style["send-message-button"]}
                         // src={sendImageButton}
                         alt="Submit"
