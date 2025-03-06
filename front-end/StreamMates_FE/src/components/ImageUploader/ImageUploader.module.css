@@ -1,0 +1,118 @@
+.image-upload-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрира съдържанието хоризонтално */
+    justify-content: center; /* Центрира съдържанието вертикално */
+    position: fixed; /* За да е на видно място през целия екран */
+    top: 50%; /* Центрира го вертикално */
+    left: 50%; /* Центрира го хоризонтално */
+    transform: translate(-50%, -50%); /* Премества го точно по центъра */
+    z-index: 5;
+    gap: 0.4em;
+    background-color: #000;
+    width: 100vw;
+    height: 100vh;
+}
+
+.image-upload-container-wrapper > label:hover {
+    transform: scale(1.04);
+}
+
+.image-upload-container-wrapper > input {
+    margin-top: 0.9em;
+}
+
+.upload-image-button {
+    border-bottom: 0.3px solid #eee;
+    cursor: pointer;
+    width: 7em;
+    border-radius: 0.5em;
+    border: none;
+    position: relative;
+    top: 0.6em;
+    transition: transform 0.3s ease;
+    background-color: rgba(7, 7, 217, 0.669);
+    color: #fff;
+    padding: 4px 6px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 0.8em;
+    letter-spacing: 0.3px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.upload-image-button:hover {
+    transform: scale(1.04);
+    cursor: pointer;
+}
+
+.image-for-upload {
+    position: fixed; /* Позиционира снимката така, че да е на видно място през целия екран */
+    top: 46%; /* Центрира я по вертикала */
+    left: 32%; /* Центрира я по хоризонтала */
+    transform: translate(-50%, -50%); /* Премества я точно по центъра на екрана */
+    z-index: 5; /* Задава приоритет за видимост */
+    width: 10.5em;
+    height: 11.7em;
+    border-radius: 0.3em; /* Заобляне на ъглите */
+    border: 1px solid #eee; /* Лекият контур около снимката */
+    object-fit: cover; /* Снимката се мащабира, за да попълни контейнера без да изкривява пропорциите */
+    box-shadow: 0px 4px 6px rgba(192, 192, 192, 0.5); /* Лек сянка за снимката */
+    transition: transform 0.3s ease; /* Гладка анимация при трансформация */
+}
+
+
+.messageText-h5 {
+    position: relative;
+    top: 2.7em;
+    left: 0;
+    color: #eee;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    width: 14em;
+}
+
+.messageText-h5:hover {
+    color: silver;
+    cursor: default;
+}
+
+.write-something-textArea {
+    padding: 2px 0px 3px 3px;
+    outline: unset;
+    margin-top: 2.7em;
+    width: 13.5em;
+    height: 5.4em;
+    resize: none;
+    font-size: 1.2em;
+    font-weight: 400;
+    border-radius: 0.3em;
+    border: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.uploadImage-input {
+    position: fixed;
+    width: fit-content;
+    z-index: 5;
+    top: 34%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-button {
+    position: fixed;
+    z-index: 7;
+    top: 1em;
+    right: 1em;
+    font-size: 2em;  /* Размер на X */
+    font-weight: bold;
+    color: #fff;     /* Начален цвят на X */
+    cursor: pointer;
+    transition: color 0.3s ease; /* Плавна анимация при промяна на цвета */
+}
+
+.close-button:hover {
+    color: red;      /* Червен цвят при натискане */
+}
