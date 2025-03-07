@@ -12,11 +12,9 @@ export const CinemaRecordsList = ({
 }: CinemaRecordsListProps) => {
 
 
-    
-
     return (
         <section className={style["cinema-record-list-container"]}>
-            {cinemaRecordsList?.map((cinemaRecord) => (
+            {cinemaRecordsList && cinemaRecordsList?.map((cinemaRecord) => (
                 <CinemaRecord
                     key={cinemaRecord.id}
                     cinemaRecord={cinemaRecord}
