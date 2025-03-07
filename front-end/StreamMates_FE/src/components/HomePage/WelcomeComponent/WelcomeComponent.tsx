@@ -2,7 +2,6 @@ import style from "./WelcomeComponent.module.css";
 
 import appleStoreImg from "../../../images/apple-store.png";
 import googleStoreImg from "../../../images/google-play.webp";
-import backgroundImage from "../../../images/landing.jpg";
 
 import { TitleLogoComponent } from "./TitleLogoComponent/TitleLogoComponent";
 import { Navigation } from "./Navigation/Navigation";
