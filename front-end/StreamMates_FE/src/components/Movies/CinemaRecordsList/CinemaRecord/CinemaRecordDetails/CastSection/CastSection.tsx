@@ -20,13 +20,13 @@ export const CastSection = ({
     const [sliderRef] = useKeenSlider({
         mode: "snap", // Плавно движение
         slides: {
-            perView: 8, // Колко актьори да се виждат наведнъж
-            spacing: 12, // Разстояние между тях (8px ≈ 0.5em)
+            perView: 8, // ✅ Това трябва да бъде тук
+            spacing: 12, // ✅ Това също
         },
         breakpoints: {
-            "(max-width: 1024px)": { perView: 3, spacing: 6 },
-            "(max-width: 768px)": { perView: 2, spacing: 6 },
-            "(max-width: 480px)": { perView: 1, spacing: 4 },
+            "(max-width: 1024px)": { slides: { perView: 3, spacing: 6 } },
+            "(max-width: 768px)": { slides: { perView: 2, spacing: 6 } },
+            "(max-width: 480px)": { slides: { perView: 1, spacing: 4 } },
         }
     });
 
