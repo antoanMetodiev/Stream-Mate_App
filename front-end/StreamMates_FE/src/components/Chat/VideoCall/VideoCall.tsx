@@ -8,7 +8,7 @@ import AgoraRTC, {
 import { CallNotification } from '../../../types/CallNotification';
 
 interface VideoCallProps {
-    incomingCall: CallNotification;
+    incomingCall: CallNotification | null;
 };
 
 export const VideoCall = ({
@@ -19,6 +19,8 @@ export const VideoCall = ({
     const [localAudioTrack, setLocalAudioTrack] = useState<IMicrophoneAudioTrack | null>(null);
     const [cameraMuted, setCameraMuted] = useState(false);
     const [audioMuted, setAudioMuted] = useState(false);
+    const [permissionDenied, setPermissionDenied] = useState(false);
+    console.log(permissionDenied);
 
     // Рефове за визуализацията на локалното и отдалеченото видео
     const localVideoRef = useRef<HTMLDivElement>(null);
@@ -44,36 +46,40 @@ export const VideoCall = ({
         });
     }, [client]);
 
-    // Функция за присъединяване към канала
     const joinChannel = async () => {
+        debugger;
         try {
             // Присъединяваме се към зададения канал
             await client.join(APP_ID, CHANNEL, TOKEN, null);
 
             let audioTrack, videoTrack;
+
             // Проверяваме дали вече имаме локални тракове
             if (!localAudioTrack || !localVideoTrack) {
-                // Ако няма, ги създаваме
-                const tracks = await AgoraRTC.createMicrophoneAndCameraTracks(undefined, {
-                    encoderConfig: {
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 },
-                        frameRate: 30,
-                    },
-                });
-                audioTrack = tracks[0];
-                videoTrack = tracks[1];
+                // Получаваме разрешение за достъп до камерата и микрофона
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                console.log('Permissions granted');
+
+                // Вземаме аудио и видео траковете от MediaStream
+                const audio = stream.getAudioTracks()[0];
+                const video = stream.getVideoTracks()[0];
+
+                // Създаваме Agora custom тракове, като подаваме MediaStreamTrack
+                audioTrack = AgoraRTC.createCustomAudioTrack({ mediaStreamTrack: audio }) as unknown as IMicrophoneAudioTrack;
+                videoTrack = AgoraRTC.createCustomVideoTrack({ mediaStreamTrack: video }) as unknown as ICameraVideoTrack;
+
+                // Записваме локалните тракове в състоянието
                 setLocalAudioTrack(audioTrack);
                 setLocalVideoTrack(videoTrack);
+
+                // Пускаме локалното видео в контейнера
+                if (localVideoRef.current) {
+                    videoTrack.play(localVideoRef.current);
+                }
             } else {
-                // Ако камерата и микрофонът са вече заети (например при тестване на същото устройство), ги използваме
+                // Ако вече има създадени тракове, ги използваме
                 audioTrack = localAudioTrack;
                 videoTrack = localVideoTrack;
-            }
-
-            // Пускаме локалното видео в съответния контейнер
-            if (localVideoRef.current) {
-                videoTrack.play(localVideoRef.current);
             }
 
             // Публикуваме траковете в канала
@@ -81,9 +87,11 @@ export const VideoCall = ({
             setJoined(true);
             console.log('Successfully joined and published local tracks.');
         } catch (error) {
-            console.error('Error joining channel:', error);
+            console.error('Error while joining the channel or accessing media:', error);
+            setPermissionDenied(true);
         }
     };
+
 
     // Автоматично присъединяване при монтирaне на компонента
     useEffect(() => {
@@ -113,6 +121,8 @@ export const VideoCall = ({
             setAudioMuted(!audioMuted);
         }
     };
+
+
 
     return (
         <div style={{ padding: '20px', textAlign: 'center' }}>
