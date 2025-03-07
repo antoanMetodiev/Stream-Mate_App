@@ -36,7 +36,7 @@ export const Header = ({
                 />
             )}
 
-            <Navigation />
+            <Navigation user={null} setUser={() => {}} />
         </div>
     );
 }
