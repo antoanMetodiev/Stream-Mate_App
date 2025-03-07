@@ -19,7 +19,7 @@ export const EpisodesSection = ({
     setCurrentEpisodeURL,
     playerRef
 }: EpisodesSectionProps) => {
-    const [orderedEpisodes, setOrderedEpisodes] = useState<Episode[]>(orderEpisodes(allEpisodes));
+    const [orderedEpisodes] = useState<Episode[]>(orderEpisodes(allEpisodes));
     const [selectedSeason, setSelectedSeason] = useState<string>("1");
     const [seasonEpisodes, setSeasonEpisodes] = useState<Episode[]>(getSeasonEpisodes(selectedSeason, orderedEpisodes));
 
