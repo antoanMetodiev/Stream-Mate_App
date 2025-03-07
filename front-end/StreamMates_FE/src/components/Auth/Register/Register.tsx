@@ -31,8 +31,10 @@ export const Register = () => {
         }
         debugger;
 
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+
         try {
-            const apiResponse = await axios.post('http://localhost:8080/register', user, {
+            const apiResponse = await axios.post(BASE_URL + '/register', user, {
                 withCredentials: true
             });
             console.log(apiResponse.data);

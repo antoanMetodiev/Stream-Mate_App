@@ -24,9 +24,11 @@ export const Login = ({
 
         const user: LoginUser = { username, password }
 
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+
         debugger;
         try {
-            const apiResponse = await axios.post("http://localhost:8080/login", user, {
+            const apiResponse = await axios.post(BASE_URL + "/login", user, {
                 withCredentials: true
             });
             console.log(apiResponse.data);
