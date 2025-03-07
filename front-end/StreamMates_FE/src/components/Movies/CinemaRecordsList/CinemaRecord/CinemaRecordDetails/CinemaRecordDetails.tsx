@@ -1,4 +1,4 @@
-import { useReducer, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import style from "./CinemaRecordDetails.module.css";
 import { useLocation } from "react-router-dom";
 
@@ -15,7 +15,7 @@ import { EpisodesSection } from "./EpisodesSection/EpisodesSection";
 
 export const CinemaRecordDetails = () => {
     const location = useLocation();
-    const [cinemaRecord, setCinemaRecord] = useState<Movie | Series | undefined>(useLocation().state?.cinemaRecord);
+    const [cinemaRecord] = useState<Movie | Series | undefined>(useLocation().state?.cinemaRecord);
     const [showPlayerSection, setShowPlayerSection] = useState<boolean>(!location.pathname.includes("/series/"));
     const [currentEpisodeURL, setCurrentEpisodeURL] = useState("");
 
@@ -25,7 +25,7 @@ export const CinemaRecordDetails = () => {
 
     return (
         <article className={style['cinema-record-details-container']}>
-            <Header />
+            <Header setCinemaRecordsList={() => {}}/>
             <Details cinemaRecord={cinemaRecord} />
             <CastSection cinemaRecord={cinemaRecord} />
             {cinemaRecord?.imagesList && <ImageSection imagesList={cinemaRecord?.imagesList} />}
