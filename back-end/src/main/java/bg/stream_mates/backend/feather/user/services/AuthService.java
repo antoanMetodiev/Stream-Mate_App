@@ -73,6 +73,8 @@ public class AuthService {
         cookie.setSecure(false);
         cookie.setPath("/");
         cookie.setMaxAge((int) TimeUnit.HOURS.toSeconds(47));
+//        cookie.setAttribute("SameSite", "None"); // 👈 ТОВА Е ВАЖНО!
+
         response.addCookie(cookie);
 
         return user;
@@ -101,10 +103,11 @@ public class AuthService {
 
         // Създаваме cookie за JWT токен
         Cookie cookie = new Cookie("JWT_TOKEN", token);
-        cookie.setHttpOnly(true);  // По-безопасно е да е true
-        cookie.setSecure(true);  // Ако работиш в HTTPS, сложи true
+        cookie.setHttpOnly(false);  // По-безопасно е да е true
+        cookie.setSecure(false); // Ако работиш в HTTPS, сложи true
         cookie.setPath("/");  // Валиден за целия сайт
         cookie.setMaxAge((int) TimeUnit.HOURS.toSeconds(47));  // Време на живот 48 часа
+//        cookie.setAttribute("SameSite", "None"); // 👈 ТОВА Е ВАЖНО!
 
         response.addCookie(cookie);  // Добавя cookie-то в отговора
         return data;
