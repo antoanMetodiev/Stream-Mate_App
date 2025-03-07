@@ -29,7 +29,7 @@ export const ActorDetails = () => {
 
     return (
         <div className={style['details-container-wrapper']}>
-            <Header />
+            <Header setCinemaRecordsList={() => { }} />
             {showBigImage && (
                 <>
                     <BigImage
