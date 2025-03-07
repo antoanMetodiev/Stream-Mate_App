@@ -24,8 +24,10 @@ export const SearchEngine = ({
         console.log(recordName);
         const requestData: CinemaRecRequestDto = { recordName };
 
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+
         try {
-            const apiResponse = await axios.post("http://localhost:8080/get-movies", requestData, {
+            const apiResponse = await axios.post(BASE_URL + "/get-movies", requestData, {
                 withCredentials: true
             });
             const movies: Movie[] = apiResponse.data as Movie[];
@@ -45,8 +47,10 @@ export const SearchEngine = ({
         console.log(recordName);
         const requestData: CinemaRecRequestDto = { recordName };
 
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+
         try {
-            const apiResponse = await axios.post("http://localhost:8080/get-series", requestData, {
+            const apiResponse = await axios.post(BASE_URL + "/get-series", requestData, {
                 withCredentials: true
             });
             const series: Series[] = apiResponse.data as Series[];
