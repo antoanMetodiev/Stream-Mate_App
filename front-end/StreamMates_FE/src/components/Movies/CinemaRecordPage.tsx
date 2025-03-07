@@ -33,7 +33,7 @@ export const CinemaRecordPage = () => {
         <article className={style['cinema-record-page-container']}>
             <Header setCinemaRecordsList={setCinemaRecordsList} />
             <GenreCategories />
-            {cinemaRecordsList !== undefined && (
+            {cinemaRecordsList && (
                 <CinemaRecordsList cinemaRecordsList={cinemaRecordsList} />
             )}
         </article>
