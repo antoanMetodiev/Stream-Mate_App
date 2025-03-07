@@ -3,12 +3,3 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-.form-wrapper-container {
-    display: flex;
-    height: 700px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 6rem;
-}
