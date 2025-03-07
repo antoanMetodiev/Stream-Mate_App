@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import style from "./BigImage.module.css";
 
 interface BigImageProps {
@@ -6,7 +5,6 @@ interface BigImageProps {
     imageType: string;
     setShowBigImage: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 
 export const BigImage = ({
     imageURL,
