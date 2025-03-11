@@ -21,6 +21,11 @@ public class CallNotification {
     @NotBlank(message = "Caller cannot be empty!")
     private String caller;
 
+    @NotBlank(message = "Caller Names cannot be empty!")
+    private String callerNames;
+
+    private String callerImgUrl;
+
     @NotBlank(message = "Receiver cannot be empty!")
     private String receiver;
 
