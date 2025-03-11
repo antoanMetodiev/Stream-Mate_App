@@ -2,6 +2,7 @@ package bg.stream_mates.backend.feather.chat.models.entities;
 
 import bg.stream_mates.backend.feather.chat.models.enums.MessageType;
 import bg.stream_mates.backend.feather.user.models.entities.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -33,9 +34,11 @@ public class Message {
     private String messageText;
 
     @ManyToOne
+    @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false)
     private User owner;
 
     @ManyToOne
+    @JoinColumn(name = "receiver_id", referencedColumnName = "id", nullable = false)
     private User receiver;
 
     @Column(name = "created_on", nullable = false)
