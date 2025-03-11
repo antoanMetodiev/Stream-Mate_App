@@ -1,9 +1,10 @@
 package bg.stream_mates.backend.feather.series.models;
 
-import bg.stream_mates.backend.feather.commonData.entities.Actor;
-import bg.stream_mates.backend.feather.commonData.entities.CinemaRecord;
+import bg.stream_mates.backend.commonData.entities.Actor;
+import bg.stream_mates.backend.commonData.entities.CinemaRecord;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -23,6 +24,7 @@ public class Series extends CinemaRecord {
     @GeneratedValue
     private UUID id;
 
+    @NotNull
     @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
@@ -32,10 +34,12 @@ public class Series extends CinemaRecord {
     )
     private List<Actor> castList = new ArrayList<>();
 
+    @NotNull
     @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Episode> allEpisodes = new ArrayList<>();
 
+    @NotNull
     @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<SeriesImage> imagesList = new ArrayList<>();
