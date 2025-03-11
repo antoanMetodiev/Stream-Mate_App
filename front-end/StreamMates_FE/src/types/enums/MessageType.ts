@@ -1,5 +1,8 @@
 
 
 export enum MessageType {
-    TEXT, AUDIO_CALL, VIDEO_CALL, IMAGE
-};
+    TEXT = "TEXT",
+    AUDIO_CALL = "AUDIO_CALL",
+    VIDEO_CALL = "VIDEO_CALL",
+    IMAGE = "IMAGE"
+}
