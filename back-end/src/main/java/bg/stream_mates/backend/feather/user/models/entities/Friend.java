@@ -35,4 +35,7 @@ public class Friend {
     @Column(name = "profile_image_url")
     @URL
     private String profileImageURL;
+
+    @Column(name = "real_user_id", nullable = false, unique = true)
+    private UUID realUserId;
 }
