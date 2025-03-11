@@ -14,9 +14,7 @@ export const Actor = ({
 
     return (
         <div className={style['actor-container']}>
-
-
-            <div>
+            <div className={style['actor-img-container-wrapper']}>
                 <img
                     className={style['actor-image']}
                     src={actor?.imageURL?.length == 0 ? constants.Actor_BASE_IMG_URL
@@ -25,7 +23,7 @@ export const Actor = ({
                 />
                 <span className={style['shadow']}></span>
             </div>
-            <h4 className={style['actor-real-name']}>{actor?.nameInRealLife}</h4>
+            <h4 className={style['actor-real-name']}>{actor && actor?.nameInRealLife.length >= 17 ? actor?.nameInRealLife.slice(0, 16) + ".." : actor?.nameInRealLife}</h4>
             {/* <h6 className={style['actor-name-in-show']}>{actor.}</h6> */}
         </div>
     );
