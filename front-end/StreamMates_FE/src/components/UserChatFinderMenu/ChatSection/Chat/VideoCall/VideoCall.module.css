@@ -1,0 +1,150 @@
+/* VideoCall.module.css */
+
+.video-call-container-wrapper {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    box-sizing: border-box;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px; /* Разстояние между видеото */
+}
+
+.localVideo,
+.remoteVideo {
+    width: 30em;
+    height: 22.8em;
+    border-radius: 1em;
+    background-color: #121212;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.localVideo {
+    position: relative;
+    z-index: 12;
+}
+
+.remoteVideo {
+    position: relative;
+    z-index: 11;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.startButton {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: #fff;
+}
+
+.startButton:hover {
+    background: linear-gradient(135deg, #45a049, #4CAF50);
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.leaveButton {
+    background: linear-gradient(135deg, #f44336, #e53935);
+    color: #fff;
+    margin-right: 15px;
+}
+
+.leaveButton:hover {
+    background: linear-gradient(135deg, #e53935, #f44336);
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.toggleCameraButtonOn {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    color: #fff;
+}
+
+.toggleCameraButtonOff {
+    background: linear-gradient(135deg, #4CAF50, #388e3c);
+    color: #fff;
+}
+
+.toggleAudioButtonOn {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    color: #fff;
+}
+
+.toggleAudioButtonOff {
+    background: linear-gradient(135deg, #4CAF50, #388e3c);
+    color: #fff;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-call-footer {
+    position: absolute;
+    bottom: 10%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.video-call-footer button {
+    width: 170px;
+    font-size: 18px;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+    border-radius: 12px;
+}
+
+.video-call-footer {
+    position: absolute;
+    bottom: 2em;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 17em;
+    height: 3em;
+    background-color: rgb(192, 192, 192);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3.1em;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    border-radius: 1em;
+}
+
+.video-call-footer > img {
+    width: 2.2em;
+    height: 2.2em;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.video-call-footer > img:hover {
+    transform: scale(1.1); /* Лек zoom при hover */
+}
