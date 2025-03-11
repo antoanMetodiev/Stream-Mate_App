@@ -5,18 +5,14 @@
 }
 
 .cinema-record-list-container {
-    margin-top: 1em;
-    background-color: gray;
+    margin-top: 0.3em;
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
-    gap: 2.7em;
+    gap: 2.2em;
     flex-wrap: wrap;
-    padding: 1.5em 0.6em 1.5em 0.7em;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.9); /* Силен черен сенчест ефект */
-    overflow-x: hidden;
-    
+    padding: 1em 0.6em 0.6em 0.7em;
 }
 
 .cinema-record-list-container > * {
@@ -24,6 +20,6 @@
 }
 
 .cinema-record-list-container > *:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
    
 }

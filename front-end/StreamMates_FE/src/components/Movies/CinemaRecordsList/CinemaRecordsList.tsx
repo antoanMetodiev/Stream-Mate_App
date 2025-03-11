@@ -5,22 +5,28 @@ import style from "./CinemaRecordsList.module.css";
 
 interface CinemaRecordsListProps {
     cinemaRecordsList: (Movie | Series)[] | undefined;
+    currentPaginationPage: number,
 }
 
 export const CinemaRecordsList = ({
-    cinemaRecordsList
+    cinemaRecordsList,
+    currentPaginationPage
 }: CinemaRecordsListProps) => {
 
 
     return (
-        <section className={style["cinema-record-list-container"]}>
-            {cinemaRecordsList && cinemaRecordsList?.map((cinemaRecord) => (
-                <CinemaRecord
-                    key={cinemaRecord.id}
-                    cinemaRecord={cinemaRecord}
-                    cinemaRecordsList={cinemaRecordsList}
-                />
-            ))}
-        </section>
+        <>
+            <span className={style['bound']}></span>
+            <section className={style["cinema-record-list-container"]}>
+                {cinemaRecordsList && cinemaRecordsList?.map((cinemaRecord) => (
+                    <CinemaRecord
+                        key={cinemaRecord.id}
+                        cinemaRecord={cinemaRecord}
+                        cinemaRecordsList={cinemaRecordsList}
+                        currentPaginationPage={currentPaginationPage}
+                    />
+                ))}
+            </section>
+        </>
     );
 };
