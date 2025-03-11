@@ -1,6 +1,6 @@
 package bg.stream_mates.backend.feather.series.models;
 
-import bg.stream_mates.backend.feather.commonData.enums.ImageType;
+import bg.stream_mates.backend.commonData.enums.ImageType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
