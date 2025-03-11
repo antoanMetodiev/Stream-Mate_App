@@ -1,8 +1,7 @@
 package bg.stream_mates.backend.feather.movies.models.entities;
 
-import bg.stream_mates.backend.feather.commonData.enums.ImageType;
+import bg.stream_mates.backend.commonData.enums.ImageType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
