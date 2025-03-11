@@ -3,8 +3,8 @@ import style from "./ReceivedFriendRequests.module.css";
 import { UserSender } from "./UserSender/UserSender";
 
 interface ReceivedFriendRequestsProps {
-    user: User;
-    setUser: React.Dispatch<React.SetStateAction<User>> | null;
+    user: User | null;
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
 };
 
 export const ReceivedFriendRequests = ({
