@@ -35,7 +35,7 @@ export const EpisodeComponent = ({
                 <h2 className={style['title']}>{episode.episodeTitle}</h2>
                 <h4>{"Episode " + episode.episodeNumber}</h4>
                 <h3 className={style['air-date']}>{"Air Date: " + episode.airDate}</h3>
-                <h4 className={style['description']}>{episode.description}</h4>
+                <h4 className={style['description']}>{episode.description && episode.description?.length > 219 ? episode.description?.slice(0, 219) + ".." : episode.description}</h4>
                 <h4 className={style['runtime']}>{"Runtime: " + episode.runtime}</h4>
                 <h4 className={style['tmdb-rating']}>{"TMDB Rating: " + episode.tmdbRating}</h4>
             </div>
