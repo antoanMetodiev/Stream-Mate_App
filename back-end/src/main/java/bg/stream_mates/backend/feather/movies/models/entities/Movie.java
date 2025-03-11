@@ -1,7 +1,7 @@
 package bg.stream_mates.backend.feather.movies.models.entities;
 
-import bg.stream_mates.backend.feather.commonData.entities.Actor;
-import bg.stream_mates.backend.feather.commonData.entities.CinemaRecord;
+import bg.stream_mates.backend.commonData.entities.Actor;
+import bg.stream_mates.backend.commonData.entities.CinemaRecord;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -35,7 +35,7 @@ public class Movie extends CinemaRecord {
     @Column(name = "video_url", nullable = false)
     private String videoURL;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<MovieImage> imagesList = new ArrayList<>();
 
