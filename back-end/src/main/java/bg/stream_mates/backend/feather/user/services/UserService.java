@@ -151,7 +151,6 @@ public class UserService extends TextWebSocketHandler {
         friendRequestNotificationHandler.sendFriendRequestNotification(friendRequest, receiverUsername);
     }
 
-
     @Transactional
     public void acceptFriendRequest(String senderUsername, String receiverUsername) {
         this.friendRequestRepository.deleteBySenderUsernameAndReceiverUsername(receiverUsername, senderUsername);
@@ -172,6 +171,7 @@ public class UserService extends TextWebSocketHandler {
                         .lastName(receiverData.getLastName())
                         .username(receiverData.getUsername())
                         .profileImageURL(receiverData.getProfileImageURL())
+                        .realUserId(receiverData.getId())
                         .build());
 
         Friend friendForReceiverData = this.friendRepository.findByUsername(myData.getUsername())
@@ -180,6 +180,7 @@ public class UserService extends TextWebSocketHandler {
                         .lastName(myData.getLastName())
                         .username(myData.getUsername())
                         .profileImageURL(myData.getProfileImageURL())
+                        .realUserId(myData.getId())
                         .build());
 
         this.friendRepository.saveAll(Arrays.asList(friendForMyData, friendForReceiverData));
