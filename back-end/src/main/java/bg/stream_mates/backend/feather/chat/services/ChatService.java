@@ -13,14 +13,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -44,9 +48,14 @@ public class ChatService extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        String userId = session.getUri().getQuery().replace("username=", "");
+        String userId = session.getUri().getQuery().replace("userId=", "");
         activeSessions.put(userId, session);
         System.out.println("User connected: " + userId + " | Session ID: " + session.getId());
+    }
+
+    @Transactional
+    public List<Message> getMessagesWithFriend(String myId, String friendId) {
+        return this.chatRepository.getMessagesWithFriend(myId, friendId);
     }
 
     // ПОЛУЧАВА С WebSocket:
@@ -73,7 +82,7 @@ public class ChatService extends TextWebSocketHandler {
     public void sendMessageToUser(ReceivedMessage message) throws Exception {
         WebSocketSession recipientSession = activeSessions.get(message.getReceiver());
         if (recipientSession != null && recipientSession.isOpen()) {
-            recipientSession.sendMessage(new TextMessage(message.getMessageText()));
+            recipientSession.sendMessage(new TextMessage(this.objectMapper.writeValueAsString(message)));
             System.out.println("Sent message to " + message.getReceiver() + ": " + message.getMessageText());
         } else {
             System.out.println("User " + message.getReceiver() + " not found or not connected.");
@@ -97,6 +106,8 @@ public class ChatService extends TextWebSocketHandler {
                 .messageType(MessageType.AUDIO_CALL)
                 .owner(message.getCaller())
                 .receiver(message.getReceiver())
+                .ownerNames(message.getCallerNames())
+                .ownerImgUrl(message.getCallerImgUrl())
                 .messageText(" :} ")
                 .build();
 
@@ -106,14 +117,21 @@ public class ChatService extends TextWebSocketHandler {
 
     @Transactional
     public void saveMessageToDB(ReceivedMessage receivedMessage) {
-        Optional<User> owner = this.userRepository.findByUsername(receivedMessage.getOwner());
-        Optional<User> receiver = this.userRepository.findByUsername(receivedMessage.getReceiver());
+        UUID ownerUUID = UUID.fromString(receivedMessage.getOwner());
+        UUID receiverID = UUID.fromString(receivedMessage.getReceiver());
+
+        Optional<User> owner = this.userRepository.findById(ownerUUID);
+        Optional<User> receiver = this.userRepository.findById(receiverID);
         if (owner.isEmpty() || receiver.isEmpty()) return;
 
+        User ownerUser = owner.get();
+        User receiverUser = receiver.get();
+
         Message message = Message.builder()
-                .owner(owner.get())
-                .receiver(receiver.get())
+                .owner(ownerUser)
+                .receiver(receiverUser)
                 .createdOn(Instant.now())
+                .messageText(receivedMessage.getMessageText())
                 .messageType(receivedMessage.getMessageType())
                 .build();
 
@@ -121,9 +139,9 @@ public class ChatService extends TextWebSocketHandler {
                 || receivedMessage.getMessageType() == MessageType.TEXT) {
             message.setMessageText(receivedMessage.getMessageText());
         } else {
-            message.setMessageText(String.format("%s започна аудио обаждане.", message.getOwner()));
+            message.setMessageText(String.format("%s започна аудио обаждане.", receivedMessage.getOwnerNames()));
             if (message.getMessageType() == MessageType.VIDEO_CALL) {
-                message.setMessageText(String.format("%s започна аудио обаждане.", message.getOwner()));
+                message.setMessageText(String.format("%s започна аудио обаждане.", receivedMessage.getOwnerNames()));
             }
         }
 
