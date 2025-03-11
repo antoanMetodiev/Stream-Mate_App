@@ -3,43 +3,41 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+	<link rel="icon" type="image/svg+xml" href="./src/images/logo.jpg" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Stream Mates</title>
+	<title>Stream Mate - Streaming Platform</title>
 	<style>
 		/* За всички браузъри, които поддържат WebKit (Chrome, Edge, Safari) */
 		::-webkit-scrollbar {
-			width: 6px;
-			/* Тънък скролбар */
+			width: 4px;
+			/* Още по-тънък скролбар */
 		}
 
 		/* Стил на скрол лентата (пистата) */
 		::-webkit-scrollbar-track {
-			background: #1e1e1e;
-			/* Тъмен фон на скролбара */
+			background: #2a2a2a;
+			/* Малко по-светъл фон за по-добър контраст */
 			border-radius: 10px;
-			/* Закръглени ръбове */
 		}
 
 		/* Стил на плъзгача (дръжката) */
 		::-webkit-scrollbar-thumb {
-			background: #555;
-			/* По-светъл тъмен цвят за контраст */
+			background: #aaa;
+			/* Светло сиво за по-изчистен вид */
 			border-radius: 10px;
-			/* Закръглени ръбове за елегантен вид */
+			transition: background 0.3s ease;
 		}
 
 		/* Ефект при hover върху плъзгача */
 		::-webkit-scrollbar-thumb:hover {
-			background: #777;
+			background: #ccc;
 			/* Още по-светъл при задържане */
 		}
 
 		/* За Firefox */
 		* {
 			scrollbar-width: thin;
-			/* Прави скролбара тънък */
-			scrollbar-color: #555 #1e1e1e;
+			scrollbar-color: #aaa #2a2a2a;
 			/* Thumb | Track */
 		}
 	</style>
