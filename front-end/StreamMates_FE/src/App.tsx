@@ -14,10 +14,17 @@ import { TV_ChannelDetails } from './components/TV_Channels/TV_ChannelsList/TV_C
 import { UserChatFinderMenu } from './components/UserChatFinderMenu/UserChatFinderMenu';
 import { UserDetails } from './components/UserChatFinderMenu/FindUsers/User/UserDetails/UserDetails';
 import { FriendRequest } from './types/FriendRequest';
+import { CallNotification } from './types/CallNotification';
+import { Message } from './types/Message';
+import { Friend } from './types/Friend';
+import { MessageType } from './types/enums/MessageType';
 
 function App() {
 	const [user, setUser] = useState<User | null>(null);
-	const [preRenderApp, setPrerenderApp] = useState(false);
+	const [webSocket, setSocket] = useState<WebSocket | null>(null);
+	const [currentChatFriend, setCurrentChatFriend] = useState<Friend | null>(null); // В моменташния приятел, с който сме влезли в чат!
+	const [messagesWithCurrentFriend, setMessagesWithCurrentFriend] = useState<Message[] | []>([]);
+	const [incomingCall, setIncomingCall] = useState<CallNotification | null>(null);
 
 	useEffect(() => {
 		if (location.pathname == "/") localStorage.removeItem("LAST_CINEMA_RECORDS");
@@ -39,8 +46,9 @@ function App() {
 	}, []);
 
 
-	// 🔹 WebSocket свързан с потребителя
+	// FriendRequests operations WebSocket:
 	useEffect(() => {
+		debugger;
 		if (!user) return;
 
 		const BASE_WS_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://streammate-org.onrender.com";
@@ -55,12 +63,8 @@ function App() {
 					console.log("Received Friend request was canceled:", data.message);
 					const userCanceledUsername = data.message;
 
-			
-					console.log(user);
-
 					setUser(prevUser => {
 						if (!prevUser) return prevUser; // Ако потребителят не е зададен, връщаме същото състояние.
-
 						const updatedRequests = prevUser.sentFriendRequests.filter(
 							request => request.receiverUsername !== userCanceledUsername
 						);
@@ -70,9 +74,6 @@ function App() {
 							sentFriendRequests: updatedRequests
 						};
 					});
-
-					const truthy = true;
-					setPrerenderApp(truthy);
 
 				} else if (data.type === "sended_friend_request_cancellation") {
 					debugger;
@@ -123,11 +124,64 @@ function App() {
 	}, [user?.username]); // WebSocket се рестартира само ако user се промени
 
 
+	// ChatWebSocket:
+	useEffect(() => {
+		debugger;
+		if (!user) return;
+
+		const BASE_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://streammate-org.onrender.com";
+		const ws = new WebSocket(BASE_URL + `/chat?userId=${user.id}`);
+
+		ws.onmessage = (event) => {
+			console.log("Received message:", event.data);
+			const newMessage: Message = JSON.parse(event.data);
+
+			debugger;
+			if (newMessage.messageType == MessageType.TEXT) {
+				if (newMessage.owner == currentChatFriend?.realUserId) {
+
+					let messages: Message[] = [];
+					if (messagesWithCurrentFriend != null) {
+						messages = [...messagesWithCurrentFriend];
+					}
+			
+					messages.push(newMessage);
+					setMessagesWithCurrentFriend(messages);
+				};
+
+			} else {
+				const callNotification: CallNotification = JSON.parse(event.data);
+				if (callNotification.callType === "VIDEO_CALL" && callNotification.caller !== user.username) {
+					console.log("Incoming video call from", callNotification.caller);
+					setIncomingCall(callNotification);
+				};
+			};
+		};
+
+		ws.onopen = () => { console.log("Connected to WebSocket"); };
+		ws.onclose = () => { console.log("WebSocket connection closed"); };
+		setSocket(ws);
+
+	}, [user?.username, currentChatFriend]);
 
 
 	return (
 		<>
-			{user && <UserChatFinderMenu user={user} setUser={setUser} />}
+			{user && (
+				<UserChatFinderMenu
+					user={user}
+					setUser={setUser}
+					webSocket={webSocket}
+
+					currentChatFriend={currentChatFriend}
+					setCurrentChatFriend={setCurrentChatFriend}
+					messagesWithCurrentFriend={messagesWithCurrentFriend}
+					setMessagesWithCurrentFriend={setMessagesWithCurrentFriend}
+
+					incomingCall={incomingCall}
+					setIncomingCall={setIncomingCall}
+				/>
+			)}
 
 			<Routes>
 				<Route path="/login" element={<Login setUser={setUser} />} />
@@ -137,16 +191,16 @@ function App() {
 
 				<Route path="/user-details/:username" element={<UserDetails />} />
 
-
-
 				{/* Movies */}
-				<Route path="/movies" element={<CinemaRecordPage />} />
-				<Route path="/movies/search/:movie" element={<CinemaRecordPage />} />
+				<Route path="/movies" element={<CinemaRecordPage user={user} />} />
+				<Route path="/movies/:movie" element={<CinemaRecordDetails />} />
+				<Route path="/movies/search/:movie" element={<CinemaRecordPage user={user} />} />
 				<Route path="/movies/search/:movie/:id" element={<CinemaRecordDetails />} />
 
 				{/* Series */}
-				<Route path="/series" element={<CinemaRecordPage />} />
-				<Route path="/series/search/:series" element={<CinemaRecordPage />} />
+				<Route path="/series" element={<CinemaRecordPage user={user} />} />
+				<Route path="/series/:series" element={<CinemaRecordDetails />} />
+				<Route path="/series/search/:series" element={<CinemaRecordPage user={user} />} />
 				<Route path="/series/search/:series/:id" element={<CinemaRecordDetails />} />
 
 
