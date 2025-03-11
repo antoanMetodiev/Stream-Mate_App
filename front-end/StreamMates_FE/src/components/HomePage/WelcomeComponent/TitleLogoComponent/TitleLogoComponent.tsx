@@ -11,7 +11,6 @@ export const TitleLogoComponent = () => {
                 src={siteLogo}
                 alt="siteLogo"
             />
-            <h1 className={style['site-title']}>StreamMates</h1>
         </div>
     );
 }

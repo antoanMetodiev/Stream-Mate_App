@@ -9,11 +9,12 @@
 }
 
 .site-logo-img {
-    width: 2.7em;
+    margin: 2px 0px 0px 0px;
+    width: 2.9em;
     height: 3em;
     object-fit: cover;
     border-radius: 1em;
-    box-shadow: 1px 1px 3px silver;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* По-силна сянка при ховър */
 }
 
 .site-title {
