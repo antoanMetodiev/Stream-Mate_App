@@ -1,0 +1,37 @@
+/* Стилизиране на контейнера на лоудъра */
+.loader {
+    position: fixed;
+    /* Позиционираме лоудъра спрямо целия екран */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Центрираме елемента */
+    width: 70px;
+    /* Размер на лоудъра */
+    height: 70px;
+    border: 6px solid #f3f3f3;
+    /* Сивия фон на лоудъра */
+    border-top: 8px solid #000;
+    /* Черната част, която ще се върти */
+    border-radius: 50%;
+    /* Правим го кръгло */
+    animation: spin 2s linear infinite;
+    /* Създаваме анимация за въртенето */
+
+    /* Добавяне на сенки */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3),
+        /* Външна сянка */
+        0px 0px 40px rgba(0, 0, 0, 0.1);
+    /* Втора сянка за по-дълбок ефект */
+}
+
+/* Анимацията за въртене */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
