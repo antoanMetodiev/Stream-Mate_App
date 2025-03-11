@@ -8,15 +8,25 @@ import { Movie } from "../../../types/MovieType";
 import { Series } from "../../../types/Series";
 
 import { Navigation } from "../../HomePage/WelcomeComponent/Navigation/Navigation";
+import { User } from "../../../types/User";
+import { useEffect, useRef, useState } from "react";
 
 interface HeaderProps {
+    user: User | null;
     setCinemaRecordsList: React.Dispatch<React.SetStateAction<Movie[] | Series[] | undefined>>;
 };
 
 export const Header = ({
+    user,
     setCinemaRecordsList
 }: HeaderProps) => {
     const location = useLocation();
+    const pathNameRef = useRef(location.pathname);
+
+    useEffect(() => {
+        debugger;
+        pathNameRef.current = location.pathname;
+    }, [location.pathname]);
 
     // Извличаме последния сегмент от pathname
     const pathSegments = location.pathname.split("/").filter(segment => segment !== "");
@@ -36,7 +46,13 @@ export const Header = ({
                 />
             )}
 
-            <Navigation user={null} setUser={() => {}} />
+            {pathNameRef.current.split("/").length == 2 && (
+                <Navigation
+                    user={user}
+                    setUser={() => { }}
+                    setCinemaRecordsList={setCinemaRecordsList}
+                />
+            )}
         </div>
     );
 }
