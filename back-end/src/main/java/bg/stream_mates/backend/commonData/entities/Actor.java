@@ -2,8 +2,8 @@ package bg.stream_mates.backend.commonData.entities;
 
 import bg.stream_mates.backend.feather.movies.models.entities.Movie;
 import bg.stream_mates.backend.feather.series.models.Series;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import bg.stream_mates.backend.resolver.CustomObjectResolver;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +18,11 @@ import java.util.UUID;
 @Getter
 @Setter
 @Accessors(chain = true)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        resolver = CustomObjectResolver.class  // ✅ Позволява множество инстанции
+)
 public class Actor {
 
     @Id
@@ -64,12 +69,10 @@ public class Actor {
     private String nameInRealLife;
 
     @ManyToMany(mappedBy = "castList", fetch = FetchType.LAZY)
-    @JsonBackReference
     @JsonIgnore
     private List<Series> seriesParticipations = new ArrayList<>();
 
     @ManyToMany(mappedBy = "castList", fetch = FetchType.LAZY)
-    @JsonBackReference
     @JsonIgnore
     private List<Movie> moviesParticipations = new ArrayList<>();
 }

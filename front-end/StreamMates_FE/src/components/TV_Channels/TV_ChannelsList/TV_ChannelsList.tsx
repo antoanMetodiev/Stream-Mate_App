@@ -16,8 +16,6 @@ export const TV_ChannelsList = () => {
                             posterImgURL={channel.posterImgURL}
                             name={channel.name}
                             videoURL={channel.videoURL}
-                            imgList={channel.imgList}
-                            description={channel.description}
                         />
                     </>
                 )

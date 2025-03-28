@@ -50,15 +50,30 @@ dependencies {
 
     // WebSocket
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
-
-
     implementation 'com.google.code.gson:gson:2.8.9'
 
+    // Feign Client:
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'io.github.openfeign:feign-jackson:12.3'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mockito:mockito-core:5.6.0' // Основната библиотека
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.6.0' // За JUnit 5
+    testImplementation 'org.mockito:mockito-inline:3.12.4'  // Или по-нова версия
+
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2022.0.3"
+    }
 }
 
 tasks.named('test') {

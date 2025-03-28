@@ -4,18 +4,16 @@ import backgroundImage from "./../../channel-images/details-background.jpg";
 
 import { Header } from "../../../../Movies/Header/Header";
 import { ChannelLifeVideo } from "./ChannelLifeVideo/ChannelLiveVideo";
-import { ChannelDescriptionImage } from "./ChannelDescriptionImage/ChannelDescriptionImage";
+import { Footer } from "../../../../Footer/Footer";
 
 export const TV_ChannelDetails = () => {
     const location = useLocation();
-    const { name, posterImgURL, videoURL, description, imgList } = location.state || {}; // Взимаме данните
+    const { name, videoURL } = location.state || {}; // Взимаме данните
 
-    console.log(posterImgURL);
     return (
         <section className={style['tv-channel-details-container-wrapper']}>
             <Header setCinemaRecordsList={() => { }} />
             <ChannelLifeVideo name={name} videoURL={videoURL} />
-            <ChannelDescriptionImage description={description} imgList={imgList} />
 
             <img
                 className={style['details-background-img']}
@@ -23,6 +21,7 @@ export const TV_ChannelDetails = () => {
                 alt="backgroundImage"
             />
             <span className={style['shadow']}></span>
+            <Footer />
         </section>
     );
 };

@@ -8,10 +8,12 @@ import { User as UserType } from "../../../types/User";
 
 interface FindUsersProps {
     user: UserType;
+    setShowFindUsersSection: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const FindUsers = ({
     user,
+    setShowFindUsersSection
 }: FindUsersProps) => {
     const [lastTenUsers, setLastTenUsers] = useState<SearchedUser[] | []>([]);
     const [usersByPattern, setUsersByPattern] = useState<SearchedUser[] | []>([]);
@@ -20,6 +22,7 @@ export const FindUsers = ({
     const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
 
     useEffect(() => {
+        debugger;
         const getLastTenUsers = async () => {
             debugger;
             try {
@@ -59,6 +62,16 @@ export const FindUsers = ({
 
     return (
         <section className={style['find-users-container']}>
+            <div
+                className={style['close-section']}
+                onClick={() => {
+                    debugger;
+                    setShowFindUsersSection(false);
+                }}
+            >
+                <span>-</span>
+            </div>
+
             <h3 className={style['search-h3']}>Search</h3>
             <form onSubmit={getUsersByPattern}>
                 <input name="searchInput" className={style['search-input']} type="text" placeholder="Search.." />
@@ -73,7 +86,7 @@ export const FindUsers = ({
                     return (
                         <>
                             <User
-                                key={user.firstName + user.lastName} // they are unique.
+                                key={user.fullName + user.fullName} // they are unique.
                                 searchedUser={currentUser}
                                 myData={user}
                             />

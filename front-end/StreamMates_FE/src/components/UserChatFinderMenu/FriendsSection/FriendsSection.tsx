@@ -1,5 +1,4 @@
 import { User } from "../../../types/User";
-import { UserSender } from "../ReceivedFriendRequests/UserSender/UserSender";
 import style from "./FriendsSection.module.css";
 import { MyFriend } from "./MyFriend/MyFriend";
 
@@ -13,10 +12,10 @@ export const FriendsSection = ({
 
 
 
-
-
     return (
         <section className={style['received-friend-requests-container']}>
+           
+
             <h3 className={style['friend-requests-h3']}>Friends</h3>
             <span className={style['bound-line']}></span>
 

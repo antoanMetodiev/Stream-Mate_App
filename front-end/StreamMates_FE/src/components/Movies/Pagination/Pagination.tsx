@@ -13,11 +13,19 @@ export const Pagination = ({
 }: PaginationProps) => {
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
+    console.log(currentPaginationPage);
     return (
         <div className={styles.paginationContainer}>
             {/* Бутон за предишна страница */}
             <button
-                onClick={() => setCurrentPaginationPage(currentPaginationPage - 1)}
+                onClick={() => () => {
+                    debugger;
+                    localStorage.removeItem("LAST_CINEMA_RECORDS");
+                    // localStorage.setItem("LAST_CURRENT_PAGE", JSON.stringify(currentPaginationPage - 1));
+                    setCurrentPaginationPage(currentPaginationPage - 1);
+                    // Скролира страницата до най-горе
+                   
+                }}
                 disabled={currentPaginationPage === 1}
                 className={`${styles.pageButton} ${currentPaginationPage === 1 ? styles.disabled : ""}`}
             >
@@ -28,7 +36,11 @@ export const Pagination = ({
             {pageNumbers.map((num) => (
                 <button
                     key={num}
-                    onClick={() => setCurrentPaginationPage(num)}
+                    onClick={() => {
+                        localStorage.removeItem("LAST_CINEMA_RECORDS");
+                        // localStorage.setItem("LAST_CURRENT_PAGE", JSON.stringify(num));
+                        setCurrentPaginationPage(num);
+                    }}
                     className={`${styles.pageButton} ${num === currentPaginationPage ? styles.active : ""}`}
                 >
                     {num}
@@ -37,7 +49,11 @@ export const Pagination = ({
 
             {/* Бутон за следваща страница */}
             <button
-                onClick={() => setCurrentPaginationPage(currentPaginationPage + 1)}
+                onClick={() => {
+                    localStorage.removeItem("LAST_CINEMA_RECORDS");
+                    // localStorage.setItem("LAST_CURRENT_PAGE", JSON.stringify(currentPaginationPage - 1));
+                    setCurrentPaginationPage(currentPaginationPage + 1);
+                }}
                 disabled={currentPaginationPage === totalPages}
                 className={`${styles.pageButton} ${currentPaginationPage === totalPages ? styles.disabled : ""}`}
             >

@@ -6,7 +6,8 @@ import { ActorType } from "../../../../../../../../types/ActorType";
 import { calculateAge } from "../../../../../../../../utils/utils";
 
 import { BigImage } from "../../../../../../../BigImage/BigImage";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Footer } from "../../../../../../../Footer/Footer";
 
 export const ActorDetails = () => {
     const location = useLocation();
@@ -25,6 +26,10 @@ export const ActorDetails = () => {
         imageTypeForBigImageRef.current = "actor";
         setShowBigImage(true);
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
 
     return (
@@ -112,6 +117,8 @@ export const ActorDetails = () => {
                 src={constants.TMDB_IMG_URL + backgroundImg_URL}
                 alt={actor.nameInRealLife}
             />
+
+            <Footer />
         </div>
     );
 };

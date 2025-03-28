@@ -9,16 +9,36 @@ import { Series } from "../../../types/Series";
 
 import { Navigation } from "../../HomePage/WelcomeComponent/Navigation/Navigation";
 import { User } from "../../../types/User";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 interface HeaderProps {
     user: User | null;
     setCinemaRecordsList: React.Dispatch<React.SetStateAction<Movie[] | Series[] | undefined>>;
+    setLastPathName: React.Dispatch<React.SetStateAction<string>>;
+    setAllMoviesCount: React.Dispatch<React.SetStateAction<number>>;
+    searchedMovieTitle: string;
+    setSearchedMovieTitle: React.Dispatch<React.SetStateAction<string>>;
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    setCurrentPaginationPage: React.Dispatch<React.SetStateAction<number>>;
+    genres: string,
+    inputValue: string;
+    setInputValue: React.Dispatch<React.SetStateAction<string>>;
+    setGenres: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const Header = ({
     user,
-    setCinemaRecordsList
+    genres,
+    setCinemaRecordsList,
+    setLastPathName,
+    setAllMoviesCount,
+    searchedMovieTitle,
+    setSearchedMovieTitle,
+    setIsLoading,
+    setCurrentPaginationPage,
+    inputValue,
+    setInputValue,
+    setGenres,
 }: HeaderProps) => {
     const location = useLocation();
     const pathNameRef = useRef(location.pathname);
@@ -35,22 +55,37 @@ export const Header = ({
     const showNavigationLinks =
         lastSegment === "movies" ||
         lastSegment === "series" ||
-        pathSegments[pathSegments.length - 2] === "search";
+        pathSegments[pathSegments.length - 2] === "search" || pathSegments[pathSegments.length - 2] === "genres";
 
     return (
         <div className={style['navigation-container']}>
             <TitleLogoComponent />
             {showNavigationLinks && (
                 <SearchEngine
+                    genres={genres}
+                    setGenres={setGenres}
+                    setIsLoading={setIsLoading}
                     setCinemaRecordsList={setCinemaRecordsList}
+                    setLastPathName={setLastPathName}
+                    setAllMoviesCount={setAllMoviesCount}
+                    searchedMovieTitle={searchedMovieTitle}
+                    setSearchedMovieTitle={setSearchedMovieTitle}
+                    setCurrentPaginationPage={setCurrentPaginationPage}
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
                 />
             )}
 
-            {pathNameRef.current.split("/").length == 2 && (
+            {showNavigationLinks && (
                 <Navigation
                     user={user}
                     setUser={() => { }}
                     setCinemaRecordsList={setCinemaRecordsList}
+                    setGenres={setGenres}
+                    setInputValue={setInputValue}
+                    setSearchedMovieTitle={setSearchedMovieTitle}
+                    setAllMoviesCount={setAllMoviesCount}
+                    setCurrentPaginationPage={setCurrentPaginationPage}
                 />
             )}
         </div>

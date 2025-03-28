@@ -12,11 +12,8 @@ public class SearchedUserResponse {
     @NotBlank(message = "Username cannot be empty!")
     private String username;
 
-    @NotBlank(message = "First Name cannot be empty!")
-    private String firstName;
-
-    @NotBlank(message = "LastName cannot be empty!")
-    private String lastName;
+    @NotBlank(message = "Full Name cannot be empty!")
+    private String fullName;
 
     @URL
     private String imgURL;

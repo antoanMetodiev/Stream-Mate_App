@@ -3,10 +3,7 @@ package bg.stream_mates.backend.feather.user.models.entities;
 import bg.stream_mates.backend.feather.user.models.enums.UserImageType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.URL;
 
@@ -27,7 +24,7 @@ public class UserImage {
 
     @Column(name = "image_url", nullable = false)
     @URL
-    private String image_url;
+    private String imageUrl;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -38,5 +35,6 @@ public class UserImage {
 
     @ManyToOne
     @JsonBackReference
+    @ToString.Exclude
     private User owner;
 }

@@ -12,11 +12,17 @@ import { ImageSection } from "./ImageSection/ImageSection";
 import { EpisodesSection } from "./EpisodesSection/EpisodesSection";
 import axios from "axios";
 import { Footer } from "../../../../Footer/Footer";
+import { Loader } from "../../../../Loader/Loader";
+import { CommentsSection } from "./CommentsSection/CommentsSection";
+import { User } from "../../../../../types/User";
 
 export const CinemaRecordDetails = () => {
     const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
 
     const location = useLocation();
+    const [myData, setMyData] = useState<User | undefined>(location.state?.user ? location.state?.user : undefined);
+    const [currentCinemaRecordId, setCurrentCinemaRecordId] = useState(location.state?.cinemaRecordId ? location.state?.cinemaRecordId : "");
+
     const [cinemaRecord, setCinemaRecord] = useState<(Movie | Series) | null>(null);
     const [showPlayerSection, setShowPlayerSection] = useState<boolean>(!location.pathname.includes("/series/"));
     const [currentEpisodeURL, setCurrentEpisodeURL] = useState("");
@@ -26,6 +32,7 @@ export const CinemaRecordDetails = () => {
     const playerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
+        debugger;
         if (cinemaRecord) return;
 
         const data = location.pathname.split("/");
@@ -33,11 +40,14 @@ export const CinemaRecordDetails = () => {
         const additionalUrl = location.pathname.includes("movie") ? "/get-movie-details" : "/get-series-details";
 
         const getCinemaRecordDetails = async () => {
+            if (cinemaRecordId.length == 0) return;
             try {
                 const apiResponse = await axios.get(`${BASE_URL}${additionalUrl}`, {
                     params: { id: cinemaRecordId },
                     withCredentials: true
                 });
+
+                console.log(apiResponse.data);
 
                 setCinemaRecord(apiResponse.data);
                 setLoading(false); // Set loading to false when data is fetched
@@ -53,15 +63,28 @@ export const CinemaRecordDetails = () => {
     return (
         <>
             {loading ? (
-                <div className={style.loader}></div> // Показваме лоудъра, докато зареждат данни
+                <Loader />
             ) : (
                 cinemaRecord && (
                     <article className={style['cinema-record-details-container']}>
-                        <Header user={null} setCinemaRecordsList={() => { }} />
+                        <Header
+                            user={null}
+                            setCinemaRecordsList={() => { }}
+                            genres={""}
+                            inputValue={""}
+                            searchedMovieTitle={""}
+                            setGenres={() => { }}
+                            setAllMoviesCount={() => { }}
+                            setInputValue={() => { }}
+                            setIsLoading={() => { }}
+                            setSearchedMovieTitle={() => { }}
+                            setLastPathName={() => { }}
+                            setCurrentPaginationPage={() => { }}
+                        />
                         <Details cinemaRecord={cinemaRecord} />
                         <CastSection cinemaRecord={cinemaRecord} />
                         {cinemaRecord?.imagesList && <ImageSection imagesList={cinemaRecord?.imagesList} />}
-                        {showPlayerSection && (
+                        {/* {showPlayerSection && (
                             <div ref={playerRef}>
                                 <PlayerSection
                                     videoURL={currentEpisodeURL.length > 2 ? currentEpisodeURL : cinemaRecord?.videoURL}
@@ -74,7 +97,7 @@ export const CinemaRecordDetails = () => {
                                     videoURL={currentEpisodeURL.length > 2 ? currentEpisodeURL : cinemaRecord?.videoURL}
                                 />
                             </div>
-                        )}
+                        )} */}
 
                         {location.pathname.split("/")[1] == "series" && (
                             <EpisodesSection
@@ -84,6 +107,11 @@ export const CinemaRecordDetails = () => {
                                 allEpisodes={(cinemaRecord as Series).allEpisodes}
                             />
                         )}
+
+                        <CommentsSection
+                            myData={myData}
+                            currentCinemaRecordId={currentCinemaRecordId}
+                        />
 
                         <img
                             className={style['background-img']}

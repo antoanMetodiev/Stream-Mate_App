@@ -1,8 +1,8 @@
 import styles from "./Login.module.css";
 
 import backgroundVideo from "./../../../videos/mystery-shack.mp4";
-import { FormEvent } from "react";
-import axios from "axios";
+import { FormEvent, useState } from "react";
+import axios, { AxiosError } from "axios";
 import { LoginUser } from "../../../types/dtos/LoginUser";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../../types/User";
@@ -15,6 +15,7 @@ export const Login = ({
     setUser,
 }: LoginProps) => {
     const navigate = useNavigate();
+    const [invalidDataMessage, setInvalidDataMessage] = useState("");
 
     async function loginUser(event: FormEvent) {
         event.preventDefault();
@@ -23,7 +24,6 @@ export const Login = ({
         const password = (formData.elements.namedItem("password") as HTMLInputElement).value;
 
         const user: LoginUser = { username, password }
-
         const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
 
         debugger;
@@ -37,8 +37,10 @@ export const Login = ({
             setUser(responseUser);
             navigate("/");
 
-        } catch (error) {
-            console.log(error);
+        } catch (error: unknown) {
+            if (error instanceof AxiosError) {
+                setInvalidDataMessage(error.response?.data.toString()); // Използваме точния текст или структура на грешката
+            };
         };
     };
 
@@ -46,8 +48,6 @@ export const Login = ({
 
     return (
         <article className={styles['login-container-wrapper']}>
-
-
             <form
                 onSubmit={loginUser}
                 className={`${styles["register"]} ${styles["other"]}`}
@@ -65,6 +65,7 @@ export const Login = ({
                             name="username"
                             type="text"
                             id="username"
+                            placeholder="Username..."
                         />
                         <i className="fa fa-user" />
 
@@ -104,6 +105,8 @@ export const Login = ({
                 playsInline
             >
             </video>
+
+            {invalidDataMessage.length && <h3 className={styles["invalid-data-message"]}>{invalidDataMessage}</h3>}
         </article>
     );
 };

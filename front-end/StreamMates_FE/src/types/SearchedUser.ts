@@ -1,6 +1,5 @@
 export type SearchedUser = {
     username: string;
-    firstName: string;
-    lastName: string;
+    fullName: string;
     imgURL: string | null;
 };

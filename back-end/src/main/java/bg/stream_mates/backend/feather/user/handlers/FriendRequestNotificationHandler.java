@@ -1,7 +1,6 @@
 package bg.stream_mates.backend.feather.user.handlers;
 
 import bg.stream_mates.backend.feather.user.models.entities.FriendRequest;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;

@@ -30,34 +30,32 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String customHeader = request.getHeader("X-Custom-Logout");
         if (checkIfIsLogin(customHeader, cookies, response)) return;
 
-        // Ако заявката е за login или register, няма нужда от токен
+        // Ако заявката е за login или register, няма нужда от токен, понеже няма да има още!
         if (uri.equals("/login") || uri.equals("/register")) {
-            filterChain.doFilter(request, response); // Пропускаш филтъра, ако е за тези пътища
+            filterChain.doFilter(request, response);
             return;
         }
 
         String token = null;
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if ("JWT_TOKEN".equals(cookie.getName())) { // Проверяваме за cookie с име "JWT"
-                    token = cookie.getValue(); // Връщаме стойността на токена
+                if ("JWT_TOKEN".equals(cookie.getName())) {
+                    token = cookie.getValue();
                 }
             }
         }
 
-        System.out.println(token);
-        String username = JwtTokenUtil.extractUsername(token);
+        String userId = JwtTokenUtil.extractId(token);
 
-        if (token != null && JwtTokenUtil.validateToken(token, username)) {
+        if (token != null && JwtTokenUtil.validateToken(token, userId)) {
 
             RedisConnection connection = redisTemplate.getConnectionFactory().getConnection();
-            byte[] rawValue = connection.get(username.getBytes());
+            byte[] rawValue = connection.get(userId.getBytes());
             String storedToken = rawValue != null ? new String(rawValue) : null;
-            System.out.println("Stored token: " + storedToken);
 
             if (storedToken != null && storedToken.equals(token)) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        username, null, null);
+                        userId, null, null);
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } else {
@@ -76,8 +74,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 for (Cookie cookie : cookies) {
                     if ("JWT_TOKEN".equals(cookie.getName())) {
                         String token = cookie.getValue();
-                        String username = JwtTokenUtil.extractUsername(token);
-                        redisTemplate.delete(username);
+                        String userId = JwtTokenUtil.extractId(token);
+                        redisTemplate.delete(userId);
 
                         // Инвалидиране на бисквитката
                         Cookie invalidCookie = new Cookie("JWT_TOKEN", "");
@@ -85,7 +83,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         invalidCookie.setPath("/");
                         response.addCookie(invalidCookie);
                         response.setStatus(HttpServletResponse.SC_OK);
-                        return true; // 👈 Спри веригата от филтри
+                        return true; // Спирам веригата от филтри
                     }
                 }
             }

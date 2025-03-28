@@ -1,5 +1,7 @@
 package bg.stream_mates.backend.feather.user.services;
 
+import bg.stream_mates.backend.exception.UserAlreadyExistsException;
+import bg.stream_mates.backend.exception.UserNotFoundException;
 import bg.stream_mates.backend.feather.user.models.dtos.LoginRequest;
 import bg.stream_mates.backend.feather.user.models.dtos.RegisterRequest;
 import bg.stream_mates.backend.feather.user.models.entities.User;
@@ -15,8 +17,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -43,74 +43,68 @@ public class AuthService {
 
         // 1. Проверявам дали съществува вече такъв потребител с такъв username или email:
         Optional<User> databaseResponse = this.userRepository
-                .findByUsernameAndEmail(registerRequest.getUsername(), registerRequest.getEmail());
+                .findByUsernameOrEmail(registerRequest.getUsername(), registerRequest.getEmail());
 
         if (databaseResponse.isPresent()) {
-            throw new RuntimeException("User with this username or email already exists!");
+            throw new UserAlreadyExistsException("User with this username or email already exists!");
         }
 
         // 2. Създавам такъв User:
         User user = User.builder()
                 .username(registerRequest.getUsername())
                 .email(registerRequest.getEmail())
-                .firstName(registerRequest.getFirstName())
-                .lastName(registerRequest.getLastName())
+                .fullName(registerRequest.getFullName())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .profileImageURL(registerRequest.getProfileImageURL())
                 .userRole(UserRole.RECRUIT)
                 .build();
 
-        this.userRepository.save(user);
+        User savedUser = this.userRepository.save(user);
 
         // 3. Генерирам JWT токен за новия потребител:
-        String token = JwtTokenUtil.generateToken(user.getUsername());
+        String token = JwtTokenUtil.generateToken(String.valueOf(savedUser.getId()));
 
         // 4. Съхранявам токена в Redis
-        this.redisTemplate.opsForValue().set(user.getUsername(), token, 47, TimeUnit.HOURS);
+        this.redisTemplate.opsForValue().set(String.valueOf(savedUser.getId()), token, 47, TimeUnit.HOURS);
 
         // 5. Създавам сесия:
         Cookie cookie = new Cookie("JWT_TOKEN", token);
-        cookie.setHttpOnly(false);
-        cookie.setSecure(false);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
         cookie.setPath("/");
         cookie.setMaxAge((int) TimeUnit.HOURS.toSeconds(47));
-//        cookie.setAttribute("SameSite", "None"); // 👈 ТОВА Е ВАЖНО!
 
         response.addCookie(cookie);
-
         return user;
     }
 
     @Transactional
-    public List<Object> login(LoginRequest loginRequest, HttpServletResponse response) {
+    public User login(LoginRequest loginRequest, HttpServletResponse response) {
         Optional<User> databaseResponse = this.userRepository
                 .findByUsername(loginRequest.getUsername());
 
         if (databaseResponse.isEmpty() || !passwordEncoder
                 .matches(loginRequest.getPassword(), databaseResponse.get().getPassword())) {
-            throw new RuntimeException("User with this username or password does not exist!");
+            throw new UserNotFoundException("User with this username or password does not exist!");
         }
 
-        // Генерираме нов JWT токен
-        String token = JwtTokenUtil.generateToken(loginRequest.getUsername());
+        User user = databaseResponse.get();
+
+        // Генерирам нов JWT токен!
+        String token = JwtTokenUtil.generateToken(String.valueOf(user.getId()));
         System.out.println("Generated JWT Token: " + token);
 
-        // Съхраняваме токена в Redis за 47 часа
-        redisTemplate.opsForValue().set(loginRequest.getUsername(), token, 47, TimeUnit.HOURS);
+        // Съхранявам токена!
+        redisTemplate.opsForValue().set(String.valueOf(user.getId()), token, 47, TimeUnit.HOURS);
 
-        List<Object> data = new ArrayList<>();
-        data.add(token);
-        data.add(databaseResponse.get());
-
-        // Създаваме cookie за JWT токен
         Cookie cookie = new Cookie("JWT_TOKEN", token);
-        cookie.setHttpOnly(false);  // По-безопасно е да е true
-        cookie.setSecure(false); // Ако работиш в HTTPS, сложи true
-        cookie.setPath("/");  // Валиден за целия сайт
-        cookie.setMaxAge((int) TimeUnit.HOURS.toSeconds(47));  // Време на живот 48 часа
-//        cookie.setAttribute("SameSite", "None"); // 👈 ТОВА Е ВАЖНО!
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        cookie.setPath("/");
+        cookie.setMaxAge((int) TimeUnit.HOURS.toSeconds(47));
 
-        response.addCookie(cookie);  // Добавя cookie-то в отговора
-        return data;
+        response.addCookie(cookie);
+        return user;
     }
 
     @Transactional
@@ -124,7 +118,7 @@ public class AuthService {
                 String token = cookie.getValue();
 
                 // 2. Извличане на потребителското име от токена
-                String username = JwtTokenUtil.extractUsername(token);
+                String username = JwtTokenUtil.extractId(token);
 
                 // 3. Изтриване на токена от Redis
                 if (username != null) {

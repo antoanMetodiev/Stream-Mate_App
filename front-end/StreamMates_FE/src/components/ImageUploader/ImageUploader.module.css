@@ -14,6 +14,21 @@
     height: 100vh;
 }
 
+.isForUserProp {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрира съдържанието хоризонтално */
+    justify-content: center; /* Центрира съдържанието вертикално */
+    position: fixed; /* За да е на видно място през целия екран */
+    top: 50%; /* Центрира го вертикално */
+    left: 50%; /* Центрира го хоризонтално */
+    transform: translate(-50%, -50%); /* Премества го точно по центъра */
+    z-index: 5;
+    gap: 0.4em;
+    width: 100vw;
+    background-color: unset;
+}
+
 .image-upload-container-wrapper > label:hover {
     transform: scale(1.04);
 }
@@ -31,12 +46,14 @@
     position: relative;
     top: 0.6em;
     transition: transform 0.3s ease;
-    background-color: rgba(7, 7, 217, 0.669);
+    background-color: #121212;
+    border: 0.3px solid #fefefe;
     color: #fff;
     padding: 4px 6px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     font-size: 0.8em;
     letter-spacing: 0.3px;
+    margin-left: -15em;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -96,8 +113,8 @@
     position: fixed;
     width: fit-content;
     z-index: 5;
-    top: 34%;
-    left: 50%;
+    top: 40%;
+    left: 48.5%;
     transform: translate(-50%, -50%);
 }
 
@@ -115,4 +132,31 @@
 
 .close-button:hover {
     color: red;      /* Червен цвят при натискане */
+}
+
+.upload-image-label {
+    margin-top: 6.4em;
+    display: block;
+    background-color: unset;
+    border: 0.3px solid #fefefe;
+    width: 8.2em;
+    height: 2.4em;
+    border-radius: 1em;
+    color: #fff;
+    text-align: center;
+    padding-top: 7.3px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.263);
+    cursor: pointer;
+}
+
+.upload-image-label:hover {
+    /* background-color: #fefefe; */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.545); /* По-силна сянка при ховър */
+}
+
+.uploadProfileImage-input {
+
 }

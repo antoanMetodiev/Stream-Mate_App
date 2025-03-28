@@ -20,6 +20,7 @@ export const Actor = ({
                     src={actor?.imageURL?.length == 0 ? constants.Actor_BASE_IMG_URL
                         : constants.TMDB_IMG_URL + actor?.imageURL}
                     alt={actor?.nameInRealLife}
+                    loading="lazy"
                 />
                 <span className={style['shadow']}></span>
             </div>

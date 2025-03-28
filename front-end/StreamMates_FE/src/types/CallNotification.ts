@@ -9,4 +9,5 @@ export type CallNotification = {
     timestamp: string; // Време на обаждането (ISO формат)
     callerNames: string,
     callerImgUrl: string,
+    messageText: string,
 };

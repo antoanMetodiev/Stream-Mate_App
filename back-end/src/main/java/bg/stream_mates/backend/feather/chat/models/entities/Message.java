@@ -2,7 +2,6 @@ package bg.stream_mates.backend.feather.chat.models.entities;
 
 import bg.stream_mates.backend.feather.chat.models.enums.MessageType;
 import bg.stream_mates.backend.feather.user.models.entities.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

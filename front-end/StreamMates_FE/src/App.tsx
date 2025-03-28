@@ -18,6 +18,9 @@ import { CallNotification } from './types/CallNotification';
 import { Message } from './types/Message';
 import { Friend } from './types/Friend';
 import { MessageType } from './types/enums/MessageType';
+import { OrderCinemaRecord } from './components/OrderCinemaRecord/OrderCinemaRecord';
+import { OrderEngine } from './components/OrderCinemaRecord/OrderEngine/OrderEngine';
+import { EditProfile } from './components/UserChatFinderMenu/FindUsers/User/UserDetails/UserDetailsHeader/EditProfile/EditProfile';
 
 function App() {
 	const [user, setUser] = useState<User | null>(null);
@@ -31,10 +34,12 @@ function App() {
 	}, [location.pathname]);
 
 	useEffect(() => {
+		debugger;
 		const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
 		const fetchUser = async () => {
 			try {
 				const response = await axios.get(BASE_URL + "/get-user", { withCredentials: true });
+				console.log(response.data);
 				setUser(response.data);  // Записваме потребителските данни
 			} catch (error) {
 				console.log("Не успяхме да вземем данните на потребителя", error);
@@ -134,26 +139,35 @@ function App() {
 
 		ws.onmessage = (event) => {
 			console.log("Received message:", event.data);
-			const newMessage: Message = JSON.parse(event.data);
+			let newMessage: Message = JSON.parse(event.data);
 
 			debugger;
 			if (newMessage.messageType == MessageType.TEXT) {
 				if (newMessage.owner == currentChatFriend?.realUserId) {
 
-					let messages: Message[] = [];
-					if (messagesWithCurrentFriend != null) {
-						messages = [...messagesWithCurrentFriend];
-					}
-			
-					messages.push(newMessage);
-					setMessagesWithCurrentFriend(messages);
+					setMessagesWithCurrentFriend(prevMessages => [...(prevMessages || []), newMessage]);
+
 				};
 
 			} else {
+
+				debugger;
 				const callNotification: CallNotification = JSON.parse(event.data);
-				if (callNotification.callType === "VIDEO_CALL" && callNotification.caller !== user.username) {
-					console.log("Incoming video call from", callNotification.caller);
+
+				if ((callNotification.callType === MessageType.VIDEO_CALL || callNotification.callType === MessageType.AUDIO_CALL)
+					&& callNotification.caller !== user.username) {
+
+					console.log("Incoming call from", callNotification.caller);
 					setIncomingCall(callNotification);
+
+					let saveMessage: Message = {
+						owner: callNotification.caller,
+						createdOn: callNotification.timestamp,
+						receiver: callNotification.receiver,
+						messageText: callNotification.messageText,
+						messageType: callNotification.callType,
+					}
+					setMessagesWithCurrentFriend(prevMessages => [...(prevMessages || []), saveMessage]);
 				};
 			};
 		};
@@ -184,8 +198,12 @@ function App() {
 			)}
 
 			<Routes>
+				<Route path="/order-cinema-record" element={<OrderCinemaRecord />} />
+				<Route path="/order/:cinemaRecord" element={<OrderEngine />} />
+				<Route path="/user-details/:username/edit-profile" element={<EditProfile />} />
+
 				<Route path="/login" element={<Login setUser={setUser} />} />
-				<Route path="/register" element={<Register />} />
+				<Route path="/register" element={<Register setUser={setUser }/>} />
 				<Route path="/" element={<HomePage user={user} setUser={setUser} />} />
 				<Route path="/actors/:id" element={<ActorDetails />} />
 
@@ -193,15 +211,17 @@ function App() {
 
 				{/* Movies */}
 				<Route path="/movies" element={<CinemaRecordPage user={user} />} />
-				<Route path="/movies/:movie" element={<CinemaRecordDetails />} />
 				<Route path="/movies/search/:movie" element={<CinemaRecordPage user={user} />} />
+				<Route path="/movies/genres/:genre" element={<CinemaRecordPage user={user} />} />
+				<Route path="/movies/:movie" element={<CinemaRecordDetails />} />
 				<Route path="/movies/search/:movie/:id" element={<CinemaRecordDetails />} />
 
 				{/* Series */}
 				<Route path="/series" element={<CinemaRecordPage user={user} />} />
-				<Route path="/series/:series" element={<CinemaRecordDetails />} />
+				<Route path="/series/genres/:genre" element={<CinemaRecordPage user={user} />} />
 				<Route path="/series/search/:series" element={<CinemaRecordPage user={user} />} />
 				<Route path="/series/search/:series/:id" element={<CinemaRecordDetails />} />
+				<Route path="/series/:series" element={<CinemaRecordDetails />} />
 
 
 				{/* TV-Channels */}

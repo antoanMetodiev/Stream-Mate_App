@@ -7,12 +7,12 @@ export type User = {
     username: string;
     email: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    fullName: string;
     profileImageURL?: string; // Опционално, съответства на nullable = true
     userRole: string;
     friends: Friend[]; // Предполага се, че имате дефиниран Friend тип
     images: UserImage[]; // Предполага се, че имате дефиниран UserImage тип
     receivedFriendRequests: FriendRequest[],
     sentFriendRequests: FriendRequest[],
+    backgroundImageURL?: string,
 };

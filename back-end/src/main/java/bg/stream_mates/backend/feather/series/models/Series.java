@@ -1,8 +1,12 @@
 package bg.stream_mates.backend.feather.series.models;
 
 import bg.stream_mates.backend.commonData.entities.Actor;
-import bg.stream_mates.backend.commonData.entities.CinemaRecord;
+import bg.stream_mates.backend.commonData.CinemaRecord;
+import bg.stream_mates.backend.resolver.CustomObjectResolver;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -18,6 +22,11 @@ import java.util.UUID;
 @Getter
 @Setter
 @Accessors(chain = true)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        resolver = CustomObjectResolver.class  // ✅ Позволява множество инстанции
+)
 public class Series extends CinemaRecord {
 
     @Id
@@ -25,7 +34,6 @@ public class Series extends CinemaRecord {
     private UUID id;
 
     @NotNull
-    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "series_actors",
@@ -36,12 +44,10 @@ public class Series extends CinemaRecord {
 
     @NotNull
     @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<Episode> allEpisodes = new ArrayList<>();
 
     @NotNull
     @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<SeriesImage> imagesList = new ArrayList<>();
 
     public void addAllEpisodes(List<Episode> allSeasonEpisodes) {

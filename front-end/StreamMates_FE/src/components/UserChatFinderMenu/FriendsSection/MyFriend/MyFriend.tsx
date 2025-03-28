@@ -12,6 +12,7 @@ export const MyFriend = ({
 }: MyFriendProps) => {
 
 
+    console.log(friend);
     return (
         <div
             // onClick={showUserDetailsHandler}
@@ -19,14 +20,14 @@ export const MyFriend = ({
         >
             <img
                 className={style['user-image']}
-                src={friend ? friend.profileImageURL : deffaultUserImage}
-                alt={friend ? friend.profileImageURL : ""}
+                src={friend && friend.profileImageURL ? friend.profileImageURL : deffaultUserImage}
+                alt={friend && friend.profileImageURL ? friend.profileImageURL : deffaultUserImage}
             />
             <div className={style['meta-data-info-container']}>
                 <h3 className={style['username']}>{friend.username.length > 15 ? friend.username.slice(0, 14) + ".." : friend.username}</h3>
                 <h3 className={style['names']}>
-                    {(friend.firstName + " " + friend.lastName).length > 15 ?
-                        (friend.firstName + " " + friend.lastName).slice(0, 14) + ".." : (friend.firstName + " " + friend.lastName)}
+                    {friend.fullName.length > 15 ?
+                        friend.fullName.slice(0, 14) + ".." : friend.fullName}
                 </h3>
             </div>
 

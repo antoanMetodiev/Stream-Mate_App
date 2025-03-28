@@ -5,24 +5,29 @@ import { UserDetailsBody } from "./UserDetailsBody/UserDetailsBody";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { SearchedUser } from "../../../../../types/SearchedUser";
 import { User } from "../../../../../types/User";
 
 export const UserDetails = () => {
     const location = useLocation();
-    const beginSearchedUserData: SearchedUser = location.state.searchedUser || {};
 
     // States:
     const [searchedUser, setSearchedUser] = useState<User | null>(null);
-    const [myData, setMyData] = useState(location.state.myData || {});
+    const [myData, setMyData] = useState<User | null>(location.state?.myData ? location.state?.myData : null);
     const [showPictures, setShowPictures] = useState(true);
 
-
+    useEffect(() => {
+        if (myData && searchedUser && myData?.id === searchedUser?.id) {
+            setMyData(searchedUser);
+        }
+    }, [searchedUser]);
+   
     const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
     useEffect(() => {
-
         const getSearchedUserData = async () => {
-            const username = beginSearchedUserData.username;
+            debugger;
+            const count: number = window.location.href.split("/").length;
+            const username = window.location.href.split("/")[count - 1];
+            console.log(username);
 
             try {
                 const databaseResponse = await axios.post(BASE_URL + "/get-user-details", { username }, { withCredentials: true });
@@ -38,7 +43,6 @@ export const UserDetails = () => {
     }, [location.pathname]);
 
 
-
     return (
         <div className={style['user-details-wrapper']}>
             {searchedUser && (
@@ -52,6 +56,7 @@ export const UserDetails = () => {
                     />
                     <UserDetailsBody
                         searchedUser={searchedUser}
+                        setSearchedUser={setSearchedUser}
                         myData={myData}
                         showPictures={showPictures}
                     />

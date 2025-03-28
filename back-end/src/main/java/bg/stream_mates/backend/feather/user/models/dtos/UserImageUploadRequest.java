@@ -24,6 +24,6 @@ public class UserImageUploadRequest {
 
     private String description;
 
-    @NotNull(message = "User owner cannot be empty!")
-    private User owner;
+    @NotNull(message = "User Id cannot be empty!")
+    private String ownerId;
 }

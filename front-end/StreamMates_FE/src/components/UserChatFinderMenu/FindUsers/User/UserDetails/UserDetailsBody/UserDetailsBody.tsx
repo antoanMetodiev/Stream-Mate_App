@@ -1,22 +1,22 @@
 import style from "./UserDetailsBody.module.css";
-import { useState } from "react";
 import { UserPictures } from "./UserPictures/UserPictures";
 import { UserFriendList } from "./UserFriendList/UserFriendList";
 import { User } from "../../../../../../types/User";
 
 interface UserDetailsBodyProps {
-    searchedUser: User;
-    myData: User;
+    searchedUser: User | null;
+    myData: User | null;
     showPictures: boolean;
+    setSearchedUser: React.Dispatch<React.SetStateAction<User | null>>;
 };
 
 export const UserDetailsBody = ({
     searchedUser,
     myData,
     showPictures,
+    setSearchedUser,
 }: UserDetailsBodyProps) => {
     
-
 
 
     return (
@@ -24,10 +24,12 @@ export const UserDetailsBody = ({
             {showPictures ? (
                 <UserPictures
                     userOwner={searchedUser}
+                    setUserOwner={setSearchedUser}
                     myData={myData}
+                    
                 />
             ) : (
-                <UserFriendList />
+                <UserFriendList myData={myData} searchedUser={searchedUser} />
             )}
         </article>
     );

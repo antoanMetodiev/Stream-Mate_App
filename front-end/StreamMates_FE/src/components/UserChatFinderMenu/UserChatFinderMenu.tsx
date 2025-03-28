@@ -1,7 +1,7 @@
 import style from "./UserChatFinderMenu.module.css";
 import { useState } from "react";
 
-import logoIcon from "./images/user.png";
+import logoIcon from "./../../images/user-menu-logo.png";
 import chatIcon from "./images/chat.png";
 import usersIcon from "./images/users.png";
 import receivedFriendRequestsIcon from "./images/received-friend-requests.png";
@@ -109,7 +109,7 @@ export const UserChatFinderMenu = ({
                     setUser={setUser}
                 />
             )}
-            {showFindUsersSection && <FindUsers user={user} />}
+            {showFindUsersSection && <FindUsers user={user} setShowFindUsersSection={setShowFindUsersSection} />}
             {showFriendSection && <FriendsSection user={user} />}
             {showChatSection && (
                 <ChatSection

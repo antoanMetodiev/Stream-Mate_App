@@ -1,45 +1,71 @@
-import styles from "./Footer.module.css";
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'; // Икони от Font Awesome
+import styles from "./Footer.module.css"; // Импортираме CSS модулите
+import { useLocation } from 'react-router-dom';
 
 export const Footer = () => {
+    const location = useLocation();
+
+
+
+    // Проверка дали location.pathname е празен или равен на "/"
+    const footerClass = location.pathname === "" || location.pathname === "/" ? `${styles.main} ${styles.blackMain}` : styles.main;
     return (
-        <footer className={styles.footer}>
-            <div className={styles.container}>
-                <div className={styles.logo}>Stream Mate</div>
-                <div className={styles.sections}>
-                    <div className={styles.section}>
-                        <h3>Company</h3>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Press</a></li>
-                        </ul>
-                    </div>
-                    <div className={styles.section}>
-                        <h3>Support</h3>
-                        <ul>
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-                    <div className={styles.section}>
-                        <h3>Legal</h3>
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">DMCA</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className={styles.socialIcons}>
-                    <a href="#" className={styles.icon}>🐦</a>
-                    <a href="#" className={styles.icon}>📘</a>
-                    <a href="#" className={styles.icon}>📷</a>
-                </div>
-            </div>
-            <div className={styles.bottomText}>
-                © 2025 Nunflix. All Rights Reserved.
-            </div>
-        </footer>
+        <main className={footerClass}>
+            <footer className={styles.footer}>
+                <header className={styles.footerHeader}>
+                    <h2 className={styles.footerTitle}>Stream Mate</h2>
+                    <p className={styles.footerDescription}>"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, accusantium?"</p>
+                    <ul className={styles.icons}>
+                        {/* Добавяме анимирани икони с React Icons */}
+                        <FaFacebook className={`${styles.icon} animated`} />
+                        <FaInstagram className={`${styles.icon} animated`} />
+                        <FaTwitter className={`${styles.icon} animated`} />
+                        <FaYoutube className={`${styles.icon} animated`} />
+                    </ul>
+                </header>
+
+                <aside className={styles.aside}>
+                    <ul className={styles.category}>
+                        <li>
+                            <h3 className={styles.categoryTitle}>Project</h3>
+                        </li>
+                        <li className={styles.categoryItem}>Houses</li>
+                        <li className={styles.categoryItem}>Rooms</li>
+                        <li className={styles.categoryItem}>Flats</li>
+                        <li className={styles.categoryItem}>Apartments</li>
+                    </ul>
+
+                    <ul className={styles.category}>
+                        <li>
+                            <h3 className={styles.categoryTitle}>Company</h3>
+                        </li>
+                        <li className={styles.categoryItem}>Objective</li>
+                        <li className={styles.categoryItem}>Capital</li>
+                        <li className={styles.categoryItem}>Security</li>
+                        <li className={styles.categoryItem}>Selling</li>
+                    </ul>
+
+                    <ul className={styles.category}>
+                        <li>
+                            <h3 className={styles.categoryTitle}>Movement</h3>
+                        </li>
+                        <li className={styles.categoryItem}>Movement</li>
+                        <li className={styles.categoryItem}>Support us</li>
+                        <li className={styles.categoryItem}>Pricing</li>
+                        <li className={styles.categoryItem}>Renting</li>
+                    </ul>
+
+                    <ul className={styles.category}>
+                        <li>
+                            <h3 className={styles.categoryTitle}>Help</h3>
+                        </li>
+                        <li className={styles.categoryItem}>Privacy</li>
+                        <li className={styles.categoryItem}>Contact</li>
+                        <li className={styles.categoryItem}>FAQs</li>
+                        <li className={styles.categoryItem}>Blog</li>
+                    </ul>
+                </aside>
+            </footer>
+        </main>
     );
 };

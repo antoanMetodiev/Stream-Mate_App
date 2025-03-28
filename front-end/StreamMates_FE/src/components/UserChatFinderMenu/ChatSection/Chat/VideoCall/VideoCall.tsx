@@ -1,6 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import styles from "./VideoCall.module.css";
 
+
+import skypeSound from "../../../../../audios/_SKYPE CALL SOUND.mp3";
+
 import AgoraRTC, {
     IAgoraRTCClient,
     ICameraVideoTrack,
@@ -34,7 +37,7 @@ export const VideoCall = ({
     const [cameraMuted, setCameraMuted] = useState(false);
     const [audioMuted, setAudioMuted] = useState(false);
     const [permissionDenied, setPermissionDenied] = useState(false);
-    console.log(permissionDenied);
+    const [isRinging, setIsRinging] = useState(false);
 
     // Рефове за визуализацията на локалното и отдалеченото видео
     const localVideoRef = useRef<HTMLDivElement>(null);
@@ -43,22 +46,28 @@ export const VideoCall = ({
     const APP_ID = "e873d718c560455c95c08e76ac598d28"; // Твоето Agora App ID
     const CHANNEL = incomingCall ? incomingCall.channelName : 'default-channel';
     const TOKEN = null; // Ако използваш токен, можеш да го зададеш тук
-
     const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
 
-    // Обработваме публикуването на отдалечени потребители
+
+    // Обработваме публикуването на отдалечени потребители:
     useEffect(() => {
         client.on('user-published', async (user: IAgoraRTCRemoteUser, mediaType) => {
             await client.subscribe(user, mediaType);
             console.log('Subscribed to user:', user.uid, mediaType);
+
+            setIsRinging(true);
             if (mediaType === 'video' && user.videoTrack && remoteVideoRef.current) {
                 user.videoTrack.play(remoteVideoRef.current);
             }
             if (mediaType === 'audio' && user.audioTrack) {
                 user.audioTrack.play();
             }
+            
+            setIsRinging(false);
         });
     }, [client]);
+
+
 
     const joinChannel = async () => {
         debugger;
@@ -103,13 +112,14 @@ export const VideoCall = ({
         } catch (error) {
             console.error('Error while joining the channel or accessing media:', error);
             setPermissionDenied(true);
-        }
+        };
     };
 
 
     // Автоматично присъединяване при монтирaне на компонента
     useEffect(() => {
         joinChannel();
+        setIsRinging(true);
     }, []);
 
     const leaveChannel = async () => {
@@ -135,13 +145,16 @@ export const VideoCall = ({
         if (localAudioTrack) {
             localAudioTrack.setEnabled(audioMuted ? true : false);
             setAudioMuted(!audioMuted);
-        }
+        };
     };
-
-
 
     return (
         <div className={styles['video-call-container-wrapper']}>
+            {/* Условен рендеринг на звука */}
+            {isRinging && (
+                <audio src={skypeSound} loop autoPlay />
+            )}
+
             <div className={styles['video-container']}>
                 {/* Локално видео */}
                 <div
@@ -170,7 +183,7 @@ export const VideoCall = ({
 
                 <img
                     onClick={toggleAudio}
-                    src={audioMuted ? microphoneImg :  muteMicrophoneImg}
+                    src={audioMuted ? microphoneImg : muteMicrophoneImg}
                     className={styles['mute-audio-img']}
                 />
 

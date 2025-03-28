@@ -6,10 +6,23 @@
     padding-inline: 1em;
     width: auto;
     height: 50em;
+    opacity: 0; /* Започва с невидимост */
+    transform: translateY(30px); /* Започва малко под началната си позиция */
+    animation: slideIn 0.82s ease-out forwards; /* Добавяме анимацията */
 }
 
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); /* Започва отдолу */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Завършва на нормалното си място */
+    }
+}
 .poster-img {
-    margin-left: 0.9em;
+    margin-left: 1em;
     width: 22em;
     height: 30em;
     object-fit: cover;
@@ -21,7 +34,9 @@
 /* DATA CONTAINER: */
 
 .data-container {
+    width: 100%;
     margin-top: 2px;
+    margin-left: -4px;
     color: #fefefe;
     font-style: italic;
     font-weight: 400;
@@ -62,11 +77,11 @@
     font-weight: 400;
     padding-right: 2.9em;
     letter-spacing: 1px;
-    line-height: 32px;
+    line-height: 33px;
 }
 
 .data-container .genres {
-    margin: 0.3em 0em 0.3em 0em;
+    margin: 0.5em 0em 0.5em 0em;
     font-style: normal;
     font-weight: 400;
 }

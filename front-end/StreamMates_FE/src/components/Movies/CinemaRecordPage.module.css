@@ -1,8 +1,7 @@
 .cinema-record-page-container{
-    width: 100vw;
-    height: 100vh;
-    /* background-color: #000000; */
-    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .background-image {
@@ -13,11 +12,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;  /* Запълва целия екран */
-    filter: blur(3.4px); /* Лек размазан ефект */
+    filter: blur(6.6px); /* Лек размазан ефект */
     background-size: cover; /* За да осигурим, че фонът ще покрие цялото пространство */
     background-position: center; /* Центриране на изображението */
 }
-
 
 .shadow {
     position: fixed;
@@ -25,5 +23,6 @@
     width: 100%;
     height: 100%;
     background-color: #121212;
-    opacity: 0.6; 
+    opacity: 0.7; 
 }
+

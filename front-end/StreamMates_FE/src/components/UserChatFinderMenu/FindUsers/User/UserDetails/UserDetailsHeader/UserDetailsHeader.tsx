@@ -5,13 +5,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { FriendRequest } from "../../../../../../types/FriendRequest";
 
+import deffaultUserBack from "./../../../../../../images/deffault-user-background.webp";
+import { useNavigate } from "react-router-dom";
+
 interface UserDetailsHeaderProps {
-    searchedUser: User;
+    searchedUser: User | null;
     showPictures: boolean;
-    myData: User;
-    setMyData: React.Dispatch<React.SetStateAction<User>>;
+    myData: User | null;
+    setMyData: React.Dispatch<React.SetStateAction<User | null>>;
     setShowPictures: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
 
 export const UserDetailsHeader = ({
     searchedUser,
@@ -20,6 +24,7 @@ export const UserDetailsHeader = ({
     showPictures,
     setShowPictures,
 }: UserDetailsHeaderProps) => {
+    const navigate = useNavigate();
     const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
 
     // States:
@@ -32,20 +37,24 @@ export const UserDetailsHeader = ({
     }, [myData, searchedUser]);
 
     const checkIfWeAreFriends = (): boolean => {
+        if (!searchedUser || !myData) return false;
         return myData.friends.some(friend => friend.username === searchedUser.username);
     };
 
     const isRequestAlreadySent = (): boolean => {
+        if (!searchedUser || !myData) return false;
         return myData.sentFriendRequests.some(request => request.receiverUsername === searchedUser.username);
     };
 
     const sendFriendRequest = async () => {
+        if (!myData || !searchedUser) return; // Проверка дали myData и searchedUser не са null
+
         try {
             // Вземи стойностите, които ще използваш
             const myUsername = myData.username;
             const wishedFriendUsername = searchedUser.username;
-            const myNames = myData.firstName + " " + myData.lastName; // Ще приемем, че името е в myData
-            const searchedUserNames = searchedUser.firstName + " " + searchedUser.lastName; // Ще приемем, че името на търсения потребител е в searchedUser
+            const myNames = myData.fullName; // Ще приемем, че името е в myData
+            const searchedUserNames = searchedUser.fullName; // Ще приемем, че името на търсения потребител е в searchedUser
             const myImgURL = myData.profileImageURL; // Ще приемем, че имидж URL е в myData
             const searchedUserImgURL = searchedUser.profileImageURL; // Ще приемем, че имидж URL е в searchedUser
 
@@ -73,10 +82,7 @@ export const UserDetailsHeader = ({
             const updatedRequests = [...myData.sentFriendRequests, newFriendRequest];
 
             // 2. Обновяваме състоянието
-            setMyData(prevData => ({
-                ...prevData,
-                sentFriendRequests: updatedRequests
-            }))
+            setMyData(prevData => (prevData ? { ...prevData, sentFriendRequests: updatedRequests } : prevData));
 
             // Потвърждаваме, че заявката е изпратена
             setRequestSent(true);
@@ -87,6 +93,7 @@ export const UserDetailsHeader = ({
     };
 
     const rejectFriendRequest = async () => {
+        if (!myData || !searchedUser) return; // Проверка дали myData и searchedUser не са null
 
         debugger;
         try {
@@ -97,12 +104,12 @@ export const UserDetailsHeader = ({
             if (!apiResponse.data) throw new Error("The Request is not happened!");
 
             // Актуализираме данните - премахваме заявката от `receivedFriendRequests`
-            setMyData(prevData => ({
+            setMyData(prevData => prevData ? {
                 ...prevData,
                 sentFriendRequests: prevData.sentFriendRequests.filter(
                     request => request.receiverUsername !== searchedUser.username
                 ),
-            }));
+            } : prevData);
 
             setRequestSent(false);
         } catch (error) {
@@ -110,36 +117,40 @@ export const UserDetailsHeader = ({
         };
     };
 
-    console.log(myData);
-
-
-    const isMyProfile = myData.username === searchedUser.username;
+    const isMyProfile = searchedUser && myData?.id === searchedUser.id;
 
     return (
         <div className={style['user-details-header']}>
             <div className={style['img-name-wrapper-container']}>
                 <img
                     className={style['profile-image']}
-                    src={searchedUser.profileImageURL || deffaultUserImage}
+                    src={searchedUser?.profileImageURL || deffaultUserImage}
                     alt="Профилна снимка"
                 />
                 <div className={style['names-username-container']}>
                     <h4 className={style['profile-text']}>Профил</h4>
-                    <h2 className={style['username']}>{searchedUser.username}</h2>
-                    <h2 className={style['name']}>{searchedUser.firstName + " " + searchedUser.lastName}</h2>
+                    <h2 className={style['username']}>{searchedUser?.username}</h2>
+                    <h2 className={style['name']}>{searchedUser?.fullName}</h2>
                 </div>
             </div>
 
             <section className={style['friends_playlists-count-wrapper-container']}>
-                <h5>0 снимки</h5> • <h5>0 приятели</h5>
+                <h5>{searchedUser?.images.length} снимки</h5> • <h5>{searchedUser?.friends.length} приятели</h5>
             </section>
 
             {/* Рендериране на бутони според състоянието */}
             {isMyProfile ? (
-                <h5 className={style['add-friend-button']}>Мой профил</h5>
+                <h5
+                    onClick={() => navigate(`/user-details/${myData.username}/edit-profile`, {
+                        state: { myData }
+                    })}
+                    className={style['add-friend-button']}
+                >
+                    Редактиране на профил
+                </h5>
             ) : weAreFriends ? (
                 <h5 className={style['add-friend-button']}>Приятели</h5>
-            ) : myData.sentFriendRequests.filter(request => request.receiverUsername === searchedUser.username).length > 0 ? (
+            ) : myData && myData?.sentFriendRequests.filter(request => request.receiverUsername === searchedUser?.username).length > 0 ? (
                 <h5 onClick={rejectFriendRequest} className={style['add-friend-button']}>Отмяна на поканата</h5>
             ) : (
                 <h5 onClick={sendFriendRequest} className={style['add-friend-button']}>
@@ -155,6 +166,13 @@ export const UserDetailsHeader = ({
                     Приятели
                 </h5>
             </div>
+
+            <img
+                className={style['deffault-user-background']}
+                src={myData?.backgroundImageURL || deffaultUserBack}
+                alt="deffaultUserBack"
+            />
+            <span className={style['black-shadow']}></span>
         </div>
     );
 };

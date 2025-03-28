@@ -1,0 +1,69 @@
+
+.edit-profile-body{
+    position: relative;
+    width: 100%;
+    height: 67%;
+    background-color: #121212;
+}
+
+
+.form-container {
+    width: 28em;
+    position: relative;
+    top: 44.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 2em;
+}
+
+.form-container input {
+    margin-bottom: 1.8em;
+    border-radius: 0.9em !important;
+    border: 0.5px solid #fefefe !important;
+}
+
+.form-container label {
+    color: silver;
+    margin: 0px 0px 6px 4px;
+}
+
+.form-container input:focus {
+    border: 0.5px solid #fefefe !important;
+}
+
+.edit-profile-button {
+    position: absolute;
+    left: 50%;
+    bottom: -3.5em;
+    transform: translate(-50%, -50%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 6.5px 17px;
+    border-radius: 0.6em;
+    color: #fefefeea;
+    border: 0.5px solid #fefefe;
+    font-weight: 400;
+    background-color: unset;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.21);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out; /* Плавен ефект */
+    letter-spacing: 1px;
+}
+
+.edit-profile-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* По-силна сянка при ховър */
+}
+
+.message-text {
+    position: absolute;
+    z-index: 2;
+    top: 35%;
+    left: 17%;
+    line-height: 31px;
+    transform: translate(-50%, -50%);
+    color: #fefefe;
+    width: 20em;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}

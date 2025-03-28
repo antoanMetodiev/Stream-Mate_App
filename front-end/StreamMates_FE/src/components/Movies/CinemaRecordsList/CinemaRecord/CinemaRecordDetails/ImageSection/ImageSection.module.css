@@ -1,7 +1,7 @@
-
 .image-section-container {
     min-height: 30em;
-    margin-top: 7em;
+    margin-top: 9em;
+    margin-bottom: 3em;
 }
 
 .image-list-container {
@@ -20,7 +20,6 @@
 .image-list-container img:hover {
     transform: scale(0.9); /* Намалява изображението до 90% */
 }
-
 
 .backdrop-image {
     width: 21.3em;
@@ -94,3 +93,5 @@
     object-fit: cover;
     border-radius: 1em;
 }
+
+/* ТУК СПИРА МОЯ ПИСАН CSS */

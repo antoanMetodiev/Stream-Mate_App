@@ -1,5 +1,5 @@
 .cast-section-container {
-    margin-top: -9em;
+    margin-top: -8em;
     overflow: hidden;
     padding-bottom: 2em;
     border-bottom: 0.1px solid #685e4a89;
@@ -18,4 +18,40 @@
     font-weight: 400;
     font-size: 1.7em;
     color: #fefefece;
+}
+
+.keen-slider {
+    opacity: 0;
+    transform: translateY(50px);  /* Премества елемента надолу */
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.keen-slider.animate-visible {
+    opacity: 1;
+    transform: translateY(0);  /* Възстановява нормалната позиция */
+}
+
+/* Начално състояние на секцията - скрито */
+.cast-section-container {
+    opacity: 0;
+    transform: translateY(50px);  /* Премества елемента надолу */
+transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* Клас за анимацията, който ще се добави при видимост */
+.cast-section-container.visible {
+    opacity: 1;
+    transform: translateY(0);  /* Възстановява нормалната позиция */
+}
+
+/* Може да добавим и анимация за заглавието */
+.top-cast-h3 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.cast-section-container.visible .top-cast-h3 {
+    opacity: 1;
+    transform: translateY(0);
 }

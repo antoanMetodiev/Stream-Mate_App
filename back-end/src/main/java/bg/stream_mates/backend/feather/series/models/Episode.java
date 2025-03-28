@@ -1,6 +1,9 @@
 package bg.stream_mates.backend.feather.series.models;
 
+import bg.stream_mates.backend.resolver.CustomObjectResolver;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +16,11 @@ import java.util.UUID;
 @Getter
 @Setter
 @Accessors(chain = true)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        resolver = CustomObjectResolver.class
+)
 public class Episode {
 
     @Id
@@ -48,6 +56,5 @@ public class Episode {
 
     @ManyToOne
     @JoinColumn(name = "series_id", nullable = false)
-    @JsonBackReference
     private Series series;
 }

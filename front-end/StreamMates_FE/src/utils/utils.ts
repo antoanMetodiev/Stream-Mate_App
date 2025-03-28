@@ -3,9 +3,9 @@ import { MovieImage } from "../types/MovieImage";
 import { SeriesImage } from "../types/SeriesImage";
 
 export const allGenres = [
-    "Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Fantasy", "Historical",
-    "Horror", "Mystery", "Romance", "Thriller", "Western", "Biography", "Documentary",
-    "Family", "Musical", "Sports", "War", "Superhero", "Noir", "Sci-Fi"
+    "Action", "Horror", "Comedy", "Drama", "Mystery", "Romance", "Adventure", "Crime", "Fantasy", "Historical", "Animation"
+    , "Thriller", "Western", "Biography", "Documentary",
+    "Family", "Musical", "Sports", "War", "Sci-Fi"
 ];
 
 export function getRandomNumber() {

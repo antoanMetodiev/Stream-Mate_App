@@ -13,10 +13,10 @@ import java.util.Date;
 @Component
 public class JwtTokenUtil {
 
-    private static final String SECRET = System.getenv("JWT_MY_SECRET_KEY");
+    private static String SECRET = System.getenv("JWT_MY_SECRET_KEY");
 
     // Проверка дали SECRET е зададен и дали е с достатъчна дължина
-    private static final Key SECRET_KEY = initializeSecretKey();
+    private static Key SECRET_KEY = initializeSecretKey();
 
     private static Key initializeSecretKey() {
         if (SECRET == null || SECRET.isEmpty()) {
@@ -40,8 +40,7 @@ public class JwtTokenUtil {
                 .compact();
     }
 
-    public static String extractUsername(String token) {
-        System.out.println("Decoding token: " + token);
+    public static String extractId(String token) {
         try {
             Claims claims = Jwts.parserBuilder()
                     .setSigningKey(SECRET_KEY)
@@ -78,6 +77,6 @@ public class JwtTokenUtil {
     }
 
     public static boolean validateToken(String token, String username) {
-        return (username.equals(extractUsername(token)) && !isTokenExpired(token));
+        return (username.equals(extractId(token)) && !isTokenExpired(token));
     }
 }

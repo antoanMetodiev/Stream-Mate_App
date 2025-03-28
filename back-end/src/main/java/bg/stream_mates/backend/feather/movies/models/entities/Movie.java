@@ -1,8 +1,12 @@
 package bg.stream_mates.backend.feather.movies.models.entities;
 
+import bg.stream_mates.backend.commonData.CinemaRecord;
 import bg.stream_mates.backend.commonData.entities.Actor;
-import bg.stream_mates.backend.commonData.entities.CinemaRecord;
+import bg.stream_mates.backend.resolver.CustomObjectResolver;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,13 +21,17 @@ import java.util.UUID;
 @Getter
 @Setter
 @Accessors(chain = true)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        resolver = CustomObjectResolver.class  // ✅ Позволява множество инстанции
+)
 public class Movie extends CinemaRecord {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "movies_actors",
@@ -36,7 +44,6 @@ public class Movie extends CinemaRecord {
     private String videoURL;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<MovieImage> imagesList = new ArrayList<>();
 
     public void addAllImages(List<MovieImage> allImages) {

@@ -10,12 +10,21 @@
 
 .site-logo-img {
     margin: 2px 0px 0px 0px;
-    width: 2.9em;
-    height: 3em;
+    width: 2.7em;
+    height: 2.7em;
     object-fit: cover;
     border-radius: 1em;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* По-силна сянка при ховър */
+    /* Плавен преход */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
+
+.site-logo-img:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); /* Още по-силна сянка при ховър */
+}
+
 
 .site-title {
     color: #fefefec1;

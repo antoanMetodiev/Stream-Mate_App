@@ -1,16 +1,26 @@
 import styles from "./Register.module.css";
 
 import backgroundVideo from "./../../../videos/mystery-shack.mp4";
-import { FormEvent } from "react";
-import axios from "axios";
+import { FormEvent, useState } from "react";
+import axios, { AxiosError } from "axios";
 import { RegisterUser } from "../../../types/dtos/RegisterUser";
+import { ImageUploader } from "../../ImageUploader/ImageUploader";
 
-export const Register = () => {
+import deffaultUserImg from "./../../UserChatFinderMenu/images/deffault-user-image.jpg";
+import { useNavigate } from "react-router-dom";
+import { User } from "../../../types/User";
 
-    const validateEmail = (email: string): boolean => {
-        const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-        return emailRegex.test(email);
-    };
+interface RegisterProps {
+    setUser: React.Dispatch<React.SetStateAction<User | null>>
+};
+
+export const Register = ({
+    setUser,
+}: RegisterProps) => {
+    const navigate = useNavigate();
+    const [invalidDataMessage, setInvalidDataMessage] = useState("");
+    const [choosedImgFile, setChoosedImgFile] = useState<File | null>(null);
+    const [choosedImgUrl, setChoosedImgUrl] = useState("");
 
 
     async function registerUser(event: FormEvent) {
@@ -19,31 +29,51 @@ export const Register = () => {
 
         const username = (formData.elements[1] as HTMLInputElement).value;
         const email = (formData.elements.namedItem('email') as HTMLInputElement).value;
-        const firstName = (formData.elements.namedItem('first_name') as HTMLInputElement).value;
-        const lastName = (formData.elements.namedItem('last_name') as HTMLInputElement).value;
+        const fullName = (formData.elements.namedItem('full_name') as HTMLInputElement).value;
         const password = (formData.elements.namedItem('password') as HTMLInputElement).value;
+        let profileImageURL = "";
 
-        const user: RegisterUser = { username, email, firstName, lastName, password }
-        if (validateEmail(user.email)) {
-            console.log('Email is valid');
-        } else {
-            console.log('Email is invalid');
-        }
+        try {
+            if (choosedImgFile) {
+                const profileImageData = new FormData();
+                profileImageData.append("file", choosedImgFile);
+                profileImageData.append("upload_preset", "my-preset"); // Замени с твоя `upload_preset`
+
+                const response = await axios.post("https://api.cloudinary.com/v1_1/dxkloyfs1/image/upload", profileImageData);
+                profileImageURL = response.data.secure_url;
+                console.log(profileImageURL);
+            }
+
+        } catch (error) {
+            setInvalidDataMessage("Не успяхме да запазим профилната снимка!");
+        };
+
         debugger;
+        const user: RegisterUser = { username, email, fullName, password, profileImageURL }
+
+        const validatorResponse = validateUserInput(user);
+        if (validatorResponse !== "Всичко е наред!") {
+            setInvalidDataMessage(validatorResponse);
+            return;
+        }
 
         const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
-
         try {
             const apiResponse = await axios.post(BASE_URL + '/register', user, {
                 withCredentials: true
             });
+
             console.log(apiResponse.data);
+            setUser(apiResponse.data);
+            setInvalidDataMessage("Успешна Регистрация!");
+            navigate("/");
 
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (error: unknown) {
+            if (error instanceof AxiosError) {
+                setInvalidDataMessage(error.response?.data.toString()); // Използваме точния текст или структура на грешката
+            };
+        };
     };
-
 
 
     return (
@@ -77,6 +107,7 @@ export const Register = () => {
                             name="username"
                             type="text"
                             id="username"
+                            placeholder="Username.."
                         />
                         <i className="fa fa-user" />
 
@@ -89,6 +120,7 @@ export const Register = () => {
                             name="email"
                             type="email"
                             id="email"
+                            placeholder="Email.."
                         />
                         <label htmlFor="email">Email: </label>
                         <i className="fa fa-envelope" />
@@ -96,26 +128,16 @@ export const Register = () => {
                 </fieldset>
 
                 <fieldset>
+                    <legend>Full Name &amp; Password:</legend>
                     <div
                         className={`${styles["field"]} ${styles["text"]} ${styles["icon-username"]}`}
                     >
-                        <label htmlFor="username">First Name: </label>
+                        <label htmlFor="username">Full Name: </label>
                         <input
-                            name="first_name"
+                            name="full_name"
                             type="text"
                             id="username"
-                        />
-                        <i className="fa fa-user" />
-
-                    </div>
-                    <div
-                        className={`${styles["field"]} ${styles["text"]} ${styles["icon-username"]}`}
-                    >
-                        <label htmlFor="username">Last Name: </label>
-                        <input
-                            name="last_name"
-                            type="text"
-                            id="username"
+                            placeholder="Full Name.."
                         />
                         <i className="fa fa-user" />
 
@@ -128,6 +150,7 @@ export const Register = () => {
                             name="password"
                             type="password"
                             id="password"
+                            placeholder="Password.."
                         />
 
                         <i className="fa fa-key" />
@@ -135,17 +158,51 @@ export const Register = () => {
                 </fieldset>
 
                 <input type="submit" value="Sign Up" />
-
-                {/* {error && <p className={styles["error"]}>{error}</p>} */}
-
-
-                {/* Contains Or Not Username Text: */}
-                {/* <h2
-                    className={styles['register-or-not-text']}
-                >{registerOrNotText}</h2> */}
-
             </form>
 
+            <section className={styles['user-register-profileimg-container']}>
+                <img
+                    className={styles['profile-img']}
+                    src={choosedImgUrl.length == 0 ? deffaultUserImg : choosedImgUrl}
+                    alt="choosedImgUrl"
+                />
+                <ImageUploader
+                    setUserRegisterImgFile={setChoosedImgFile}
+                    setUserRegisterImgURL={setChoosedImgUrl}
+                    userOwner={null}
+                    setUserOwner={() => { }}
+                    setShowImageUploader={() => { }}
+                />
+            </section>
+
+            {invalidDataMessage.length && <h3 className={styles["invalid-data-message"]}>{invalidDataMessage}</h3>}
         </article>
     );
+};
+
+
+function validateUserInput(userInputData: RegisterUser): string {
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!userInputData.email || !emailRegex.test(userInputData.email)) {
+        return "Невалиден email адрес.";
+    }
+
+    // Валидация на username (6-20 символа, само букви, цифри и по избор долна черта)
+    const usernameRegex = /^[a-zA-Z0-9_]{6,20}$/;
+    if (!userInputData.username || !usernameRegex.test(userInputData.username)) {
+        return "Потребителското име трябва да е между 6 и 20 символа и да съдържа само букви, цифри и по избор долна черта.";
+    }
+
+    // Валидация на парола (минимум 5 символа, без допълнителни изисквания)
+    if (!userInputData.password || userInputData.password.length < 5) {
+        return "Паролата трябва да бъде поне 5 символа.";
+    }
+
+    const fullNameRegex = /^[A-Za-zА-Яа-я\s]+$/;
+    if (!userInputData.fullName || !fullNameRegex.test(userInputData.fullName)) {
+        return "Името може да съдържа само букви и интервали.";
+    }
+
+    return "Всичко е наред!"
 };

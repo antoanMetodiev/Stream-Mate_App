@@ -36,7 +36,10 @@ export const Details = ({
                 {cinemaRecord?.description && (
                     <h4 className={style['description']}>
                         <h4 className={style['overview-h4']}>Overview</h4>
-                        <span className={style['diff-color']}>{cinemaRecord?.description}</span>
+                        <span className={style['diff-color']}>
+                            {cinemaRecord?.description.length > 377 ?
+                                cinemaRecord?.description.slice(0, 377) + ".." : cinemaRecord?.description}
+                        </span>
                     </h4>
                 )}
                 {cinemaRecord?.releaseDate && (

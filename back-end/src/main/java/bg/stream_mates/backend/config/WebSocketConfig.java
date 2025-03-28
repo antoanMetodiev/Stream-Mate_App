@@ -40,11 +40,4 @@ public class WebSocketConfig implements WebSocketConfigurer {
     public ChatService chatWebSocketHandler() {
         return new ChatService(objectMapper, chatRepository, userRepository);
     }
-
-    // !!! ТОВА ОТДОЛУ ГО МАХНАХ, ЗАЩОТО РЕГИСТРИРАХ ТОЗИ БЕАН 2-ПЪТИ - НЕ ЗНАМ ДАЛИ СЪС ChatService СТАВА СЪЩОТО И ДАЛИ НЕ ТРЯБВА ДА ГО МАХНА И НЕГО ТОЗИ ГОРНИЯ МЕТОД
-
-//    @Bean(name = "customFriendRequestNotificationHandler")
-//    public FriendRequestNotificationHandler friendRequestNotificationHandler() {
-//        return new FriendRequestNotificationHandler(objectMapper);
-//    }
 }

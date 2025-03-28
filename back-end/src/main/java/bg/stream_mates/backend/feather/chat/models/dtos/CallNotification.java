@@ -1,7 +1,6 @@
 package bg.stream_mates.backend.feather.chat.models.dtos;
 
 import bg.stream_mates.backend.feather.chat.models.enums.CallType;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -9,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.Instant;
 
 @Data
 @Builder
@@ -23,6 +20,9 @@ public class CallNotification {
 
     @NotBlank(message = "Caller Names cannot be empty!")
     private String callerNames;
+
+    @NotBlank(message = "Message Text cannot be empty!")
+    private String messageText;
 
     private String callerImgUrl;
 

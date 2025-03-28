@@ -5,21 +5,36 @@
 }
 
 .cinema-record-list-container {
+    position: relative;
     margin-top: 0.3em;
     width: 100%;
     height: auto;
+    min-height: 30em;
     display: flex;
     justify-content: center;
-    gap: 2.2em;
+    gap: 2em;
     flex-wrap: wrap;
     padding: 1em 0.6em 0.6em 0.7em;
 }
 
-.cinema-record-list-container > * {
+.cinema-record-list-container>* {
     transition: transform 0.3s ease-in-out;
 }
 
-.cinema-record-list-container > *:hover {
+.cinema-record-list-container>*:hover {
     transform: scale(1.04);
-   
+
+}
+
+.no-results-h3 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    font-size: 1.5em;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: default;
 }

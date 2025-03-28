@@ -5,6 +5,8 @@ import style from "./EpisodesSection.module.css";
 import { getSeasonEpisodes, orderEpisodes } from "../../../../../../utils/utils";
 
 import Select, { SingleValue } from "react-select";
+import { useInView } from 'react-intersection-observer';
+
 
 interface EpisodesSectionProps {
     allEpisodes: Episode[],
@@ -39,10 +41,20 @@ export const EpisodesSection = ({
             label: `Season ${season}`
         }));
 
+    // Използваме useInView за проследяване на видимостта
+    const { ref, inView } = useInView({
+        triggerOnce: true, // Анимацията ще се задейства само веднъж
+        threshold: 0.1,    // Когато 10% от елемента стане видимо
+    });
+
     return (
-        <section className={style['episode-section-container']}>
+        <section
+            ref={ref}  // Свързваме референцията към елемента
+            className={`${style['episode-section-container']} ${inView ? style['visible'] : ''}`}
+        >
             <div className={style['episode-title-season-select-container']}>
-                <h2 className={style['episodes-h2-title']}>Episodes</h2>
+                <h2 className={`${style['episodes-h2-title']} ${inView ? style['visible'] : ''}`}>
+                    Episodes</h2>
                 {/* Styled React-Select */}
                 <Select
                     className={style["custom-select"]}
@@ -88,8 +100,8 @@ export const EpisodesSection = ({
                         playerRef={playerRef}
                         setShowPlayerSection={setShowPlayerSection}
                         setCurrentEpisodeURL={setCurrentEpisodeURL}
-                        episode = { episode }
-                        key = { episode.id }
+                        episode={episode}
+                        key={episode.id}
                     />
                 ))}
             </div>

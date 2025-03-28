@@ -12,13 +12,14 @@
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
-    color: #444;
-    background-color: #f0f0f0;
+    color: #fefefe;
+    background-color: #121212;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .pageButton:hover {
     background-color: #ddd;
+    color: #121212;
     transform: scale(1.1);
 }
 

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import style from "./PlayerSection.module.css";
+import { useInView } from "react-intersection-observer";
 
 interface PlayerSectionProps {
     videoURL: string | null | undefined
@@ -10,10 +11,17 @@ export const PlayerSection = ({
 }: PlayerSectionProps) => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
 
-    console.log(iframeRef);
+    // Използваме useInView за анимация при влизане в изгледа
+    const { ref, inView } = useInView({
+        triggerOnce: true, // Само веднъж да се изпълнява анимацията
+        threshold: 0.2,    // Трябва да се види 20% от елемента, за да се активира
+    });
 
     return (
-        <section className={style['player-section-container']}>
+        <section
+            ref={ref}  // Закачаме референцията
+            className={`${style['player-section-container']} ${inView ? style['visible'] : ''}`}
+        > 
             {videoURL && (
                 <iframe
                     ref={iframeRef}

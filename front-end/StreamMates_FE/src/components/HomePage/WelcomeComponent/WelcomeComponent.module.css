@@ -1,5 +1,3 @@
-
-
 .welcome-component-container {
     width: 100%;
     height: 42em;
@@ -16,10 +14,14 @@
 .background-video-shadow {
     display: block;
     position: absolute;
+    z-index: 1;
     background-color: rgba(0, 0, 0, 0.776);
-    opacity: 0.45;
+    opacity: 0.6;
+    /* Това ще добави размазване с радиус 8px */
     width: 100%;
+    /* filter: blur(8px); */
     height: 100%;
+    /* Добавяне на допълнителни ефекти, като плавно премахване на размазването */
 }
 
 .background-video {
@@ -39,23 +41,29 @@
     gap: 1em;
 }
 
-.site-info-container > h2 {
-    font-size: 3.5em;
+.site-info-container link {
+    color: #121212;
+}
+
+.site-info-container>h2 {
+    font-size: 3.3em;
     width: 10em;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 500;
     letter-spacing: 2.4px;
 }
 
-.site-info-container > h5 {
+.site-info-container>h5 {
     font-size: 1.4em;
     width: 20em;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 300;
-    color: #F9F9F9;
+    color: #fefefee4;
+    line-height: 32px;
+    margin-bottom: 5px;
 }
 
-.site-info-container > button {
+.site-info-container>button {
     width: 12em;
     padding: 0.5em 1em;
     background-color: #000000c7;
@@ -66,13 +74,35 @@
 
 .phone-store-images {
     display: flex;
-    gap: 1em;
+    gap: 1.4em;
 }
 
-.phone-store-images > img {
+.phone-store-images>img {
     width: 10.2em;
     border: 0.1px solid silver;
-    border-radius: 0.4em;
-    height: 3em;
+    border-radius: 0.8em;
+    height: 2.8em;
     object-fit: cover;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* В стиловия файл */
+.login-link {
+    margin-left: 3px;
+    color: #3498db;
+    /* Син цвят на линка */
+    text-decoration: none;
+    /* Премахваме подчертаването */
+    font-weight: bold;
+    /* Направи текста удебелен */
+    transition: color 0.3s ease;
+    /* Ефект при hover */
+}
+
+.login-link:hover {
+    color: #2980b9;
+    /* По-тъмен син при hover */
+    text-decoration: underline;
+    /* Добавяне на подчертаване при hover */
 }

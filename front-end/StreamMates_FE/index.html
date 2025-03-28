@@ -3,13 +3,14 @@
 
 <head>
 	<meta charset="UTF-8" />
+	<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
 	<link rel="icon" type="image/svg+xml" href="./src/images/logo.jpg" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Stream Mate - Streaming Platform</title>
 	<style>
 		/* За всички браузъри, които поддържат WebKit (Chrome, Edge, Safari) */
 		::-webkit-scrollbar {
-			width: 4px;
+			width: 2px;
 			/* Още по-тънък скролбар */
 		}
 
@@ -17,14 +18,14 @@
 		::-webkit-scrollbar-track {
 			background: #2a2a2a;
 			/* Малко по-светъл фон за по-добър контраст */
-			border-radius: 10px;
+			border-radius: 16px;
 		}
 
 		/* Стил на плъзгача (дръжката) */
 		::-webkit-scrollbar-thumb {
-			background: #aaa;
+			background: silver;
 			/* Светло сиво за по-изчистен вид */
-			border-radius: 10px;
+			border-radius: 16px;
 			transition: background 0.3s ease;
 		}
 
@@ -37,10 +38,11 @@
 		/* За Firefox */
 		* {
 			scrollbar-width: thin;
-			scrollbar-color: #aaa #2a2a2a;
+			scrollbar-color: silver #2a2a2a;
 			/* Thumb | Track */
 		}
 	</style>
+
 </head>
 
 <body>

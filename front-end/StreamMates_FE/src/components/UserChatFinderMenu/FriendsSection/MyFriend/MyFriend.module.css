@@ -6,11 +6,14 @@
     border-radius: 1em;
     padding: 5px;
     cursor: pointer;
+    padding-top: 12px;
+    position: relative;
 }
 
 .user-image {
-    width: 3.2em;
-    height: 3.2em;
+    margin: 2px 1px 2px 2px;
+    width: 3.8em;
+    height: 3.8em;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -40,14 +43,28 @@
 
 .accept-reject-request-container {
     align-self: flex-end;
-    margin-left: 2.6em;
+    margin-left: 4em;
     margin-bottom: 1.4em;
     display: flex;
-    gap: 8px;
+    gap: 15px;
 }
 
 .accept-reject-request-container button {
-    padding: 2px 4px;
+    padding: 4px 8px;
+    border-radius: 0.5em;
+    color: #fefefe;
+    border: 0.5px solid #fefefe;
+    background-color: unset;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    position: absolute;
+    top: 1.45em;
+    right: 1em;    
+}
+
+.accept-reject-request-container button:hover {
+    color: #121212;
+    background-color: #fefefe;
     cursor: pointer;
 }
 

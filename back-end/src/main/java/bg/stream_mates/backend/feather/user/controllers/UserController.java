@@ -22,6 +22,16 @@ public class UserController {
         this.userService = userService;
     }
 
+    @PutMapping("/change-user-main-photos")
+    public void changeUserMainPhotos(@RequestBody @Valid EditUserMainPhotos editUserMainPhotos) {
+        this.userService.changeUserMainPhotos(editUserMainPhotos);
+    }
+
+    @PutMapping("/edit-profile-data")
+    public void editUserProfileData(@RequestBody @Valid EditProfileRequest editProfileRequest) {
+        this.userService.editProfileData(editProfileRequest);
+    }
+
     @DeleteMapping("/reject-received-friend-request/{myUsername}/{wishedFriendUsername}")
     public boolean rejectFriendRequest(@PathVariable String myUsername,
                                        @PathVariable String wishedFriendUsername) {
@@ -100,13 +110,13 @@ public class UserController {
         Cookie[] cookies = httpRequest.getCookies();
         if (cookies == null) throw new RuntimeException("Invalid Cookie!");
 
-        String username = "";
+        String id = "";
         for (Cookie cookie : cookies) {
             if ("JWT_TOKEN".equals(cookie.getName())) {
-                username = JwtTokenUtil.extractUsername(cookie.getValue());
+                id = JwtTokenUtil.extractId(cookie.getValue());
             }
         }
 
-        return this.userService.getUserByUsername(username);
+        return this.userService.getUserById(id);
     }
 }

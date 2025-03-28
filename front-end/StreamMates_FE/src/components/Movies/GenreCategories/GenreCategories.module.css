@@ -9,6 +9,7 @@
     margin-top: 2.5em; /* Намалена отстъпка отгоре */
     position: relative;
     cursor: pointer;
+    
 }
 
 /* Стилизация на заглавията на жанровете */
@@ -24,14 +25,14 @@
     font-size: 0.95em; /* Намален шрифт */
     font-weight: 500;
     text-align: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Леко по-малка сянка */
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Добавяме ефект при преминаване на мишката */
 .genre-categories-container h3:hover {
     transform: scale(1.03); /* Леко увеличение на елемента при hover */
-    background-color: #2C2C2C;
+    background-color: #fefefe;
+    color: #121212;   
 }
 
 /* Стрелките за навигация (предходна и следваща) */
@@ -82,4 +83,10 @@
 /* Стил за точките при hover */
 .swiper-pagination-bullet:hover {
     background-color: #85FF7A; /* Променяме цвета на точките при hover */
+}
+
+
+/* Активен жанр (избран) */
+.genre-card.active {
+    background: linear-gradient(135deg, #4a00e0, #8e2de2);
 }

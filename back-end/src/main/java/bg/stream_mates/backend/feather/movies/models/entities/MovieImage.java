@@ -2,6 +2,8 @@ package bg.stream_mates.backend.feather.movies.models.entities;
 
 import bg.stream_mates.backend.commonData.enums.ImageType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -15,6 +17,10 @@ import java.util.UUID;
 @Accessors(chain = true)
 @Table(name = "movies_images")
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class MovieImage {
 
     @Id
@@ -29,7 +35,6 @@ public class MovieImage {
     @Size(min = 5)
     private String imageURL;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;  // Или Series, в зависимост от контекста

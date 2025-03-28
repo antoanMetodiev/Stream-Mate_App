@@ -1,10 +1,14 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useEffect, useRef } from "react";
 import style from "./Chat.module.css";
 
 import audioCallingImg from "../../../../images/audio-call.png";
 import videoCallImg from "../../../../images/video_call.png";
 import deffaultUserImage from "../../images/deffault-user-image.jpg";
 import deffaultBackground from "../../../../images/deffault-chat-component-img.jpg";
+import chatOptions from "../../../../images/chat-options.png";
+import backToUsersListImg from "../../../../images/back-to-users-list.png";
+import onlineImgIcon from "../../../../images/online-image.jpg";
+import sendMessageIcon from "../../../../images/send-message.png";
 
 import { v4 as uuidv4 } from "uuid"; // За генериране на уникално callId
 import { User } from "../../../../types/User";
@@ -20,6 +24,32 @@ function isValidImageUrl(url: string) {
     return pattern.test(url) || flexiblePattern.test(url) || keywordsPattern.test(url);
 }
 
+const formatDate = (isoString: string): string => {
+    const date = new Date(isoString);
+
+    // Опции за форматиране на часа без секунди
+    const timeOptions: Intl.DateTimeFormatOptions = {
+        hour: 'numeric',
+        minute: 'numeric',
+    };
+
+    // Форматираме само времето
+    const time = date.toLocaleString('bg-BG', timeOptions);
+
+    // Опции за форматиране на датата
+    const dateOptions: Intl.DateTimeFormatOptions = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    };
+
+    // Форматираме само датата
+    const datePart = date.toLocaleString('bg-BG', dateOptions);
+
+    // Връщаме форматирания резултат с първо часа и след това датата
+    return `${time} ${datePart}`;
+};
 
 interface ChatProps {
     user: User | null;
@@ -32,6 +62,7 @@ interface ChatProps {
 
     openCallSection: boolean;
     setOpenCallSection: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsOpenMessagesWithUser: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const Chat = ({
@@ -45,14 +76,25 @@ export const Chat = ({
 
     openCallSection,
     setOpenCallSection,
+    setIsOpenMessagesWithUser,
 }: ChatProps) => {
-   
+
+    const messagesContainerRef = useRef<HTMLElement | null>(null);
     const textMessageRef = useRef<HTMLInputElement | null>(null);
     const receiverRef = useRef<HTMLHeadingElement | null>(null);
 
+    useEffect(() => {
+        if (messagesContainerRef.current) {
+            messagesContainerRef.current.scrollTo({
+                top: messagesContainerRef.current.scrollHeight,
+                behavior: "smooth",
+            });
+        }
+    }, [messagesWithCurrentFriend]);
+
+
     // Изпращане на текстови съобщения (ако има чат функционалност)
     const sendTextOrImageMessage = (event: FormEvent) => {
-        debugger;
         event.preventDefault();
         if (!webSocket || !textMessageRef.current || !user || !receiverRef.current) return;
 
@@ -64,67 +106,59 @@ export const Chat = ({
             createdOn: new Date().toISOString(),
         };
 
-        let newMessage: Message[] = [];
-        if (messagesWithCurrentFriend != null) {
-            newMessage = [...messagesWithCurrentFriend];
-        }
-
-        newMessage.push(message);
-        setMessagesWithCurrentFriend(newMessage);
-
+        debugger;
+        setMessagesWithCurrentFriend(prevMessages => [...(prevMessages || []), message]);
         webSocket.send(JSON.stringify(message));
+        textMessageRef.current.value = "";
     };
 
     // Тази функция се извиква, когато ти (caller) щракнеш на иконката за видео обаждане.
     const openCallSectionHandler = (receivedCallType: string) => {
         // Отваряме Call Секцията:
         if (!openCallSection) {
-            const videoCallNotification: CallNotification = {
+            const callNotification: CallNotification = {
                 caller: user ? user?.id : "",
                 receiver: currentChatFriend ? currentChatFriend.realUserId : "",
                 callId: uuidv4(),
                 callType: receivedCallType,
                 channelName: `call_${user!.username}_${receiverRef.current?.textContent}`,
                 timestamp: new Date().toISOString(),
-                callerNames: user ? user?.firstName + " " + user?.lastName : "",
+                callerNames: user ? user?.fullName : "",
                 callerImgUrl: user?.profileImageURL ?? "",
+                messageText: `${user?.fullName} започна обаждане!`,
             };
 
-            // Записваме данните, за да ги подадем на VideoCall компонента
-            setIncomingCall(videoCallNotification);
+            debugger;
+            const currentMessageType: MessageType = receivedCallType == "VIDEO_CALL" ? MessageType.VIDEO_CALL : MessageType.AUDIO_CALL;
+            let saveMessage: Message = {
+                owner: callNotification.caller,
+                createdOn: callNotification.timestamp,
+                receiver: callNotification.receiver,
+                messageText: callNotification.messageText,
+                messageType: currentMessageType,
+            }
+            setMessagesWithCurrentFriend(prevMessages => [...(prevMessages || []), saveMessage]);
+            setIncomingCall(callNotification);
+
             // Изпращаме известие към сървъра
             if (webSocket) {
-                webSocket.send(JSON.stringify(videoCallNotification));
-                console.log("Sent video call request:", videoCallNotification);
+                webSocket.send(JSON.stringify(callNotification));
+                console.log("Sent Call request:", callNotification);
             };
         };
         // Отваряме VideoCall компонента – caller веднага влиза в обаждането и чака другия участник
         setOpenCallSection(true);
     };
 
+    console.log(messagesWithCurrentFriend);
+
     return (
         <div>
-            {/* {incomingCall && incomingCall.caller !== user?.username && (
-                <div>
-                    <h3 className={style['incoming-call-h3-notification']}>Входящо обаждане от: {incomingCall.caller}</h3>
-                    <button>Откажи</button>
-                    <button onClick={() => setOpenCallSection(true)}>Приеми</button>
-                </div>
-            )} */}
-
-            
-
             <article
-                // ref={mainContainerWrapper}
                 className={style["chat-container-wrapper"]}
             >
-
                 <div
-                    // ref={hiddenAllBackgroundVideosDivRef}
                     className={style['all-background-videos-container']}>
-                    {/* <img onClick={changeWallperHandler} src={image1} alt="0" /> */}
-                    {/* <img onClick={changeWallperHandler} src={image3} alt="1" /> */}
-                    {/* <img onClick={changeWallperHandler} src={image3} alt="" /> */}
                 </div>
 
                 <header className={style["username-and-avatar"]}>
@@ -137,27 +171,14 @@ export const Chat = ({
                         ref={receiverRef}
                         className={style["username-title"]}
                     >
-                        {currentChatFriend && currentChatFriend.username}
+                        {currentChatFriend && currentChatFriend.username.length > 10 ? currentChatFriend.username.slice(0, 10) + ".." : currentChatFriend?.username}
                     </h2>
                     <p className={style["online-label"]}>online</p>
                     <img
                         className={style["online-image"]}
-                        // src={onlineImage}
+                        src={onlineImgIcon}
                         alt="online-image"
                     />
-
-
-                    <p
-                        // ref={pillarRef}
-                        className={style['pillar']}>
-                    </p>
-
-                    <i
-                        // onClick={showChatOptionsHandler}
-                        id={style['options']}
-                        className="fa-solid fa-gear"
-                    />
-
 
                     <div
                         // ref={optionsDivContainerRef}
@@ -181,6 +202,19 @@ export const Chat = ({
                         src={videoCallImg}
                         alt="videoCallImg"
                     />
+
+                    <img
+                        className={style["chat-options"]}
+                        src={chatOptions}
+                        alt="chatOptions"
+                    />
+
+                    <img
+                        onClick={() => { setIsOpenMessagesWithUser(false) }}
+                        className={style["back-to-users-list"]}
+                        src={backToUsersListImg}
+                        alt="backToUsersListImg"
+                    />
                 </header>
 
 
@@ -196,7 +230,7 @@ export const Chat = ({
 
                 {/* Messages Section: */}
                 <section
-                    // ref={messagesContainerRef}
+                    ref={messagesContainerRef}
                     className={style["messages-section"]}
                 >
                     <p className={style['shadow']}></p>
@@ -207,14 +241,10 @@ export const Chat = ({
                     />
 
                     {messagesWithCurrentFriend && messagesWithCurrentFriend.map((msg, index) => (
-                        isValidImageUrl(msg.messageText) ? (msg.owner === user?.username ? (
+                        isValidImageUrl(msg.messageText) ? (msg.owner === user?.id ? (
 
                             <div className={style['img-message-wrapper-container']}>
                                 <img
-                                    // onClick={showBigImageHandler}
-                                    // onMouseEnter={() => setIsHovered(true)}
-                                    // onMouseLeave={() => setIsHovered(false)}
-                                    // value={msg.messageText} 
                                     className={style['my-img-message']}
                                     src={msg.messageText}
                                     key={msg.receiver + msg.owner + index}
@@ -226,8 +256,6 @@ export const Chat = ({
 
                             <div className={style['other-img-message-wrapper-container']}>
                                 <img
-                                    // onClick={showBigImageHandler}
-                                    // value={msg.text} 
                                     className={style['other-user-img-message']}
                                     src={msg.messageText}
                                     key={msg.receiver + msg.owner + index}
@@ -237,17 +265,35 @@ export const Chat = ({
                         )
                         ) : (
                             <>
-                                {/* <h6 className={style['message-date']}>{new Date(msg.createdOn.replace(/^(\d{2})-(\d{2})-(\d{2})/, '20$1-$2-$3')).toLocaleString()}</h6> */}
-                                <li
-                                    className={
-                                        msg.owner === user?.id
-                                            ? style["myMessage-item"]
-                                            : style["other-user-message-item"]
-                                    }
-                                    key={msg.receiver + msg.owner + index}
-                                >
-                                    {msg.messageText}
-                                </li>
+                                {msg.messageType == MessageType.VIDEO_CALL || msg.messageType == MessageType.AUDIO_CALL ? (
+
+                                    <>
+                                        <h5 className={style['call-creation-date']}
+                                        >
+                                            {formatDate(msg.createdOn)}
+                                        </h5>
+                                        <h3 className={style['call-message-h3']}>{msg.messageText.replace(" аудио ", " ")}</h3>
+                                    </>
+                                ) : (
+                                    <>
+                                        <h5 className={msg.owner === user?.id
+                                            ? style["my-message-creation-date"]
+                                            : style["other-message-creation-date"]}
+                                        >
+                                            {formatDate(msg.createdOn)}
+                                        </h5>
+                                        <li
+                                            key={msg.receiver + msg.owner + index}
+                                            className={
+                                                msg.owner === user?.id
+                                                    ? style["myMessage-item"]
+                                                    : style["other-user-message-item"]
+                                            }
+                                        >
+                                            {msg.messageText}
+                                        </li >
+                                    </>
+                                )}
                             </>
                         )
                     ))}
@@ -263,12 +309,12 @@ export const Chat = ({
                         className={style["message-text-container"]}
                         type="text"
                         // value={messageText}
-                        placeholder="Type Something..."
+                        placeholder="Type Something.."
                     />
                     <img
                         // onClick={sendTextOrImageMessage}
                         className={style["send-message-button"]}
-                        // src={sendImageButton}
+                        src={sendMessageIcon}
                         alt="Submit"
                     />
 
@@ -276,6 +322,6 @@ export const Chat = ({
                 </form>
             </article>
 
-        </div>
+        </div >
     );
 };

@@ -63,15 +63,6 @@ export const ChatSection = ({
 
     return (
         <>
-            {/* <img
-                // ref={showUsersListImgRef}
-                // onClick={showUsersListHandler}
-                className={style["show-users-list-img"]}
-                src={showUserContainer}
-                alt="showUserContainer"
-            /> */}
-
-
             <article className={style["wrapper-all-GalaxyPlay-users"]}>
 
                 {!isOpenMessagesWithUser ? (
@@ -91,7 +82,10 @@ export const ChatSection = ({
                                     src={chatUser.profileImageURL ? chatUser.profileImageURL : deffaultUserImage}
                                     alt={`${chatUser.username}'s profile`}
                                 />
-                                <p>{chatUser.username}</p>
+                                <div className={style['full-name-and-username-container-wrapper']}>
+                                    <h4>{chatUser.username}</h4>
+                                    <h3>{chatUser.fullName}</h3>
+                                </div>
                             </div>
                         )) : (
                             <h3 className={style['no-friens-h3']}>Добавете приятели за да започнете чат с някого!</h3>
@@ -109,6 +103,7 @@ export const ChatSection = ({
 
                         openCallSection={openCallSection}
                         setOpenCallSection={setOpenCallSection}
+                        setIsOpenMessagesWithUser={setIsOpenMessagesWithUser}
                     />
                 )}
 

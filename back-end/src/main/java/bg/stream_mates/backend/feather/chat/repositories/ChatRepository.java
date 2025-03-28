@@ -1,6 +1,5 @@
 package bg.stream_mates.backend.feather.chat.repositories;
 
-import bg.stream_mates.backend.feather.chat.models.dtos.ReceivedMessage;
 import bg.stream_mates.backend.feather.chat.models.entities.Message;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.data.jpa.repository.JpaRepository;

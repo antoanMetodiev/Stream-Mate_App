@@ -6,6 +6,7 @@ import style from "./ImageSection.module.css";
 import { getImagesByTypeAndRange } from "../../../../../../utils/utils";
 
 import { BigImage } from "../../../../../BigImage/BigImage";
+import { useInView } from 'react-intersection-observer';
 
 interface ImageSectionProps {
     imagesList: (MovieImage[] | SeriesImage[]) | undefined;
@@ -108,10 +109,18 @@ export const ImageSection = ({
         setShowBigImage(true);
     };
 
+    const { ref, inView } = useInView({
+        triggerOnce: true, // само веднъж когато влезе в изглед
+        threshold: 0.5, // когато 50% от елемента е видим
+    });
+
 
     return (
-        <section className={style['image-section-container']}>
-            <h3 className={style['images-title-h3']}>Images</h3>
+        <section
+            ref={ref}
+            className={`${style['image-section-container']} ${inView ? style['visible'] : ''}`}>
+
+            <h3 className={`${style['images-title-h3']} ${inView ? style['visible'] : ''}`}>Images</h3>
             {showBigImage &&
                 <>
                     <BigImage
@@ -121,7 +130,6 @@ export const ImageSection = ({
                     />
                 </>
             }
-
 
             <div className={style['backdrop-poster-container-wrapper']}>
                 <button
@@ -148,7 +156,7 @@ export const ImageSection = ({
                 {currentImageType === "BACKDROP" && backdropImages?.map((image, index) => (
                     <img
                         onClick={() => showBigImageHandler("BACKDROP", constants.TMDB_IMG_URL + image.imageURL)}
-                        className={style['backdrop-image']}
+                        className={`${style['backdrop-image']} ${inView ? style['animate-visible'] : ''}`}
                         src={constants.TMDB_IMG_URL + image.imageURL}
                         alt={image.imageType}
                         key={index}
@@ -157,7 +165,7 @@ export const ImageSection = ({
                 {currentImageType === "POSTER" && posterImages?.map((image, index) => (
                     <img
                         onClick={() => showBigImageHandler("POSTER", constants.TMDB_IMG_URL + image.imageURL)}
-                        className={style['poster-image']}
+                        className={`${style['poster-image']} ${inView ? style['animate-visible'] : ''}`}
                         src={constants.TMDB_IMG_URL + image.imageURL}
                         alt={image.imageType}
                         key={index}
@@ -183,11 +191,13 @@ export const ImageSection = ({
                         className={style['load-more-button']}>
                         Show Less
                     </button>
-                    : <button
+                    :
+                    <button
                         onClick={loadMoreImages}
                         className={style['load-more-button']}>
                         Load More
-                    </button>)
+                    </button>
+                )
             }
         </section>
     );

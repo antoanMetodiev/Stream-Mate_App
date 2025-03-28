@@ -72,8 +72,8 @@ export const UserSender = ({
                 alt={userSender ? userSender.senderImgURL : ""}
             />
             <div className={style['meta-data-info-container']}>
-                <h3 className={style['username']}>{userSender.senderUsername.length > 15 ? userSender.senderUsername.slice(0, 14) + ".." : userSender.senderUsername}</h3>
-                <h3 className={style['names']}>{userSender.senderNames.length > 15 ? userSender.senderNames.slice(0, 14) + ".." : userSender.senderNames}</h3>
+                <h3 className={style['username']}>{userSender.senderUsername.length > 20 ? "@" + userSender.senderUsername.slice(0, 20) + ".." : "@" + userSender.senderUsername}</h3>
+                <h3 className={style['names']}>{userSender.senderNames.length > 19 ? userSender.senderNames.slice(0, 19) + ".." : userSender.senderNames}</h3>
             </div>
             <div className={style['accept-reject-request-container']}>
                 <button onClick={acceptRequestHandler}>Приеми</button>

@@ -35,7 +35,7 @@ export const User = ({
             />
             <div className={style['meta-data-info-container']}>
                 <h3 className={style['username']}>{searchedUser.username}</h3>
-                <h3 className={style['names']}>{searchedUser.firstName + " " + searchedUser.lastName}</h3>
+                <h3 className={style['names']}>{searchedUser.fullName}</h3>
             </div>
         </div>
     );

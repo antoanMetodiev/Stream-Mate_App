@@ -1,3 +1,5 @@
+
+
 .chat-container-wrapper {
     position: fixed;
     border-radius: 0.8em;
@@ -11,6 +13,7 @@
     box-shadow: 4px 4px 10px black;
     height: fit-content;
     margin-bottom: 2em;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.24);
 }
 
 @keyframes fadeInUp {
@@ -53,33 +56,41 @@
 }
 
 input.message-text-container {
+    margin-top: 6px;
     background-color: unset;
-    width: 21em;
+    width: 17em;
     height: 2.7em;
-    margin: 0.4em 0.5em 0.4em 0.5em;
+    margin: 0.4em 0.5em -0.1em 0.5em;
     border-radius: 2em;
     border: 1px solid #ffffffb3;
     margin-top: 9px;
     margin-right: -1.3em;
-    color: #000;
+    margin-left: 3.4em;
+    color: #fefefe;
+    font-size: 0.94em;
+    font-weight: 400;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 input.message-text-container::placeholder {
-    color: #000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    color: #fefefed8;
 }
 
 input.message-text-container:focus {
-    border: 1px solid #000;
+    border: 1px solid #fefefe;
 }
 
 .myMessage-item {
+    cursor: default;
     width: 8.7em;
     background-color: rgba(0, 132, 255, 0.6);
     border-radius: 1em;
     color: #fefefe;
     align-self: flex-end;
-    margin: 0.2em 0.8em 0.3em 0em;
+    margin: 1em 0.8em 0.3em 0em;
     font-size: 1.11em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
     /* Лек черен text-shadow */
@@ -88,36 +99,36 @@ input.message-text-container:focus {
     /* overflow: hidden;  */
     word-wrap: break-word; /* Разделя дълги думи за да не преливат */
     white-space: normal; /* Позволява пренасянето на нов ред */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.171);
 }
 
 .other-user-message-item {
+    cursor: default;
     width: 8.9em;
     border-radius: 1em;
     color: #fefefe;
     background-color: rgba(212, 230, 209, 0.6);
     align-self: flex-start;
-    margin: 0.2em 0em 0.3em 0.7em;
+    margin: 1em 0em 0.3em 0.7em;
     font-size: 1.11em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
     padding: 8px 8px 8px 12px;
     letter-spacing: 1.2px;
     word-wrap: break-word; /* Разделя дълги думи за да не преливат */
     white-space: normal; /* Позволява пренасянето на нов ред */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.171);
 }
 
 .send-message-button {
-    padding: 0.14em 2em;
-    font-size: 1em;
+    padding: 0.14em 1.9em;
+    font-size: 0.98em;
     align-self: center;
-    border-radius: 0.5em;
     border: none;
     color: #fff;
     width: 6em;
-    height: 3em;
+    height: 2.5em;
     display: block;
-    border-radius: 2em;
-    object-fit: cover;
-    margin-right: -1.1em;
+    margin-right: -5.1em;
 }
 
 .send-message-button:hover {
@@ -128,14 +139,16 @@ input.message-text-container:focus {
 .chat-form {
     display: flex;
     width: 100%;
-    background-color: rgba(128, 128, 128, 0.842);
-    height: 3.8em;
+    background-color: #121212;
+    height: 3.5em;
     border-bottom-left-radius: 0.8em;
     border-bottom-right-radius: 0.8em;
 }
 
 .username-and-avatar {
-    background-color: #ffffff93;
+    padding-top: 4px;
+    background-color: #121212;
+    color: #fefefe;    
     /* Светло сив с 50% прозрачност */
     height: 3.4em;
     border-top-left-radius: 1em;
@@ -145,9 +158,9 @@ input.message-text-container:focus {
 }
 
 .current-friend-img {
-    width: 3em;
-    height: 3em;
-    margin-left: 0.5em;
+    width: 2.6em;
+    height: 2.6em;
+    margin: 0px 0px -10px 7px;
     border-radius: 50%;
     margin-top: 2px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
@@ -158,25 +171,27 @@ input.message-text-container:focus {
     font-weight: 250;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     letter-spacing: 1.2px;
-    font-size: 1.4em;
+    font-size: 1.2em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .online-label {
     position: absolute;
-    top: 2.32em;
+    top: 2.6em;
     left: 5em;
-    font-weight: 450;
-    font-size: 0.9em;
-    color: gray;
+    font-weight: 300;
+    font-size: 0.8em;
+    color: #fefefec9;
 }
 
 .online-image {
-    width: 0.6em;
-    height: 0.6em;
+    width: 0.5em;
+    height: 0.5em;
     position: absolute;
-    top: 2.5em;
-    left: 7.87em;
+    top: 2.36em;
+    left: 6.4em;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .messages-section .user-avatar-image {
@@ -198,48 +213,46 @@ input.message-text-container:focus {
 
 /* Wrapper: */
 div.img-message-wrapper-container {
-    width: 10em;
-    height: 10em; 
+    width: 9.4em;
+    height: 9.6em;
     margin-left: 13em;
-    border-radius: 1em;
-    position: relative;
+    border-radius: 0.4em;
+    margin-bottom: 1em;
 }
 
-img.my-img-message {
+div.img-message-wrapper-container img.my-img-message {
     width: 100%;
     height: 100%; 
     object-fit: cover;   
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 1em;
+    border-radius: 0.4em;
+    margin-left: -28px;
 }
 
 img.my-img-message:hover {
     cursor: pointer;
     /* opacity: 0.9; */
-    box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.9); /* много силна черна сянка */
 }
-
 
 div.other-img-message-wrapper-container {
-    width: 10em;
-    height: 10em; 
-    border-radius: 1em;
-    position: relative;
+    width: 9.4em;
+    height: 9.6em; 
+    margin-right: 13em;
+    border-radius: 0.4em;
+    margin-bottom: 1em;
 }
 
-img.other-user-img-message {
-    width: 10em;
-    height: 7em;
+div.other-img-message-wrapper-container .other-user-img-message {
+    width: 100%;
+    height: 100%; 
     object-fit: cover;   
     border-radius: 1em;
-    margin-left: 0.8em;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-left: 13px
 }
+
+
 
 img.other-user-img-message:hover {
     cursor: pointer;
-    /* opacity: 0.9; */
-    box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.9); /* много силна черна сянка */
 }
 
 
@@ -292,7 +305,8 @@ p.shadow {
     top: 3.3em;
     width: 100%;
     height: 82%;
-    background-color: #000000b3;
+    background-color: #000;
+    opacity: 0.76;
     z-index: -1;
 }
 
@@ -396,24 +410,26 @@ p.shadow {
 }
 
 .audio-call-img {
-    width: 2.4em;
-    height: 2.4em;
-    position: relative;
-    left: 5.5em;
-    top: 10px;
-}
-
-.video-call-img {
-    width: 2.4em;
-    height: 2.4em;
-    object-fit: cover;
+    width: 1.6em;
+    height: 1.6em;
     position: absolute;
-    z-index: 20;
-    right: 3.4em;
+    z-index: 7;
+    right: 5.7em;
     top: 0.5em;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     /* Черна сянка */
-    border-radius: 2em;
+}
+
+.video-call-img {
+    width: 1.6em;
+    height: 1.6em;
+    position: absolute;
+    z-index: 7;
+    right: 8em;
+    top: 0.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* Черна сянка */
+
 }
 
 .video-call-img:hover, .audio-call-img:hover {
@@ -425,4 +441,90 @@ p.shadow {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #fefefe;
     font-size: 0.6em;
+}
+
+.chat-options {
+    width: 1.59em;
+    height: 1.59em;
+    position: absolute;
+    z-index: 7;
+    right: 3.4em;
+    top: 0.57em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* Черна сянка */
+}
+
+.back-to-users-list {
+    width: 1.57em;
+    height: 1.57em;
+    position: absolute;
+    z-index: 7;
+    right: 0.7em;
+    top: 0.65em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* Черна сянка */
+}
+
+.call-message-h3 {
+    color: #fff;
+    margin: 1.7em 0em 2.2em 0em;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 0.9em;
+    margin-top: -1em;
+    width: 14em;
+    margin: 0 auto;
+}
+
+.call-message-h3:not(:last-of-type) {
+    margin-top: 4.3em;
+    margin-bottom: 3em;
+}
+
+.call-message-h3:first-of-type {
+    margin-top: 4.3em;
+    margin-bottom: 3em;
+}
+
+.call-message-h3:last-of-type {
+    margin-top: 4.3em;
+    margin-bottom: 3em;
+}
+
+.my-message-creation-date {
+    color: #fefefee2;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 0.52em;
+    width: 16.6em;
+    line-height: 10px;
+    margin-left: 22.8em;
+    margin-bottom: -3.33em;
+    cursor: default;
+}
+
+.other-message-creation-date {
+    color: #fefefee2;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 0.52em;
+    width: 16.6em;
+    line-height: 10px;
+    margin-left: 2.62em;
+    margin-bottom: -3.33em;
+    cursor: default;
+}
+
+.call-creation-date {
+    color: #fefefe;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 0.52em;
+    width: 16.6em;
+    line-height: 10px;
+    margin-left: 14em;
+    margin-bottom: -9.09em;
+    cursor: default;
+    margin-top: 0.7em;
 }

@@ -21,7 +21,7 @@ public class ChatController {
 
     @GetMapping("/get-messages-with-friend")
     public List<ReceivedMessage> getMessagesWithFriend(@RequestParam String myId,
-                                               @RequestParam String friendId) {
+                                                       @RequestParam String friendId) {
 
         List<ReceivedMessage> messages = new ArrayList<>();
         List<Message> responseMessages = this.chatService.getMessagesWithFriend(myId, friendId);

@@ -1,12 +1,12 @@
 import style from "./ChannelLifeVideo.module.css";
 
 interface ChannelLifeVideoProps {
-    videoURL: string, 
+    videoURL: string,
     name: string
 };
 
 export const ChannelLifeVideo = ({
-    videoURL, 
+    videoURL,
     name,
 }: ChannelLifeVideoProps) => {
 
