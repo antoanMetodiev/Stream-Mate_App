@@ -8,3 +8,9 @@ __Stream Mate__ is an automated platform for __Movies__, __TV shows__, and __TV 
 __*Discover Page*__ - a page accessible to all registered and unregistered users. At the top, there's a Live Wallpaper section that displays a different Live Wallpaper Video of a popular game with each page refresh, or allows users to change the wallpaper using the arrows (left or right). Further down, it showcases what benefits users would receive if they register.
 
 ### __*Discover Page*__
+
+![](stream-mate-design/rsz_screenshot_7.webp)
+
+![](stream-mate-design/rsz_screenshot_8.webp)
+
+![](stream-mate-design/rsz_screenshot_10.webp)
