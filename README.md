@@ -68,7 +68,7 @@ A page accessible to all registered and unregistered users.
 ---
 
 ## 🎞 Cinema Record Details  
-- View **movie/series descriptions, trailers, ratings**, and related content.  
+- View **movie/series descriptions, cast, pictures, ratings**, and related content.  
 - **Add comments** and discuss with other users.  
 
 ### 🔹 Cinema Record Details Preview  
