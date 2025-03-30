@@ -45,10 +45,13 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 ![](stream-mate-design/rsz_screenshot_20.webp)
 
-![](stream-mate-design/rsz_screenshot_21.webp)
+### __*Order Cinema Record:*__
 
+![](stream-mate-design/rsz_screenshot_21.png)
 
 ![](stream-mate-design/rsz_screenshot_22.webp)
+
+
 
 ![](stream-mate-design/rsz_screenshot_23.webp)
 
