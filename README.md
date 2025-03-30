@@ -7,7 +7,7 @@
 - **Front-End:**  __*React + TypeScript.*__
 - **Deployment:**  __*Docker (Dockerfile + Koyeb).*__
 - **Architecture:**  __*Microservices.*__
-- **Real-Time Communication:**  __*WebSocket, Agora.*__
+- **Real-Time Communication:**  __*WebSocket, Agora SDK.*__
 - **Database:**  __*3× Aiven Cloud PostgreSQL (5GB each).*__
 
 ---
