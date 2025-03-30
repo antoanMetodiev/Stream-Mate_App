@@ -44,7 +44,6 @@ Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. User
 ## 🏠 Discover Page  
 A page accessible to all registered and unregistered users.  
 
-- 🎥 **Live Wallpaper Section** – Displays a different **Live Wallpaper Video** of a popular movie/game with each page refresh. Users can also change the wallpaper manually using **left/right arrows**.  
 - 🎁 **Why Register?** – Highlights the benefits of registration for unregistered users.  
 
 ### 🔹 Discover Page Preview  
