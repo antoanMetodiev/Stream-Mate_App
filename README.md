@@ -52,12 +52,27 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 ![](stream-mate-design/rsz_screenshot_22.webp)
 
 
+### __*Chat & Video Chat:*__
 
 ![](stream-mate-design/rsz_screenshot_23.webp)
 
 ![](stream-mate-design/rsz_screenshot_24.webp)
 
 ![](stream-mate-design/rsz_screenshot_25.webp)
+
+![](stream-mate-design/rsz_screenshot_26.webp)
+
+![](stream-mate-design/rsz_screenshot_27.webp)
+
+![](stream-mate-design/rsz_screenshot_28.webp)
+
+![](stream-mate-design/rsz_screenshot_29.webp)
+
+![](stream-mate-design/rsz_screenshot_30.webp)
+
+![](stream-mate-design/rsz_screenshot_31.webp)
+
+![](stream-mate-design/rsz_screenshot_32.png)
 
 
 
