@@ -1,19 +1,29 @@
-### PROJECT URL - __*https://stream-mate-org.netlify.app*__
+### PROJECT URL - __*🔗 [Stream Mate](https://stream-mate-org.netlify.app)*__
 
 # __*Stream Mate*__
 
-### Back-End - __*Spring, PostgreSQL, Redis.*__
+### 🛠 Tech Stack
+- **Back-End:** __*Spring, PostgreSQL, Redis*__
+- **Front-End:** __*React + TypeScript*__
+- **Deployment:** __*Docker (Dockerfile + Koyeb)*__
+- **Architecture:** __*Microservices*__
+- **Real-Time Communication:** __*WebSocket*__
 
-### Front-End - __*React + TS.*__
+---
 
-### Deployment - __*Docker (Dockerfile + Koyeb)*__
-#
-__- 🎬 About Stream Mate
-Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. Users can:
-✅ Watch and add movies/shows through an automated "Order" system.
-✅ Enjoy real-time streaming with WebSocket support.
-✅ Connect socially – send friendship requests, chat, and make video/audio calls.
-✅ Share images, search for users, and explore their profiles.__
+## 🎬 About Stream Mate  
+Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. Users can:  
+✅ **Watch and add** movies/shows through an automated **"Order"** system.  
+✅ **Enjoy real-time streaming** with **WebSocket** support.  
+✅ **Connect socially** – send **friendship requests**, chat, and make **video/audio calls**.  
+✅ **Share images**, search for users, and explore their profiles.  
+
+---
+
+## 🔌 Integrations & Features  
+🚀 **WebSocket** for real-time messaging and calls.  
+🔄 **Microservices Architecture** for scalability and modular development.  
+🔗 **Multiple APIs** for fetching movie/show data and streaming sources
 
 ## - Public Area
 
