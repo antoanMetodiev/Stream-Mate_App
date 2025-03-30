@@ -1,15 +1,7 @@
 ### PROJECT URL - __*https://stream-mate-org.netlify.app*__
 
-<style>
-    .logo {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-</style>
+# <img src="stream-mate-design/logo.webp" alt="Stream Mate Logo" style="width: 30px; height: 30px; border-radius: 1em;" /> __*Stream Mate*__
 
-# <img src="stream-mate-design/logo.webp" alt="Stream Mate Logo" class="logo" /> __*Stream Mate*__
 
 ### 🛠 Tech Stack
 - **Back-End:**  __*Spring, PostgreSQL, Redis, Spring Security.*__
