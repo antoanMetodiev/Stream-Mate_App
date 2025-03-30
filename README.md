@@ -5,7 +5,9 @@ __Stream Mate__ is an automated platform for __Movies__, __TV shows__, and __TV 
 
 ## - Public Area
 
+
 __*Discover Page*__ - a page accessible to all registered and unregistered users. At the top, there's a Live Wallpaper section that displays a different Live Wallpaper Video of a popular game with each page refresh, or allows users to change the wallpaper using the arrows (left or right). Further down, it showcases what benefits users would receive if they register.
+
 
 ### __*Discover Page:*__
 
@@ -17,6 +19,7 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 
 ## - Private Area
+
 
 ### __*Cinema Records Page/Movies Page/Series Page:*__
 
@@ -45,11 +48,13 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 ![](stream-mate-design/rsz_screenshot_20.webp)
 
+
 ### __*Order Cinema Record:*__
 
 ![](stream-mate-design/rsz_screenshot_21.png)
 
 ![](stream-mate-design/rsz_screenshot_22.webp)
+
 
 ### __*Chat & Video Chat:*__
 
@@ -72,13 +77,14 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 ![](stream-mate-design/rsz_screenshot_30.webp)
 
+![](stream-mate-design/rsz_screenshot_33.webp)
+
+
 ### __*Requests, Friends, Search Users Menu and more..:*__
 
 ![](stream-mate-design/rsz_screenshot_31.webp)
 
 ![](stream-mate-design/rsz_screenshot_32.png)
-
-![](stream-mate-design/rsz_screenshot_33.webp)
 
 
 ### __*24/7 TV Channels:*__
