@@ -5,7 +5,7 @@
 ### 🛠 Tech Stack
 - **Back-End:**  __*Spring, PostgreSQL, Redis, Spring Security.*__
 - **Front-End:**  __*React + TypeScript.*__
-- **Deployment:**  __*Docker (Dockerfile + Koyeb)*__
+- **Deployment:**  __*Docker (Dockerfile + Koyeb).*__
 - **Architecture:**  __*Microservices.*__
 - **Real-Time Communication:**  __*WebSocket, Agora.*__
 - **Database:**  __*3× Aiven Cloud PostgreSQL (5GB each).*__
