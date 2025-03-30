@@ -1,13 +1,14 @@
- ### PROJECT URL - __*https://stream-mate-org.netlify.app*__
+### PROJECT URL - __*🔗 [Stream Mate](https://stream-mate-org.netlify.app)*__
 
 # __*Stream Mate*__
 
 ### 🛠 Tech Stack
-- **Back-End:**  __*Spring, PostgreSQL, Redis.*__
-- **Front-End:**  __*React + TS.*__
-- **Deployment:**  __*Docker (Dockerfile + Koyeb).*__
-- **Architecture:**  __*Microservices.*__
-- **Real-Time Communication:** __*WebSocket*__
+- **Back-End:** __*Spring, PostgreSQL, Redis, Spring Security*__
+- **Front-End:** __*React + TypeScript*__
+- **Deployment:** __*Docker (Dockerfile + Koyeb)*__
+- **Architecture:** __*Microservices*__
+- **Real-Time Communication:** __*WebSocket, Agora*__
+- **Database:** __*3× Aiven Cloud PostgreSQL (5GB each)*__
 
 ---
 
@@ -15,15 +16,27 @@
 Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. Users can:  
 ✅ **Watch and add** movies/shows through an automated **"Order"** system.  
 ✅ **Enjoy real-time streaming** with **WebSocket** support.  
-✅ **Connect socially** – send **friendship requests**, chat, and make **video/audio calls**.  
+✅ **Connect socially** – send **friendship requests**, chat, and make **video/audio calls** with **Agora**.  
 ✅ **Share images**, search for users, and explore their profiles.  
+✅ **Watch live TV channels** such as:  
+   - DAZN 1  
+   - ESPN USA  
+   - Nova TV  
+   - BTV, BTV Action  
+   - MAX SPORT 1, 2, 3, 4  
+   - Ring  
 
 ---
 
 ## 🔌 Integrations & Features  
 🚀 **WebSocket** for real-time messaging and calls.  
+🎥 **Agora SDK** for high-quality video and audio calls.  
 🔄 **Microservices Architecture** for scalability and modular development.  
-🔗 **Multiple APIs** for fetching movie/show data and streaming sources
+🔗 **TMDB API + VidSrc** for fetching movie/show data and storing it in the database.  
+💾 **3× Aiven Cloud PostgreSQL instances (5GB each)** for optimized database performance.  
+🗄 **Redis** for session storage, JWT authentication, and caching.  
+🔐 **Spring Security** for authentication and authorization.  
+
 
 ## - Public Area
 
