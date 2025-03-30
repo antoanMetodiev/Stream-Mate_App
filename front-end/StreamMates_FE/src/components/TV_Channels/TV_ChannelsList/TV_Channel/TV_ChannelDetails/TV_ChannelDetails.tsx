@@ -12,7 +12,20 @@ export const TV_ChannelDetails = () => {
 
     return (
         <section className={style['tv-channel-details-container-wrapper']}>
-            <Header setCinemaRecordsList={() => { }} />
+           <Header
+                genres=""
+                inputValue=""
+                user={null}
+                searchedMovieTitle=""
+                setGenres={() => { }}
+                setAllMoviesCount={() => { }}
+                setCurrentPaginationPage={() => { }}
+                setInputValue={() => { }}
+                setSearchedMovieTitle={() => { }}
+                setIsLoading={() => { }}
+                setLastPathName={() => { }}
+                setCinemaRecordsList={() => { }}
+            />
             <ChannelLifeVideo name={name} videoURL={videoURL} />
 
             <img

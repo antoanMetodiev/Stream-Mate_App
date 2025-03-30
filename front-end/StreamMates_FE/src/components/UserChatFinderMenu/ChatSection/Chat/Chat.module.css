@@ -6,10 +6,10 @@
     z-index: 17;
     animation: fadeInUp 0.5s ease-in-out;
     position: fixed;
-    bottom: -1.3em;
+    bottom: -1.6em;
     right: 0.4em;
     width: 22.5em;
-    height: 28.5em;
+    height: 27em;
     box-shadow: 4px 4px 10px black;
     height: fit-content;
     margin-bottom: 2em;
@@ -58,14 +58,14 @@
 input.message-text-container {
     margin-top: 6px;
     background-color: unset;
-    width: 17em;
+    width: 19.7em;
     height: 2.7em;
-    margin: 0.4em 0.5em -0.1em 0.5em;
+    margin: 0.2em 0.5em -0.1em 0.6em;
     border-radius: 2em;
     border: 1px solid #ffffffb3;
     margin-top: 9px;
     margin-right: -1.3em;
-    margin-left: 3.4em;
+    margin-left: 8px;
     color: #fefefe;
     font-size: 0.94em;
     font-weight: 400;

@@ -15,7 +15,7 @@
     object-fit: cover;
     border-radius: 50%;
 
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* По-силна сянка при ховър */
 }
 
 .logoIcon-img:hover {
@@ -37,6 +37,21 @@
     align-items: center;
     gap: 0.9em;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.337);
+    opacity: 0; /* Начално невидим */
+    transform: translateY(34px); /* Начално място извън екрана */
+    animation: slideIn 0.4s forwards; /* Анимация със зададено време и поведение */
+}
+
+/* Дефиниция на keyframes анимацията */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(34px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .menu-container img {
@@ -55,53 +70,3 @@
 }
 
 
-.incoming-call-container-wrapper {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 16em;
-    height: 7em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 1em;
-    background-color: silver;
-    border-radius: 1em;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-.accept-reject-container-imgs-wrapper {
-    display: flex;
-    gap: 1em;
-}
-
-.accept-reject-container-imgs-wrapper>img {
-    width: 2em;
-    height: 2em;
-    object-fit: cover;
-    transition: transform 0.3s ease-in-out;
-    /* Плавен преход */
-}
-
-.accept-reject-container-imgs-wrapper>img:hover {
-    transform: scale(1.1);
-    /* Леко увеличение при hover */
-}
-
-.caller-container-wrapper {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    gap: 0.7em;
-    color: #fefefe;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.caller-container-wrapper>img {
-    width: 2.5em;
-    height: 2.5em;
-    object-fit: cover;
-    border-radius: 50%;
-}

@@ -1,41 +1,39 @@
-import img1 from "./movieImages/anora.jpg";
-import img2 from "./movieImages/get-out.jpg";
-import img3 from "./movieImages/knives-out.jpg";
-import img4 from "./movieImages/maxine.jpg";
-import img5 from "./movieImages/orphan.jpg";
+import img1 from "./movieImages/anora.webp";
+import img2 from "./movieImages/get-out.webp";
+import img3 from "./movieImages/knives-out.webp";
+import img4 from "./movieImages/maxine.webp";
 import img6 from "./movieImages/prey.jpg";
-import img7 from "./movieImages/the joker.jpg";
-import img8 from "./movieImages/the x project.jpg";
-import img9 from "./movieImages/the-babysiter.jpg";
-import img10 from "./movieImages/the-covenant.jpg";
-import img11 from "./movieImages/the-social-network.jpg";
-import img12 from "./movieImages/the-watcher.jpg";
-import img14 from "./movieImages/throw-the-window.jpg";
-import img15 from "./movieImages/wrong turn.jpg";
+import img7 from "./movieImages/the_joker.webp";
+import img8 from "./movieImages/the_x_project.webp";
+import img9 from "./movieImages/the-babysiter.webp";
+import img10 from "./movieImages/the-covenant.webp";
+import img11 from "./movieImages/the-social-network.webp";
+import img12 from "./movieImages/the-watcher.webp";
+import img14 from "./movieImages/throw-the-window.webp";
+import img15 from "./movieImages/wrong_turn.webp";
 
 // Сериали
-import img16_1 from "./seriesImages/13-reasons-why.jpg";
-import img16_2 from "./seriesImages/breaking-bad.jpg";
-import img16_3 from "./seriesImages/chernobyl.jpg";
-import img16_4 from "./seriesImages/dark.jpg";
-import img16_5 from "./seriesImages/elite.jpg";
-import img16_6 from "./seriesImages/euphoria.jpg";
-import img16_7 from "./seriesImages/game-of-thrones.jpg";
-import img16_8 from "./seriesImages/house-of-the-dragon.jpg";
-import img16_9 from "./seriesImages/outher-banks.jpg";
-import img16_10 from "./seriesImages/the witcher.jpg";
-import img16_11 from "./seriesImages/the-100.jpg";
-import img16_12 from "./seriesImages/the-end-of-the-f-worldw.jpg";
-import img16_13 from "./seriesImages/the-society.jpg";
-import img16_14 from "./seriesImages/the-vampier-diares.jpg";
-import img16_15 from "./seriesImages/vikings.jpg";
+import img16_1 from "./seriesImages/13-reasons-why.webp";
+import img16_2 from "./seriesImages/breaking-bad.webp";
+import img16_3 from "./seriesImages/chernobyl.webp";
+import img16_4 from "./seriesImages/dark.webp";
+import img16_5 from "./seriesImages/elite.webp";
+import img16_6 from "./seriesImages/euphoria.webp";
+import img16_7 from "./seriesImages/game-of-thrones.webp";
+import img16_8 from "./seriesImages/house-of-the-dragon.webp";
+import img16_9 from "./seriesImages/outher-banks.webp";
+import img16_10 from "./seriesImages/the witcher.webp";
+import img16_11 from "./seriesImages/the-100.webp";
+import img16_12 from "./seriesImages/the-end-of-the-f-worldw.webp";
+import img16_13 from "./seriesImages/the-society.webp";
+import img16_14 from "./seriesImages/the-vampier-diares.webp";
+import img16_15 from "./seriesImages/vikings.webp";
 
 export const movingMovies = [
     { name: "Anora", image: img1 },
     { name: "Get Out", image: img2 },
     { name: "Knives Out", image: img3 },
     { name: "Maxine", image: img4 },
-    { name: "Orphan", image: img5 },
     { name: "Prey", image: img6 },
     { name: "The Joker", image: img7 },
     { name: "The X Project", image: img8 },

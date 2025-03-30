@@ -4,38 +4,28 @@
     overflow: hidden;
 }
 
-.background-video {
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000;
+    opacity: 0.6;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.background-img {
+    position: relative;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
     object-fit: cover;
-    aspect-ratio: 16/7.78; /* По-стандартно */
-    pointer-events: none;
-    border: none;
-    position: relative;
-    z-index: -1;
-}
-
-.shadow {
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.65;
-}
-
-@media (min-aspect-ratio: 16/7.78) {
-    .background-video {
-        width: 100%;
-        height: auto;
-    }
-}
-
-@media (max-aspect-ratio: 16/7.78) {
-    .background-video {
-        width: auto;
-        height: 100vh;
-    }
+    object-position: center;
+    transform: scale(1.2);
+    z-index: 0;
 }
 
 

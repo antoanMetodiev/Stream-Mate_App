@@ -9,7 +9,6 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Movie } from "../../../types/MovieType";
 import { Series } from "../../../types/Series";
-import { useEffect } from "react";
 
 interface GenreCategoriesProps {
     genres: string;
@@ -25,16 +24,14 @@ interface GenreCategoriesProps {
 export const GenreCategories = ({
     genres,
     setGenres,
-    setCinemaRecordsList,
     setAllMoviesCount,
     setCurrentPaginationPage,
     setSearchedMovieTitle,
-    inputValue,
     setInputValue
 }: GenreCategoriesProps) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
     const additionalURL = location.pathname.includes("movies") ? "/get-movies-count-by-genre" : "/get-series-count-by-genre";
 
     const getCinemaRecordsByGenre = async (receivedGenre: string) => {

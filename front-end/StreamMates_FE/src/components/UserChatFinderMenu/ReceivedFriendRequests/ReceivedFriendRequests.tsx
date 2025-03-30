@@ -21,7 +21,7 @@ export const ReceivedFriendRequests = ({
 
             {/* USERS LIST: */}
             <section className={style['users-list']}>
-                {user.receivedFriendRequests.map(currentUser => {
+                {user && user.receivedFriendRequests && user.receivedFriendRequests.map(currentUser => {
                     return (
                         <>
                             <UserSender

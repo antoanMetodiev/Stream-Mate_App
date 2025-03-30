@@ -17,11 +17,11 @@ import { CommentsSection } from "./CommentsSection/CommentsSection";
 import { User } from "../../../../../types/User";
 
 export const CinemaRecordDetails = () => {
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
 
     const location = useLocation();
-    const [myData, setMyData] = useState<User | undefined>(location.state?.user ? location.state?.user : undefined);
-    const [currentCinemaRecordId, setCurrentCinemaRecordId] = useState(location.state?.cinemaRecordId ? location.state?.cinemaRecordId : "");
+    const [myData] = useState<User | undefined>(location.state?.user ? location.state?.user : undefined);
+    const [currentCinemaRecordId] = useState(location.state?.cinemaRecordId ? location.state?.cinemaRecordId : "");
 
     const [cinemaRecord, setCinemaRecord] = useState<(Movie | Series) | null>(null);
     const [showPlayerSection, setShowPlayerSection] = useState<boolean>(!location.pathname.includes("/series/"));
@@ -54,7 +54,7 @@ export const CinemaRecordDetails = () => {
             } catch (error) {
                 console.log(error);
                 setLoading(false); // Ensure loading state is removed in case of error
-            }
+            };
         };
 
         getCinemaRecordDetails();
@@ -84,7 +84,8 @@ export const CinemaRecordDetails = () => {
                         <Details cinemaRecord={cinemaRecord} />
                         <CastSection cinemaRecord={cinemaRecord} />
                         {cinemaRecord?.imagesList && <ImageSection imagesList={cinemaRecord?.imagesList} />}
-                        {/* {showPlayerSection && (
+
+                        {showPlayerSection && (
                             <div ref={playerRef}>
                                 <PlayerSection
                                     videoURL={currentEpisodeURL.length > 2 ? currentEpisodeURL : cinemaRecord?.videoURL}
@@ -97,7 +98,7 @@ export const CinemaRecordDetails = () => {
                                     videoURL={currentEpisodeURL.length > 2 ? currentEpisodeURL : cinemaRecord?.videoURL}
                                 />
                             </div>
-                        )} */}
+                        )}
 
                         {location.pathname.split("/")[1] == "series" && (
                             <EpisodesSection

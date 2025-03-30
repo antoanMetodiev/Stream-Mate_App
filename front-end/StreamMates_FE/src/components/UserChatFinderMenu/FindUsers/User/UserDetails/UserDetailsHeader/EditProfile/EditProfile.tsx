@@ -1,13 +1,13 @@
 import { useLocation } from "react-router-dom";
 import style from "./EditProfile.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { User } from "../../../../../../../types/User";
 import { EditProfileHeader } from "./EditProfileHeader/EditProfileHeader";
 import { EditProfileBody } from "./EditProfileBody/EditProfileBody";
 import axios from "axios";
 
 export const EditProfile = () => {
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
     const location = useLocation();
     const [myData, setMyData] = useState<User | null>(location.state?.myData || null);
     const [backgroundImage, setBackgroundImage] = useState<{ file: File | null; url: string }>({

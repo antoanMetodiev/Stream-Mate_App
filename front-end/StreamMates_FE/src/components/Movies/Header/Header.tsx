@@ -62,6 +62,7 @@ export const Header = ({
             <TitleLogoComponent />
             {showNavigationLinks && (
                 <SearchEngine
+                    setMessageText={() => {}}
                     genres={genres}
                     setGenres={setGenres}
                     setIsLoading={setIsLoading}

@@ -1,9 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import styles from "./VideoCall.module.css";
 
-
-import skypeSound from "../../../../../audios/_SKYPE CALL SOUND.mp3";
-
 import AgoraRTC, {
     IAgoraRTCClient,
     ICameraVideoTrack,
@@ -24,12 +21,16 @@ interface VideoCallProps {
     incomingCall: CallNotification | null;
     setIncomingCall: React.Dispatch<React.SetStateAction<CallNotification | null>>;
     setOpenCallSection: React.Dispatch<React.SetStateAction<boolean>>;
+    isRinging: boolean;
+    setIsRinging: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const VideoCall = ({
     incomingCall,
     setIncomingCall,
     setOpenCallSection,
+    isRinging,
+    setIsRinging
 }: VideoCallProps) => {
     const [joined, setJoined] = useState(false);
     const [localVideoTrack, setLocalVideoTrack] = useState<ICameraVideoTrack | null>(null);
@@ -37,7 +38,7 @@ export const VideoCall = ({
     const [cameraMuted, setCameraMuted] = useState(false);
     const [audioMuted, setAudioMuted] = useState(false);
     const [permissionDenied, setPermissionDenied] = useState(false);
-    const [isRinging, setIsRinging] = useState(false);
+    
 
     // Рефове за визуализацията на локалното и отдалеченото видео
     const localVideoRef = useRef<HTMLDivElement>(null);
@@ -48,6 +49,9 @@ export const VideoCall = ({
     const TOKEN = null; // Ако използваш токен, можеш да го зададеш тук
     const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
 
+    console.log(isRinging);
+    console.log(permissionDenied);
+    console.log(joined);
 
     // Обработваме публикуването на отдалечени потребители:
     useEffect(() => {
@@ -55,7 +59,7 @@ export const VideoCall = ({
             await client.subscribe(user, mediaType);
             console.log('Subscribed to user:', user.uid, mediaType);
 
-            setIsRinging(true);
+            // setIsRinging(true);
             if (mediaType === 'video' && user.videoTrack && remoteVideoRef.current) {
                 user.videoTrack.play(remoteVideoRef.current);
             }
@@ -119,16 +123,17 @@ export const VideoCall = ({
     // Автоматично присъединяване при монтирaне на компонента
     useEffect(() => {
         joinChannel();
-        setIsRinging(true);
     }, []);
 
     const leaveChannel = async () => {
+        debugger;
         await client.leave();
         localVideoTrack?.stop();
         localVideoTrack?.close();
         localAudioTrack?.stop();
         localAudioTrack?.close();
         setJoined(false);
+        setIsRinging(false);
         setIncomingCall(null);
         setOpenCallSection(false);
         console.log('Left the channel.');
@@ -150,10 +155,6 @@ export const VideoCall = ({
 
     return (
         <div className={styles['video-call-container-wrapper']}>
-            {/* Условен рендеринг на звука */}
-            {isRinging && (
-                <audio src={skypeSound} loop autoPlay />
-            )}
 
             <div className={styles['video-container']}>
                 {/* Локално видео */}

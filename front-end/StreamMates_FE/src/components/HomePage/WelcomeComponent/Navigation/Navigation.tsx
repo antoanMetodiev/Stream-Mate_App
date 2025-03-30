@@ -5,7 +5,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { User } from "../../../../types/User";
 import { Movie } from "../../../../types/MovieType";
 import { Series } from "../../../../types/Series";
-import { useEffect } from "react";
 
 interface NavigationProps {
     user: User | null;
@@ -31,9 +30,9 @@ export const Navigation = ({
     const location = useLocation();
     const navigate = useNavigate();
 
-    
     const logout = async () => {
-        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+        debugger;
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
 
         try {
             const response = await axios.delete(BASE_URL + "/logout", {

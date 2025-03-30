@@ -1,6 +1,5 @@
 import styles from "./Register.module.css";
 
-import backgroundVideo from "./../../../videos/mystery-shack.mp4";
 import { FormEvent, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { RegisterUser } from "../../../types/dtos/RegisterUser";
@@ -9,6 +8,8 @@ import { ImageUploader } from "../../ImageUploader/ImageUploader";
 import deffaultUserImg from "./../../UserChatFinderMenu/images/deffault-user-image.jpg";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../../types/User";
+
+import back from "./../../../images/fv.webp";
 
 interface RegisterProps {
     setUser: React.Dispatch<React.SetStateAction<User | null>>
@@ -57,7 +58,7 @@ export const Register = ({
             return;
         }
 
-        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
         try {
             const apiResponse = await axios.post(BASE_URL + '/register', user, {
                 withCredentials: true
@@ -80,15 +81,11 @@ export const Register = ({
         <article className={styles['register-container-wrapper']}>
 
             <span className={styles['shadow']}></span>
-            <video
-                className={styles['background-video']}
-                src={backgroundVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-            >
-            </video>
+            <img
+                className={styles['background-img']}
+                src={back}
+                alt="back"
+            />
 
             <form
                 onSubmit={registerUser}

@@ -21,7 +21,7 @@ export const FriendsSection = ({
 
             {/* USERS LIST: */}
             <section className={style['users-list']}>
-                {user.friends.map(friend => {
+                {user && user.friends && user.friends.map(friend => {
                     return (
                         <>
                             <MyFriend

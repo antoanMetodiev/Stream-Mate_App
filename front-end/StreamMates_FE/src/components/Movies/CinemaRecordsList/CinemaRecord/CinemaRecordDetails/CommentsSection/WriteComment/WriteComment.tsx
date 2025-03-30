@@ -16,7 +16,7 @@ export const WriteComment = ({
     currentCinemaRecordId,
     setComments
 }: WriteCommentProps) => {
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
     const [rating, setRating] = useState<number>(5);
     const [isCommentFetch, setIsCommentFetch] = useState(false);
 

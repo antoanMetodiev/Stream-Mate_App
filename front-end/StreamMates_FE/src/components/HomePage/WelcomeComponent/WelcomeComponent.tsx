@@ -7,9 +7,8 @@ import { TitleLogoComponent } from "./TitleLogoComponent/TitleLogoComponent";
 import { Navigation } from "./Navigation/Navigation";
 import { User } from "../../../types/User";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-import backgroundVideo from "./../../../videos/backgroud.mp4";
+import backgroundImg from "./../../../images/images.webp";
 
 interface WelocmeComponentProps {
     user: User | null;
@@ -43,7 +42,7 @@ export const WelcomeComponent = ({
                 <h5>Stream thousands of films, series and tv channels for free, thanks to the generous support of your public library or university.</h5>
                 {!user && (
                     <h4>
-                        Have a Kanopy account?{' '}
+                        Have a Stream Mate account?{' '}
                         <Link to="/login" className={style['login-link']}>
                             Log In
                         </Link>
@@ -56,16 +55,13 @@ export const WelcomeComponent = ({
             </section>
 
 
-            <div className={style['background-video-wrapper']}>
-                <span className={style['background-video-shadow']}></span>
-                <video
-                    className={style['background-video']}
-                    src={backgroundVideo}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                ></video>
+            <div className={style['background-img-wrapper']}>
+                <span className={style['background-img-shadow']}></span>
+                <img
+                    className={style["background-img"]}
+                    src={backgroundImg}
+                    alt="backgroundImg"
+                />
             </div>
         </div>
     );

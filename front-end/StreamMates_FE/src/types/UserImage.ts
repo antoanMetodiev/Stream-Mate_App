@@ -1,4 +1,3 @@
-import { User } from "./User";
 import { UserImageType } from "./enums/UserImageType";
 
 export type UserImage = {

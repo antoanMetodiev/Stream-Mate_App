@@ -1,7 +1,7 @@
 import style from "./CinemaRecordPage.module.css";
 import axios from "axios";
-import movieBackgroundImage from "./../../images/movie-background-image.jpg";
-import seriesBackgroundImage from "./../../images/series-background-image.jpg";
+import movieBackgroundImage from "./../../images/movie-background-image.webp";
+import seriesBackgroundImage from "./../../images/series-background-image.webp";
 
 import { Header } from "./Header/Header";
 import { GenreCategories } from "./GenreCategories/GenreCategories";
@@ -23,7 +23,7 @@ interface CinemaRecordPageProps {
 export const CinemaRecordPage = ({
     user,
 }: CinemaRecordPageProps) => {
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
     let location = useLocation();
     const [cinemaRecordsList, setCinemaRecordsList] = useState<Movie[] | Series[] | undefined>(localStorage.getItem("LAST_CINEMA_RECORDS") ? JSON.parse(localStorage.getItem("LAST_CINEMA_RECORDS")!) : undefined);
     const [isLoading, setIsLoading] = useState(false); // ✅ Добавяме `isLoading`
@@ -40,7 +40,7 @@ export const CinemaRecordPage = ({
     const [allMoviesCount, setAllMoviesCount] = useState(localStorage.getItem("ALL_LAST_MOVIES_COUNT") ? JSON.parse(localStorage.getItem("ALL_LAST_MOVIES_COUNT")!) : 0);
     const totalPages = allMoviesCount > 0 ? Math.ceil(allMoviesCount / 20) : 0; // Примерен брой страници
 
-
+    console.log(lastPathName);
     useEffect(() => {
         debugger;
         if (genres.length == 0) return;

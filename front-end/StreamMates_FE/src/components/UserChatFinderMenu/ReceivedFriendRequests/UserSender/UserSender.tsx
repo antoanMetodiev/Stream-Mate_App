@@ -8,7 +8,7 @@ import { User } from "../../../../types/User";
 
 interface UserSenderProps {
     userSender: FriendRequest;
-    setMyUserData: React.Dispatch<React.SetStateAction<User>> | null;
+    setMyUserData: React.Dispatch<React.SetStateAction<User | null>>;
 };
 
 export const UserSender = ({
@@ -16,7 +16,21 @@ export const UserSender = ({
     setMyUserData,
 }: UserSenderProps) => {
     if (!setMyUserData) return;
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+
+
+    const fetchUser = async () => {
+        try {
+            const response = await axios.get(BASE_URL + "/get-user", { withCredentials: true });
+            console.log(response.data);
+            setMyUserData(response.data);  // Записваме потребителските данни
+        } catch (error) {
+            console.log("Не успяхме да вземем данните на потребителя", error);
+            setMyUserData(null);  // Ако има грешка, не сме логнати
+        };
+    };
+
+
 
     // Изпращам заявка:
     const acceptRequestHandler = async () => {
@@ -26,6 +40,7 @@ export const UserSender = ({
         try {
             const apiReponse = await axios.post(BASE_URL + "/accept-friend-request", { myUsername, wishedFriendUsername }, { withCredentials: true });
             console.log(apiReponse.data);
+            fetchUser();
 
         } catch (error) {
             console.log(error);
@@ -45,18 +60,7 @@ export const UserSender = ({
                 { withCredentials: true }
             );
 
-            // Изтриваме заявката от sentFriendRequests
-            setMyUserData(prevData => {
-                // Филтрираме само тези заявки, които не са за търсения потребител
-                const updatedReceivedRequests = prevData.receivedFriendRequests.filter(
-                    request => request.senderUsername !== userSender.senderUsername
-                );
-
-                return {
-                    ...prevData,
-                    receivedFriendRequests: updatedReceivedRequests, // Актуализираме списъка
-                };
-            });
+            fetchUser();
 
         } catch (error) {
             console.log(error);

@@ -4,7 +4,7 @@ import style from "./Chat.module.css";
 import audioCallingImg from "../../../../images/audio-call.png";
 import videoCallImg from "../../../../images/video_call.png";
 import deffaultUserImage from "../../images/deffault-user-image.jpg";
-import deffaultBackground from "../../../../images/deffault-chat-component-img.jpg";
+import deffaultBackground from "../../../../images/deffault-chat-component-img.webp";
 import chatOptions from "../../../../images/chat-options.png";
 import backToUsersListImg from "../../../../images/back-to-users-list.png";
 import onlineImgIcon from "../../../../images/online-image.jpg";
@@ -63,12 +63,12 @@ interface ChatProps {
     openCallSection: boolean;
     setOpenCallSection: React.Dispatch<React.SetStateAction<boolean>>;
     setIsOpenMessagesWithUser: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsRinging: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const Chat = ({
     user,
     webSocket,
-    incomingCall,
     setIncomingCall,
     currentChatFriend,
     messagesWithCurrentFriend,
@@ -77,6 +77,7 @@ export const Chat = ({
     openCallSection,
     setOpenCallSection,
     setIsOpenMessagesWithUser,
+    setIsRinging
 }: ChatProps) => {
 
     const messagesContainerRef = useRef<HTMLElement | null>(null);
@@ -101,7 +102,7 @@ export const Chat = ({
         const message: Message = {
             messageText: textMessageRef.current.value,
             owner: user.id,
-            receiver: currentChatFriend ? currentChatFriend?.realUserId : "",
+            receiver: currentChatFriend?.realUserId || "",
             messageType: MessageType.TEXT,
             createdOn: new Date().toISOString(),
         };
@@ -118,7 +119,7 @@ export const Chat = ({
         if (!openCallSection) {
             const callNotification: CallNotification = {
                 caller: user ? user?.id : "",
-                receiver: currentChatFriend ? currentChatFriend.realUserId : "",
+                receiver: currentChatFriend?.realUserId || "",
                 callId: uuidv4(),
                 callType: receivedCallType,
                 channelName: `call_${user!.username}_${receiverRef.current?.textContent}`,
@@ -154,6 +155,7 @@ export const Chat = ({
 
     return (
         <div>
+
             <article
                 className={style["chat-container-wrapper"]}
             >
@@ -171,7 +173,7 @@ export const Chat = ({
                         ref={receiverRef}
                         className={style["username-title"]}
                     >
-                        {currentChatFriend && currentChatFriend.username.length > 10 ? currentChatFriend.username.slice(0, 10) + ".." : currentChatFriend?.username}
+                        {currentChatFriend && currentChatFriend.username.length > 8 ? "@" + currentChatFriend.username.slice(0, 8) + ".." : "@" + currentChatFriend?.username}
                     </h2>
                     <p className={style["online-label"]}>online</p>
                     <img
@@ -190,14 +192,20 @@ export const Chat = ({
                     </div>
 
                     <img
-                        onClick={() => { openCallSectionHandler("AUDIO_CALL") }}
+                        onClick={() => {
+                            openCallSectionHandler("AUDIO_CALL");
+                            setIsRinging(true);
+                        }}
                         className={style['audio-call-img']}
                         src={audioCallingImg}
                         alt="audioCallingImg"
                     />
 
                     <img
-                        onClick={() => { openCallSectionHandler("VIDEO_CALL") }}
+                        onClick={() => {
+                            openCallSectionHandler("VIDEO_CALL");
+                            setIsRinging(true);
+                        }}
                         className={style["video-call-img"]}
                         src={videoCallImg}
                         alt="videoCallImg"

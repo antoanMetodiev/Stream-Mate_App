@@ -2,7 +2,7 @@
 
 .video-call-container-wrapper {
     position: fixed;
-    z-index: 10;
+    z-index: 11;
     width: 100%;
     height: 100vh;
     top: 0;

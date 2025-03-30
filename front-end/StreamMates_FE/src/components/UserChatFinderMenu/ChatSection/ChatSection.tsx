@@ -21,6 +21,7 @@ interface ChatSectionProps {
 
     openCallSection: boolean;
     setOpenCallSection: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsRinging: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const ChatSection = ({
@@ -34,8 +35,9 @@ export const ChatSection = ({
     setMessagesWithCurrentFriend,
     openCallSection,
     setOpenCallSection,
+    setIsRinging,
 }: ChatSectionProps) => {
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
     const [isOpenMessagesWithUser, setIsOpenMessagesWithUser] = useState(false);
 
     const openMessagesWithConcreteUser = async (friendId: string) => {
@@ -67,12 +69,7 @@ export const ChatSection = ({
 
                 {!isOpenMessagesWithUser ? (
                     <section className={style["all-GalaxyPlay-users"]}>
-                        {/* <SearchEngine
-                            allChatUsers={allChatUsers}
-                            setFilteredUsersHandler={setFilteredUsersHandler}
-                        /> */}
-
-                        {user && user.friends.length > 0 ? (user.friends).map((chatUser, index) => (
+                        {user && user.friends ? (user.friends).map((chatUser, index) => (
                             <div
                                 onClick={() => { openMessagesWithConcreteUser(chatUser.realUserId); }}
                                 key={index}
@@ -83,7 +80,7 @@ export const ChatSection = ({
                                     alt={`${chatUser.username}'s profile`}
                                 />
                                 <div className={style['full-name-and-username-container-wrapper']}>
-                                    <h4>{chatUser.username}</h4>
+                                    <h4>{"@" + chatUser.username}</h4>
                                     <h3>{chatUser.fullName}</h3>
                                 </div>
                             </div>
@@ -104,17 +101,9 @@ export const ChatSection = ({
                         openCallSection={openCallSection}
                         setOpenCallSection={setOpenCallSection}
                         setIsOpenMessagesWithUser={setIsOpenMessagesWithUser}
+                        setIsRinging={setIsRinging}
                     />
                 )}
-
-
-
-
-                {/* {showConcreteChatPermission && (
-						<>
-							
-						</>
-					)} */}
             </article>
         </>
     );

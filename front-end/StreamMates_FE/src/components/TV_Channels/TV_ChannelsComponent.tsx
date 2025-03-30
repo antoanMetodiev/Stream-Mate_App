@@ -10,7 +10,20 @@ export const TV_ChannelsComponent = () => {
 
     return (
         <article className={style['tv-channels-component-container']}>
-            <Header setCinemaRecordsList={() => {}} />
+            <Header
+                genres=""
+                inputValue=""
+                user={null}
+                searchedMovieTitle=""
+                setGenres={() => { }}
+                setAllMoviesCount={() => { }}
+                setCurrentPaginationPage={() => { }}
+                setInputValue={() => { }}
+                setSearchedMovieTitle={() => { }}
+                setIsLoading={() => { }}
+                setLastPathName={() => { }}
+                setCinemaRecordsList={() => { }}
+            />
             <TV_ChannelsList />
 
             <img

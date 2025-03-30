@@ -21,7 +21,7 @@ export const UserDetails = () => {
         }
     }, [searchedUser]);
    
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
     useEffect(() => {
         const getSearchedUserData = async () => {
             debugger;

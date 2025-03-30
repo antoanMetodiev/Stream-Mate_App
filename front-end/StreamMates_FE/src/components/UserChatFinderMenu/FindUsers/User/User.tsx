@@ -34,7 +34,7 @@ export const User = ({
                 alt={searchedUser.imgURL ? searchedUser.imgURL : deffaultUserImage}
             />
             <div className={style['meta-data-info-container']}>
-                <h3 className={style['username']}>{searchedUser.username}</h3>
+                <h3 className={style['username']}>{"@" + searchedUser.username}</h3>
                 <h3 className={style['names']}>{searchedUser.fullName}</h3>
             </div>
         </div>

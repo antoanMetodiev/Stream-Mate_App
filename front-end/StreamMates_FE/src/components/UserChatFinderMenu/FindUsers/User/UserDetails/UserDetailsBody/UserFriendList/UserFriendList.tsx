@@ -11,7 +11,6 @@ interface UserFriendListProps {
 };
 
 export const UserFriendList = ({
-    myData,
     searchedUser,
 }: UserFriendListProps) => {
     const [filteredFriends, setFilteredFriends] = useState<Friend[] | []>([]);

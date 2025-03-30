@@ -1,11 +1,12 @@
 import styles from "./Login.module.css";
 
-import backgroundVideo from "./../../../videos/mystery-shack.mp4";
 import { FormEvent, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { LoginUser } from "../../../types/dtos/LoginUser";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../../types/User";
+
+import back from "../../../images/fv.webp";
 
 interface LoginProps {
     setUser: React.Dispatch<React.SetStateAction<User | null>>
@@ -24,7 +25,7 @@ export const Login = ({
         const password = (formData.elements.namedItem("password") as HTMLInputElement).value;
 
         const user: LoginUser = { username, password }
-        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
 
         debugger;
         try {
@@ -96,15 +97,10 @@ export const Login = ({
 
 
             <span className={styles['shadow']}></span>
-            <video
-                className={styles['background-video']}
-                src={backgroundVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-            >
-            </video>
+            <img
+                className={styles["background-img"]}
+                src={back} alt="back"
+            />
 
             {invalidDataMessage.length && <h3 className={styles["invalid-data-message"]}>{invalidDataMessage}</h3>}
         </article>

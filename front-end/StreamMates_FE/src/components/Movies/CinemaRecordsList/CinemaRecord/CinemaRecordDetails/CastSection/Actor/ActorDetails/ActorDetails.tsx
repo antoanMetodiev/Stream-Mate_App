@@ -34,7 +34,20 @@ export const ActorDetails = () => {
 
     return (
         <div className={style['details-container-wrapper']}>
-            <Header setCinemaRecordsList={() => { }} />
+            <Header
+                genres=""
+                inputValue=""
+                user={null}
+                searchedMovieTitle=""
+                setGenres={() => {}}
+                setAllMoviesCount={() => {}}
+                setCurrentPaginationPage={() => {}}
+                setInputValue={() => {}}
+                setSearchedMovieTitle={() => {}}
+                setIsLoading={() => {}}
+                setLastPathName={() => {}}
+                setCinemaRecordsList={() => { }}
+            />
             {showBigImage && (
                 <>
                     <BigImage

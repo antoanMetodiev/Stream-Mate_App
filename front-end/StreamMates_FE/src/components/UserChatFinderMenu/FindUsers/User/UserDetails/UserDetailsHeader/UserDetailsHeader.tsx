@@ -25,24 +25,40 @@ export const UserDetailsHeader = ({
     setShowPictures,
 }: UserDetailsHeaderProps) => {
     const navigate = useNavigate();
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
 
     // States:
     const [weAreFriends, setWeAreFriends] = useState<boolean>(false);
     const [requestSent, setRequestSent] = useState<boolean>(false);
 
     useEffect(() => {
+		const fetchUser = async () => {
+			try {
+				const response = await axios.get(BASE_URL + "/get-user", { withCredentials: true });
+				console.log(response.data);
+				setMyData(response.data);  
+			} catch (error) {
+				console.log("Не успяхме да вземем данните на потребителя", error);
+				setMyData(null);  // Ако има грешка, не сме логнати
+			};
+		};
+
+		fetchUser();
+	}, []);
+
+    console.log(requestSent);
+    useEffect(() => {
         setWeAreFriends(checkIfWeAreFriends());
         setRequestSent(isRequestAlreadySent());
     }, [myData, searchedUser]);
 
     const checkIfWeAreFriends = (): boolean => {
-        if (!searchedUser || !myData) return false;
+        if (!searchedUser || !myData || !myData.friends) return false;
         return myData.friends.some(friend => friend.username === searchedUser.username);
     };
 
     const isRequestAlreadySent = (): boolean => {
-        if (!searchedUser || !myData) return false;
+        if (!searchedUser || !myData || !myData.sentFriendRequests) return false;
         return myData.sentFriendRequests.some(request => request.receiverUsername === searchedUser.username);
     };
 
@@ -77,12 +93,14 @@ export const UserDetailsHeader = ({
                 sentAt: new Date().toISOString(), // Генерираме време на изпращане
             } as FriendRequest; // Типизираме го като FriendRequest
 
-            debugger;
-            // 1. Копираме стария масив и добавяме новата заявка
-            const updatedRequests = [...myData.sentFriendRequests, newFriendRequest];
+            setMyData(prevData => {
+                if (!prevData) return prevData;
 
-            // 2. Обновяваме състоянието
-            setMyData(prevData => (prevData ? { ...prevData, sentFriendRequests: updatedRequests } : prevData));
+                return {
+                    ...prevData,
+                    sentFriendRequests: [...(prevData.sentFriendRequests || []), newFriendRequest]
+                };
+            });
 
             // Потвърждаваме, че заявката е изпратена
             setRequestSent(true);
@@ -129,7 +147,7 @@ export const UserDetailsHeader = ({
                 />
                 <div className={style['names-username-container']}>
                     <h4 className={style['profile-text']}>Профил</h4>
-                    <h2 className={style['username']}>{searchedUser?.username}</h2>
+                    <h2 className={style['username']}>{"@" + searchedUser?.username}</h2>
                     <h2 className={style['name']}>{searchedUser?.fullName}</h2>
                 </div>
             </div>
@@ -150,7 +168,7 @@ export const UserDetailsHeader = ({
                 </h5>
             ) : weAreFriends ? (
                 <h5 className={style['add-friend-button']}>Приятели</h5>
-            ) : myData && myData?.sentFriendRequests.filter(request => request.receiverUsername === searchedUser?.username).length > 0 ? (
+            ) : myData && myData.sentFriendRequests && myData?.sentFriendRequests.filter(request => request.receiverUsername === searchedUser?.username).length > 0 ? (
                 <h5 onClick={rejectFriendRequest} className={style['add-friend-button']}>Отмяна на поканата</h5>
             ) : (
                 <h5 onClick={sendFriendRequest} className={style['add-friend-button']}>

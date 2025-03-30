@@ -1,7 +1,7 @@
 /* Още по-модерна навигация със син акцент */
 .navigation-container {
     position: absolute;
-    z-index: 10;
+    z-index: 4;
     right: 0.6em;
     top: 1em;
     display: flex;

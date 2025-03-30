@@ -2,33 +2,50 @@
     width: 100%;
     height: 42em;
     position: relative;
+    overflow: hidden;
 }
 
 
-.background-video-wrapper {
+.background-img-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.background-video-shadow {
+.background-img-shadow {
     display: block;
     position: absolute;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.776);
-    opacity: 0.6;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.8;
     /* Това ще добави размазване с радиус 8px */
     width: 100%;
-    /* filter: blur(8px); */
     height: 100%;
+
     /* Добавяне на допълнителни ефекти, като плавно премахване на размазването */
 }
 
-.background-video {
+.background-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    animation: zoomRotate 5s infinite alternate ease-in-out;
+    border-radius: 16em;
 }
+
+@keyframes zoomRotate {
+    from {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+
+    to {
+        transform: scale(1.15) rotate(2deg);
+        filter: brightness(1.1);
+    }
+}
+
+
 
 .site-info-container {
     position: absolute;
@@ -46,10 +63,11 @@
 }
 
 .site-info-container>h2 {
+    margin: 7px 0px -10px -2px;
     font-size: 3.3em;
     width: 10em;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 2.4px;
 }
 

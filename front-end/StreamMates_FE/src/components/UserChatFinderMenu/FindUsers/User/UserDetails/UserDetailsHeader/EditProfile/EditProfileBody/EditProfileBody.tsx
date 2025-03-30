@@ -15,7 +15,7 @@ export const EditProfileBody = ({
     uploadImagesHandler,
 }: EditProfileBody) => {
     const navigate = useNavigate();
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
     const [messageText, setMessageText] = useState(`Моля, когато сте готови с промените - натиснете бутона "Edit Profile" за да се запазят!`);
 
 
@@ -76,7 +76,7 @@ export const EditProfileBody = ({
                     <input
                         type="text"
                         name="username"
-                        placeholder={myData?.username && myData?.username.length > 0 ? myData?.username : "Type username.."}
+                        placeholder={myData?.username && myData?.username.length > 0 ? "@" + myData?.username : "Type username.."}
                     />
 
                     <label>Full Name</label>

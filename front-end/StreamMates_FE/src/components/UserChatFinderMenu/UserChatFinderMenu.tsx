@@ -6,10 +6,6 @@ import chatIcon from "./images/chat.png";
 import usersIcon from "./images/users.png";
 import receivedFriendRequestsIcon from "./images/received-friend-requests.png";
 import friendsIcon from "./images/friends.png";
-import rejectCallImg from "./images/leave-channel.png";
-import acceptCallImg from "./images/audio-call.png";
-import deffaultUserImg from "./images/deffault-user-image.jpg";
-
 import { FindUsers } from "./FindUsers/FindUsers";
 import { User } from "../../types/User";
 import { ReceivedFriendRequests } from "./ReceivedFriendRequests/ReceivedFriendRequests";
@@ -19,6 +15,9 @@ import { ChatSection } from "./ChatSection/ChatSection";
 import { Message } from "../../types/Message";
 import { Friend } from "../../types/Friend";
 import { VideoCall } from "./ChatSection/Chat/VideoCall/VideoCall";
+
+import skypeSound from "./../../audios/_SKYPE CALL SOUND.mp3";
+import { IncomingCall } from "./IncomingCall/IncomingCall";
 
 interface UserChatFinderMenuProps {
     user: User | null;
@@ -47,9 +46,10 @@ export const UserChatFinderMenu = ({
 }: UserChatFinderMenuProps) => {
     if (!user) return;
 
+    // States:
+    const [isRinging, setIsRinging] = useState(false);
     const [openCallSection, setOpenCallSection] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-
 
     // Show Sections:
     const [showFindUsersSection, setShowFindUsersSection] = useState(false);
@@ -80,19 +80,22 @@ export const UserChatFinderMenu = ({
         setShowMenu(false);
     };
 
+
     return (
         <section className={style['user-chat-finder-menu-container']}>
+            {/* Условен рендеринг на звука: */}
+            {isRinging && (
+                <audio src={skypeSound} loop autoPlay />
+            )}
+
             {incomingCall && incomingCall.caller !== user?.id && (
-                <div className={style['incoming-call-container-wrapper']}>
-                    <div className={style['caller-container-wrapper']}>
-                        <img src={incomingCall.callerImgUrl ? incomingCall.callerImgUrl : deffaultUserImg} alt="callerImgUrl" />
-                        <h3 className={style['incoming-call-h3-notification']}>{incomingCall.callerNames}</h3>
-                    </div>
-                    <div className={style['accept-reject-container-imgs-wrapper']}>
-                        <img onClick={() => { setOpenCallSection(true); }} src={acceptCallImg} alt="acceptCallImg" />
-                        <img src={rejectCallImg} alt="rejectCallImg" />
-                    </div>
-                </div>
+                <IncomingCall
+                    openCallSection={openCallSection}
+                    isRinging={isRinging}
+                    setIsRinging={setIsRinging}
+                    incomingCall={incomingCall}
+                    setOpenCallSection={setOpenCallSection}
+                />
             )}
 
             {openCallSection && (
@@ -100,6 +103,8 @@ export const UserChatFinderMenu = ({
                     incomingCall={incomingCall}
                     setIncomingCall={setIncomingCall}
                     setOpenCallSection={setOpenCallSection}
+                    isRinging={isRinging}
+                    setIsRinging={setIsRinging}
                 />
             )}
 
@@ -125,6 +130,7 @@ export const UserChatFinderMenu = ({
 
                     incomingCall={incomingCall}
                     setIncomingCall={setIncomingCall}
+                    setIsRinging={setIsRinging}
                 />
             )}
 

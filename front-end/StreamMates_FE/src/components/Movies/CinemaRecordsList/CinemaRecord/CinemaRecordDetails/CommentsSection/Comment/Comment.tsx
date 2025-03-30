@@ -48,14 +48,15 @@ export const Comment = ({
     setComments
 }: CommentProps) => {
     const location = useLocation();
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
-    const additionalUrl = location.pathname.includes("/movies/") ? "movie" : "series";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+    
     const [showMoreOptions, setShowMoreOptions] = useState(false);
 
     const removeComment = async (commentId: string) => {
         debugger;
         if (commentId.trim().length == 0) return;
 
+        const additionalUrl = location.pathname.includes("/movies/") ? "movie" : "series";
         const movieId = currentCinemaRecordId;
         try {
             await axios.delete((BASE_URL + `/delete-${additionalUrl}-comment`), {
@@ -69,7 +70,7 @@ export const Comment = ({
         };
     };
 
-
+    console.log(comment);
     return (
         <div className={style['comment-container']}>
             {myData && myData.id === comment.authorId && (

@@ -56,15 +56,10 @@ export const ImageUploader = ({
                 messageTextRef.current.textContent = "Успешно качване. ✔️";
             }
 
-            const BASE_URL = window.location.href.includes("local")
-                ? "http://localhost:8080"
-                : "https://streammate-org.onrender.com";
-
-
+            const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
             if (!userOwner) {
                 return;
             }
-
 
             // Изпращане на изображението към бекенда (разкоментирай при нужда)
             await axios.post((BASE_URL + "/save-user-picture"), {
@@ -73,7 +68,6 @@ export const ImageUploader = ({
                 imageUrl: uploadedImageUrl,
                 ownerId: userOwner.id,
             }, { withCredentials: true });
-
 
             const newUserOwnerData = { ...userOwner };
             newUserOwnerData.images.unshift(
