@@ -1,4 +1,4 @@
-## PROJECT URL - __*https://stream-mate-org.netlify.app*__
+### PROJECT URL - __*https://stream-mate-org.netlify.app*__
 
 # __*Stream Mate*__
 
