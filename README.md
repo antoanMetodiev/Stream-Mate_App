@@ -60,9 +60,10 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 ![](stream-mate-design/rsz_screenshot_25.webp)
 
-### __*User Details & Edit Profile:*__
-
 ![](stream-mate-design/rsz_screenshot_26.webp)
+
+
+### __*User Details & Edit Profile:*__
 
 ![](stream-mate-design/rsz_screenshot_27.webp)
 
@@ -72,9 +73,19 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 ![](stream-mate-design/rsz_screenshot_30.webp)
 
+### __*Requests, Friends, Search Users Menu and more..:*__
+
 ![](stream-mate-design/rsz_screenshot_31.webp)
 
 ![](stream-mate-design/rsz_screenshot_32.png)
+
+![](stream-mate-design/rsz_screenshot_33.webp)
+
+### __*24/7 TV Channels:*__
+
+![](stream-mate-design/rsz_screenshot_34.webp)
+
+![](stream-mate-design/rsz_screenshot_35.webp)
 
 
 
