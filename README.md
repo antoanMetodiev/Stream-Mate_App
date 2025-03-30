@@ -34,7 +34,7 @@ Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. User
 🔄 **Microservices Architecture** for scalability and modular development.  
 🔗 **TMDB API + VidSrc** for fetching movie/show data and storing it in the database.  
 💾 **3× Aiven Cloud PostgreSQL instances (5GB each)** for optimized database performance.  
-🗄 **Redis** for session storage, JWT authentication, and caching.  
+🗄 **Redis** for session storage and JWT authentication.
 🔐 **Spring Security** for authentication and authorization.  
 
 
