@@ -1,27 +1,14 @@
-# 🎬 Stream Mate  
+### PROJECT URL - __*https://stream-mate-org.netlify.app*__
 
-## 🔗 Navigation  
-- [🚀 Project URL](#-project-url)  
-- [🛠 Tech Stack](#-tech-stack)  
-- [🎬 About Stream Mate](#-about-stream-mate)  
-- [🔌 Integrations & Features](#-integrations--features)  
-- [🌍 Public Area](#-public-area)  
-- [🔐 Private Area](#-private-area)  
+# __*Stream Mate*__
 
----
-
-## 🚀 Project URL  
-🔗 **[Stream Mate](https://stream-mate-org.netlify.app)**  
-
----
-
-## 🛠 Tech Stack  
-- **Back-End:**  __Spring, PostgreSQL, Redis, Spring Security.__  
-- **Front-End:**  __React + TypeScript.__  
-- **Deployment:**  __Docker (Dockerfile + Koyeb).__  
-- **Architecture:**  __Microservices.__  
-- **Real-Time Communication:**  __WebSocket, Agora SDK.__  
-- **Database:**  __3× Aiven Cloud PostgreSQL (5GB each).__  
+### 🛠 Tech Stack
+- **Back-End:**  __*Spring, PostgreSQL, Redis, Spring Security.*__
+- **Front-End:**  __*React + TypeScript.*__
+- **Deployment:**  __*Docker (Dockerfile + Koyeb).*__
+- **Architecture:**  __*Microservices.*__
+- **Real-Time Communication:**  __*WebSocket, Agora SDK.*__
+- **Database:**  __*3× Aiven Cloud PostgreSQL (5GB each).*__
 
 ---
 
@@ -30,8 +17,8 @@ Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. User
 ✅ **Watch and add** movies/shows through an automated **"Order"** system.  
 ✅ **Enjoy real-time streaming** with **WebSocket** support.  
 ✅ **Connect socially** – send **friendship requests**, chat, and make **video/audio calls** with **Agora**.  
-✅ **Share images**, search for users, and explore their profiles.  
-✅ **Leave comments** and discuss movies and TV shows with other users.  
+✅ **Share images**, search for users, and explore their profiles.
+✅ **Leave comments** and discuss movies and TV shows with other users.
 ✅ **Watch live TV channels** such as:  
    - DAZN 1  
    - ESPN USA  
@@ -48,12 +35,11 @@ Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. User
 🔄 **Microservices Architecture** for scalability and modular development.  
 🔗 **TMDB API + VidSrc** for fetching movie/show data and storing it in the database.  
 💾 **3× Aiven Cloud PostgreSQL instances (5GB each)** for optimized database performance.  
-🗄 **Redis** for session storage and JWT authentication.  
+🗄 **Redis** for session storage and JWT authentication.
 🔐 **Spring Security** for authentication and authorization.  
 
----
 
-# 🌍 Public Area  
+# 🌍 Public Area
 
 ## 🏠 Discover Page  
 A page accessible to all registered and unregistered users.  
@@ -67,7 +53,7 @@ A page accessible to all registered and unregistered users.
 
 ---
 
-# 🔐 Private Area  
+# 🔐 Private Area
 
 ## 🎬 Cinema Records / Movies / Series Page  
 - Browse, search, and explore movies & series in an **interactive catalog**.  
@@ -146,4 +132,4 @@ A page accessible to all registered and unregistered users.
 
 ### 🔹 TV Channels Preview  
 ![](stream-mate-design/rsz_screenshot_34.webp)  
-![](stream-mate-design/rsz_screenshot_35.webp)  
+![](stream-mate-design/rsz_screenshot_35.webp)
