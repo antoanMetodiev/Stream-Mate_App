@@ -10,3 +10,7 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 ### __*Discover Page*__
 
 ![](stream-mate-design/rsz_screenshot_7.webp)
+
+![](stream-mate-design/rsz_screenshot_8.webp)
+
+![](stream-mate-design/rsz_screenshot_9.webp)
