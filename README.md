@@ -60,6 +60,8 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 ![](stream-mate-design/rsz_screenshot_25.webp)
 
+### __*User Details & Edit Profile:*__
+
 ![](stream-mate-design/rsz_screenshot_26.webp)
 
 ![](stream-mate-design/rsz_screenshot_27.webp)
