@@ -1,6 +1,6 @@
 ### PROJECT URL - __*https://stream-mate-org.netlify.app*__
 
-# # ![Stream Mate Logo](stream-mate-design/logo.webp) __*Stream Mate*__
+# ![Stream Mate Logo](stream-mate-design/logo.webp =20x20) __*Stream Mate*__
 
 ### 🛠 Tech Stack
 - **Back-End:**  __*Spring, PostgreSQL, Redis, Spring Security.*__
