@@ -17,7 +17,8 @@ Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. User
 ✅ **Watch and add** movies/shows through an automated **"Order"** system.  
 ✅ **Enjoy real-time streaming** with **WebSocket** support.  
 ✅ **Connect socially** – send **friendship requests**, chat, and make **video/audio calls** with **Agora**.  
-✅ **Share images**, search for users, and explore their profiles.  
+✅ **Share images**, search for users, and explore their profiles.
+✅ **Leave comments** and discuss movies and TV shows with other users.
 ✅ **Watch live TV channels** such as:  
    - DAZN 1  
    - ESPN USA  
