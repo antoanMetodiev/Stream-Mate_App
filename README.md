@@ -80,11 +80,10 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 ![](stream-mate-design/rsz_screenshot_33.webp)
 
-![](stream-mate-design/rsz_screenshot_34.webp)
 
 ### __*24/7 TV Channels:*__
 
-
+![](stream-mate-design/rsz_screenshot_34.webp)
 
 ![](stream-mate-design/rsz_screenshot_35.webp)
 
