@@ -42,7 +42,7 @@ __*Discover Page*__ - a page accessible to all registered and unregistered users
 
 ![](stream-mate-design/rsz_screenshot_17.webp)
 
-![](stream-mate-design/rsz_screenshot_18.webp)
+![](stream-mate-design/rsz_screenshot_18.png)
 
 ![](stream-mate-design/rsz_screenshot_19.webp)
 
