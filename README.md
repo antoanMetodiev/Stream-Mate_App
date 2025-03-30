@@ -3,10 +3,10 @@
 # __*Stream Mate*__
 
 ### 🛠 Tech Stack
-- **Back-End:** __*Spring, PostgreSQL, Redis*__
-- **Front-End:** __*React + TypeScript*__
-- **Deployment:** __*Docker (Dockerfile + Koyeb)*__
-- **Architecture:** __*Microservices*__
+- **Back-End:**  __*Spring, PostgreSQL, Redis.*__
+- **Front-End:**  __*React + TS.*__
+- **Deployment:**  __*Docker (Dockerfile + Koyeb).*__
+- **Architecture:**  __*Microservices.*__
 - **Real-Time Communication:** __*WebSocket*__
 
 ---
