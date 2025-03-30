@@ -39,100 +39,98 @@ Stream Mate is an automated platform for Movies, TV Shows, and TV Channels. User
 🔐 **Spring Security** for authentication and authorization.  
 
 
-## - Public Area
+# 🌍 Public Area
 
+## 🏠 Discover Page  
+A page accessible to all registered and unregistered users.  
 
-__*Discover Page*__ - a page accessible to all registered and unregistered users. At the top, there's a Live Wallpaper section that displays a different Live Wallpaper Video of a popular game with each page refresh, or allows users to change the wallpaper using the arrows (left or right). Further down, it showcases what benefits users would receive if they register.
+- 🎥 **Live Wallpaper Section** – Displays a different **Live Wallpaper Video** of a popular movie/game with each page refresh. Users can also change the wallpaper manually using **left/right arrows**.  
+- 🎁 **Why Register?** – Highlights the benefits of registration for unregistered users.  
 
+### 🔹 Discover Page Preview  
+![](stream-mate-design/rsz_screenshot_7.webp)  
+![](stream-mate-design/rsz_screenshot_8.webp)  
+![](stream-mate-design/Screenshot_9.webp)  
 
-### __*Discover Page:*__
+---
 
-![](stream-mate-design/rsz_screenshot_7.webp)
+# 🔐 Private Area
 
-![](stream-mate-design/rsz_screenshot_8.webp)
+## 🎬 Cinema Records / Movies / Series Page  
+- Browse, search, and explore movies & series in an **interactive catalog**.  
+- Access detailed information, trailers, and user reviews.  
 
-![](stream-mate-design/Screenshot_9.webp)
+### 🔹 Movies & Series Page Preview  
+![](stream-mate-design/rsz_screenshot_10.webp)  
+![](stream-mate-design/rsz_screenshot_11.webp)  
+![](stream-mate-design/rsz_screenshot_12.png)  
+![](stream-mate-design/rsz_screenshot_13.webp)  
 
+---
 
-## - Private Area
+## 🎞 Cinema Record Details  
+- View **movie/series descriptions, trailers, ratings**, and related content.  
+- **Add comments** and discuss with other users.  
 
+### 🔹 Cinema Record Details Preview  
+![](stream-mate-design/rsz_screenshot_14.webp)  
+![](stream-mate-design/rsz_screenshot_15.webp)  
+![](stream-mate-design/rsz_screenshot_16.webp)  
+![](stream-mate-design/rsz_screenshot_17.webp)  
+![](stream-mate-design/rsz_screenshot_18.png)  
+![](stream-mate-design/rsz_screenshot_19.webp)  
+![](stream-mate-design/rsz_screenshot_20.webp)  
 
-### __*Cinema Records Page/Movies Page/Series Page:*__
+---
 
-![](stream-mate-design/rsz_screenshot_10.webp)
+## 🎟 Order Cinema Record  
+- Users can **request** a movie/TV show, which will be automatically added.  
 
-![](stream-mate-design/rsz_screenshot_11.webp)
+### 🔹 Order Page Preview  
+![](stream-mate-design/rsz_screenshot_21.png)  
+![](stream-mate-design/rsz_screenshot_22.webp)  
 
-![](stream-mate-design/rsz_screenshot_12.png)
+---
 
-![](stream-mate-design/rsz_screenshot_13.webp)
+## 💬 Chat & Video Chat  
+- **Text chat, video & audio calls** powered by **Agora**.  
+- **WebSocket-based real-time messaging**.  
 
+### 🔹 Chat & Video Chat Preview  
+![](stream-mate-design/rsz_screenshot_23.webp)  
+![](stream-mate-design/rsz_screenshot_24.webp)  
+![](stream-mate-design/rsz_screenshot_25.webp)  
+![](stream-mate-design/rsz_screenshot_26.webp)  
 
-### __*Cinema Record Details:*__
+---
 
-![](stream-mate-design/rsz_screenshot_14.webp)
+## 👤 User Details & Profile Editing  
+- View and edit personal profiles.  
+- Upload profile pictures and manage settings.  
 
-![](stream-mate-design/rsz_screenshot_15.webp)
+### 🔹 User Profile Preview  
+![](stream-mate-design/rsz_screenshot_29.webp)  
+![](stream-mate-design/rsz_screenshot_30.webp)  
+![](stream-mate-design/rsz_screenshot_33.webp)  
 
-![](stream-mate-design/rsz_screenshot_16.webp)
+---
 
-![](stream-mate-design/rsz_screenshot_17.webp)
+## 🤝 Requests, Friends, and User Search  
+- Send/accept **friend requests**.  
+- Search for users and explore profiles.  
 
-![](stream-mate-design/rsz_screenshot_18.png)
+### 🔹 Friends & Search Preview  
+![](stream-mate-design/Screenshot_27.webp)  
+![](stream-mate-design/Screenshot_28.webp)  
+![](stream-mate-design/rsz_screenshot_31.webp)  
+![](stream-mate-design/rsz_screenshot_32.png)  
 
-![](stream-mate-design/rsz_screenshot_19.webp)
+---
 
-![](stream-mate-design/rsz_screenshot_20.webp)
+## 📺 24/7 TV Channels  
+- Watch **live TV channels** including:  
+  🎥 **DAZN 1, ESPN USA, Nova TV, BTV, BTV Action, MAX SPORT 1, 2, 3, 4, Ring**  
 
-
-### __*Order Cinema Record:*__
-
-![](stream-mate-design/rsz_screenshot_21.png)
-
-![](stream-mate-design/rsz_screenshot_22.webp)
-
-
-### __*Chat & Video Chat:*__
-
-![](stream-mate-design/rsz_screenshot_23.webp)
-
-![](stream-mate-design/rsz_screenshot_24.webp)
-
-![](stream-mate-design/rsz_screenshot_25.webp)
-
-![](stream-mate-design/rsz_screenshot_26.webp)
-
-
-### __*User Details & Edit Profile:*__
-
-![](stream-mate-design/rsz_screenshot_29.webp)
-
-![](stream-mate-design/rsz_screenshot_30.webp)
-
-![](stream-mate-design/rsz_screenshot_33.webp)
-
-
-### __*Requests, Friends, Search Users Menu and more..:*__
-
-![](stream-mate-design/Screenshot_27.webp)
-
-![](stream-mate-design/Screenshot_28.webp)
-
-![](stream-mate-design/rsz_screenshot_31.webp)
-
-![](stream-mate-design/rsz_screenshot_32.png)
-
-
-### __*24/7 TV Channels:*__
-
-![](stream-mate-design/rsz_screenshot_34.webp)
-
-![](stream-mate-design/rsz_screenshot_35.webp)
-
-
-
-
-
-
-
-
+### 🔹 TV Channels Preview  
+![](stream-mate-design/rsz_screenshot_34.webp)  
+![](stream-mate-design/rsz_screenshot_35.webp)  
