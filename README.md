@@ -1,7 +1,7 @@
 ### __*PROJECT URL*__ - __*https://stream-mate-org.netlify.app*__
 ### __*PRESENTATION VIDEO*__ - __*https://www.linkedin.com/feed/update/urn:li:activity:7312307756802228224*__
 
---
+---
 
 # <img src="stream-mate-design/logo.webp" alt="Stream Mate Logo" style="width: 36px; height: 30px; border-radius: 1em;" />  __*Stream Mate*__ 
 
