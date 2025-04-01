@@ -62,7 +62,7 @@ public class AuthService {
         User savedUser = this.userRepository.save(user);
 
         // 3. Генерирам JWT токен за новия потребител:
-        String token = JwtTokenUtil.generateToken(String.valueOf(savedUser.getId()));
+        String token = JwtTokenUtil.generateToken(String.valueOf(user.getId()));
 
         // 4. Съхранявам токена в Redis
         this.redisTemplate.opsForValue().set(String.valueOf(savedUser.getId()), token, 47, TimeUnit.HOURS);
@@ -106,7 +106,6 @@ public class AuthService {
         return user;
     }
 
-    @Transactional
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         // 1. Извличане на JWT токена от бисквитките
         Cookie[] cookies = request.getCookies();
