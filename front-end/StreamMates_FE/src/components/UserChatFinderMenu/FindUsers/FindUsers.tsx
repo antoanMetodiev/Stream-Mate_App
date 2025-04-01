@@ -42,7 +42,7 @@ export const FindUsers = ({
     // With simillar name:
     const getUsersByPattern = async (event: FormEvent) => {
         event.preventDefault();
-        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://streammate-org.onrender.com";
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
 
         const searchedUser = ((event.target as HTMLFormElement)
             .elements.namedItem("searchInput") as HTMLInputElement)

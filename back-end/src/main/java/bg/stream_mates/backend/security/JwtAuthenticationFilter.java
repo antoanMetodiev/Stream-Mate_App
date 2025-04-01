@@ -31,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (checkIfIsLogin(customHeader, cookies, response)) return;
 
         // Ако заявката е за login или register, няма нужда от токен, понеже няма да има още!
-        if (uri.equals("/login") || uri.equals("/register")) {
+        if (uri.equals("/login") || uri.equals("/register") || uri.equals("/actuator/health")) {
             filterChain.doFilter(request, response);
             return;
         }

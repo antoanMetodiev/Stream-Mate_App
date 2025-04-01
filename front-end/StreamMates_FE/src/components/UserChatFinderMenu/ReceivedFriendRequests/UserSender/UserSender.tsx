@@ -18,7 +18,6 @@ export const UserSender = ({
     if (!setMyUserData) return;
     const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
 
-
     const fetchUser = async () => {
         try {
             const response = await axios.get(BASE_URL + "/get-user", { withCredentials: true });
@@ -29,8 +28,6 @@ export const UserSender = ({
             setMyUserData(null);  // Ако има грешка, не сме логнати
         };
     };
-
-
 
     // Изпращам заявка:
     const acceptRequestHandler = async () => {

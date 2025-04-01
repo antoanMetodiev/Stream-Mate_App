@@ -1,6 +1,7 @@
 package bg.stream_mates.backend.feather.user.repositories;
 
 import bg.stream_mates.backend.feather.user.models.entities.User;
+import bg.stream_mates.backend.feather.user.models.enums.UserRole;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,4 +30,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
             "OR u.full_name ILIKE CONCAT('%', :pattern, '%')",
             nativeQuery = true)
     List<Object[]> searchUsersByPattern(@Param("pattern") String pattern);
+
+    List<User> findByUserRole(UserRole userRole);
 }

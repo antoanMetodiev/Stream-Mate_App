@@ -2,19 +2,16 @@ package bg.stream_mates.backend.feather.series.controllers;
 
 import bg.stream_mates.backend.commonData.dtos.CinemaRecRequestDto;
 import bg.stream_mates.backend.commonData.dtos.CinemaRecordResponse;
-import bg.stream_mates.backend.feather.movies.models.dtos.PostCommentRequest;
+import bg.stream_mates.backend.feather.movies.dtos.PostCommentRequest;
 import bg.stream_mates.backend.feather.series.client.SeriesClient;
-import bg.stream_mates.backend.feather.series.models.Series;
-import bg.stream_mates.backend.feather.series.models.SeriesComment;
+import bg.stream_mates.backend.feather.series.dtos.Series;
+import bg.stream_mates.backend.feather.series.dtos.SeriesComment;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class SeriesController {
@@ -28,7 +25,7 @@ public class SeriesController {
 
     @DeleteMapping("/delete-series-comment")
     public void deleteSeriesComment(@RequestParam String commentId,
-                                   @RequestParam String movieId) {
+                                    @RequestParam String movieId) {
 
         this.seriesClient.deleteSeriesComment(commentId, movieId);
     }
@@ -94,7 +91,7 @@ public class SeriesController {
     }
 
     @GetMapping("/get-all-series-count")
-    public long getAllSeriesCount()  {
+    public long getAllSeriesCount() {
         return this.seriesClient.getAllSeriesCount();
     }
 

@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register").permitAll()
+                        .requestMatchers("/login", "/register", "/actuator/health").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // JWT филтър след CORS
 
@@ -47,9 +47,16 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:5173", "https://*.netlify.app"));
+
+        // За тестови цели е само за момента това!
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+
+//        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:5173",
+//                "https://stream-mate-org.netlify.app"));
+
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
+
         configuration.addExposedHeader("Access-Control-Allow-Credentials");
         configuration.setAllowedHeaders(Arrays.asList(
                 "Authorization",

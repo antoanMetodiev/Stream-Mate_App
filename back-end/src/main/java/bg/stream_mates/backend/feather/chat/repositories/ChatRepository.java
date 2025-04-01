@@ -18,5 +18,5 @@ public interface ChatRepository extends JpaRepository<Message, UUID> {
        OR (owner_id = :friendId AND receiver_id = :myId) 
     ORDER BY created_on ASC
     """, nativeQuery = true)
-    List<Message> getMessagesWithFriend(@Param("myId") String myId, @Param("friendId") String friendId);
+    List<Message> getMessagesWithFriend(@Param("myId") UUID myId, @Param("friendId") UUID friendId);
 }
