@@ -2,8 +2,8 @@ package bg.stream_mates.backend.feather.series.client;
 
 import bg.stream_mates.backend.commonData.dtos.CinemaRecordResponse;
 import bg.stream_mates.backend.config.FeignConfig;
-import bg.stream_mates.backend.feather.series.dtos.Series;
-import bg.stream_mates.backend.feather.series.dtos.SeriesComment;
+import bg.stream_mates.backend.feather.series.models.Series;
+import bg.stream_mates.backend.feather.series.models.SeriesComment;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "stream-mate-series-svc", url = "https://rich-babs-stream-mate-series-9d8a10c3.koyeb.app", configuration = FeignConfig.class)
-//@FeignClient(name = "stream-mate-series-svc", url = "http://localhost:8082", configuration = FeignConfig.class)
+//@FeignClient(name = "stream-mate-series-svc", url = "https://rich-babs-stream-mate-series-9d8a10c3.koyeb.app", configuration = FeignConfig.class)
+@FeignClient(name = "stream-mate-series-svc", url = "http://localhost:8082", configuration = FeignConfig.class)
 public interface SeriesClient {
 
     @GetMapping("/get-next-thirty-series")

@@ -58,7 +58,7 @@ export const Register = ({
             return;
         }
 
-        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+        const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
         try {
             const apiResponse = await axios.post(BASE_URL + '/register', user, {
                 withCredentials: true

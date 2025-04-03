@@ -15,7 +15,7 @@ export const EditProfileBody = ({
     uploadImagesHandler,
 }: EditProfileBody) => {
     const navigate = useNavigate();
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
     const [messageText, setMessageText] = useState(`Моля, когато сте готови с промените - натиснете бутона "Edit Profile" за да се запазят!`);
 
 

@@ -31,7 +31,7 @@ export const GenreCategories = ({
 }: GenreCategoriesProps) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
     const additionalURL = location.pathname.includes("movies") ? "/get-movies-count-by-genre" : "/get-series-count-by-genre";
 
     const getCinemaRecordsByGenre = async (receivedGenre: string) => {

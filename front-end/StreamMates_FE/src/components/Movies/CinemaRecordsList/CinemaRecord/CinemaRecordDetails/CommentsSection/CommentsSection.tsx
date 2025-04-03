@@ -18,7 +18,7 @@ export const CommentsSection = ({
     currentCinemaRecordId,
 }: CommentsSectionProps) => {
     const location = useLocation();
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
     const [showCommentSection, setShowCommentSection] = useState(false);
     const [comments, setComments] = useState<CommentType[] | []>()
     const [order, setOrder] = useState(1);

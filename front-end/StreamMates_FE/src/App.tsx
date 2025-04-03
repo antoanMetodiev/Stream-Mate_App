@@ -35,7 +35,7 @@ function App() {
 
 	useEffect(() => {
 		debugger;
-		const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+		const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 		const fetchUser = async () => {
 			try {
 				const response = await axios.get(BASE_URL + "/get-user", { withCredentials: true });
@@ -56,7 +56,7 @@ function App() {
 		debugger;
 		if (!user) return;
 
-		const BASE_WS_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+		const BASE_WS_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 		const socket = new WebSocket(BASE_WS_URL + `/frRequest?username=${user.username}`);
 
 		socket.onmessage = (event) => {
@@ -134,7 +134,7 @@ function App() {
 		debugger;
 		if (!user) return;
 
-		const BASE_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+		const BASE_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 		const ws = new WebSocket(BASE_URL + `/chat?userId=${user.id}`);
 
 		ws.onmessage = (event) => {

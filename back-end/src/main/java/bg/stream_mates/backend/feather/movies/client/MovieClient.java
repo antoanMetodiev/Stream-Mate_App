@@ -2,8 +2,8 @@ package bg.stream_mates.backend.feather.movies.client;
 
 import bg.stream_mates.backend.commonData.dtos.CinemaRecordResponse;
 import bg.stream_mates.backend.config.FeignConfig;
-import bg.stream_mates.backend.feather.movies.dtos.MovieComment;
-import bg.stream_mates.backend.feather.movies.dtos.Movie;
+import bg.stream_mates.backend.feather.movies.models.dtos.MovieComment;
+import bg.stream_mates.backend.feather.movies.models.entities.Movie;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

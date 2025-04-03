@@ -17,7 +17,7 @@ import { CommentsSection } from "./CommentsSection/CommentsSection";
 import { User } from "../../../../../types/User";
 
 export const CinemaRecordDetails = () => {
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 
     const location = useLocation();
     const [myData] = useState<User | undefined>(location.state?.user ? location.state?.user : undefined);

@@ -25,7 +25,7 @@ export const UserDetailsHeader = ({
     setShowPictures,
 }: UserDetailsHeaderProps) => {
     const navigate = useNavigate();
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 
     // States:
     const [weAreFriends, setWeAreFriends] = useState<boolean>(false);

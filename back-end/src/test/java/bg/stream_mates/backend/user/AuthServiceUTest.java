@@ -20,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.security.Key;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,6 +38,9 @@ public class AuthServiceUTest {
 
     @Mock
     private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private JwtTokenUtil jwtTokenUtil;
 
     @InjectMocks
     private AuthService authService;
@@ -79,6 +83,9 @@ public class AuthServiceUTest {
 
     @Test
     void login_ShouldReturnUser_WhenCredentialsAreValid() {
+        Key mockedKey = mock(Key.class);
+        doReturn(mockedKey).when(JwtTokenUtil.initializeSecretKey());
+
         HttpServletResponse response = mock(HttpServletResponse.class);
         when(userRepository.findByUsername(loginRequest.getUsername())).thenReturn(Optional.of(user));
         when(passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())).thenReturn(true);

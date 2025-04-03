@@ -23,7 +23,7 @@ interface CinemaRecordPageProps {
 export const CinemaRecordPage = ({
     user,
 }: CinemaRecordPageProps) => {
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
     let location = useLocation();
     const [cinemaRecordsList, setCinemaRecordsList] = useState<Movie[] | Series[] | undefined>(localStorage.getItem("LAST_CINEMA_RECORDS") ? JSON.parse(localStorage.getItem("LAST_CINEMA_RECORDS")!) : undefined);
     const [isLoading, setIsLoading] = useState(false); // ✅ Добавяме `isLoading`

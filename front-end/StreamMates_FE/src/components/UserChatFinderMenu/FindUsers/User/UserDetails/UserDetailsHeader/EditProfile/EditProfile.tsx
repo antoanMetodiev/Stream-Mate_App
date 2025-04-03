@@ -7,7 +7,7 @@ import { EditProfileBody } from "./EditProfileBody/EditProfileBody";
 import axios from "axios";
 
 export const EditProfile = () => {
-    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://dark-sissy-stream-mate-b1e9d2a2.koyeb.app";
+    const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
     const location = useLocation();
     const [myData, setMyData] = useState<User | null>(location.state?.myData || null);
     const [backgroundImage, setBackgroundImage] = useState<{ file: File | null; url: string }>({

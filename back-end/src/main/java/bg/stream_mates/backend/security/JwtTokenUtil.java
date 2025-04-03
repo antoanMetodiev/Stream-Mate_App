@@ -18,7 +18,7 @@ public class JwtTokenUtil {
     // Проверка дали SECRET е зададен и дали е с достатъчна дължина
     private static Key SECRET_KEY = initializeSecretKey();
 
-    private static Key initializeSecretKey() {
+    public static Key initializeSecretKey() {
         if (SECRET == null || SECRET.isEmpty()) {
             throw new RuntimeException("JWT secret key is not set in the environment variables");
         }
