@@ -10,8 +10,6 @@ export const Actor = ({
     actor
 }: ActorProps) => {
 
-
-
     return (
         <div className={style['actor-container']}>
             <div className={style['actor-img-container-wrapper']}>

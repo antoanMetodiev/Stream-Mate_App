@@ -15,7 +15,6 @@ export const UserFriendList = ({
 }: UserFriendListProps) => {
     const [filteredFriends, setFilteredFriends] = useState<Friend[] | []>([]);
 
-
     const filterFriendsWithPattern = (event: React.ChangeEvent<HTMLInputElement>) => {
         const searchValue = event.target.value.toLowerCase(); 
         const resultFilteredFriends = searchedUser && searchedUser.friends.filter(
@@ -26,7 +25,6 @@ export const UserFriendList = ({
 
         setFilteredFriends(resultFilteredFriends ? resultFilteredFriends : []);
     };
-
 
     return (
         <>

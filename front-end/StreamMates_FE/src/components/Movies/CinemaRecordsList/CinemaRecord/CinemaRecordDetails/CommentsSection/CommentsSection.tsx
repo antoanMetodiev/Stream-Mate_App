@@ -28,7 +28,6 @@ export const CommentsSection = ({
         const fetchComments = async () => {
             setIsLoading(true);
 
-            debugger;
             const additionalUrl = location.pathname.includes("/movies/") ? "movie" : "series";
             try {
                 const apiResponse = await axios.get((BASE_URL + `/get-next-10-${additionalUrl}-comments`), {

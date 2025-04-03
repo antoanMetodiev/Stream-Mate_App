@@ -32,7 +32,6 @@ export const CinemaRecordDetails = () => {
     const playerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        debugger;
         if (cinemaRecord) return;
 
         const data = location.pathname.split("/");

@@ -13,7 +13,6 @@ export const Details = ({
 }: DetailsProps) => {
 
 
-
     return (
         <div className={style['details-container']}>
             <img

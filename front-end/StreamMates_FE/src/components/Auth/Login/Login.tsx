@@ -27,7 +27,6 @@ export const Login = ({
         const user: LoginUser = { username, password }
         const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 
-        debugger;
         try {
             const apiResponse = await axios.post(BASE_URL + "/login", user, {
                 withCredentials: true
@@ -44,8 +43,6 @@ export const Login = ({
             };
         };
     };
-
-
 
     return (
         <article className={styles['login-container-wrapper']}>

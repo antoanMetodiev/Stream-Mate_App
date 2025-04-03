@@ -23,7 +23,6 @@ export const EditProfileBody = ({
     const editUserDataHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         setMessageText("Моля изчакайте..");
         event.preventDefault();
-        debugger;
 
         // Събираме данните от формата
         const formData = new FormData(event.currentTarget);
@@ -35,9 +34,7 @@ export const EditProfileBody = ({
             password: formData.get("password") as string
         };
 
-        debugger;
         if (!userData.email && !userData.username && !userData.fullName && !userData.password) {
-            debugger;
             setMessageText("Успешно направени промени!");
             await uploadImagesHandler();
             navigate(`/user-details/${userData.username ? userData.username : myData?.username}`, {

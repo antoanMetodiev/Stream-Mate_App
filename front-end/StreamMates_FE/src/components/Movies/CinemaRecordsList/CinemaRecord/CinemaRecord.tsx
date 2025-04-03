@@ -28,7 +28,6 @@ export const CinemaRecord = ({
     const navigate = useNavigate();
 
     const navigateToDetails = (cinemaRecord: (Movie | Series) | undefined): void => {
-        debugger;
         localStorage.setItem("LAST_CINEMA_RECORDS", JSON.stringify(cinemaRecordsList));
         localStorage.setItem("LAST_CURRENT_PAGE", JSON.stringify(currentPaginationPage));
         localStorage.setItem("LAST_GENRES", JSON.stringify(genres));

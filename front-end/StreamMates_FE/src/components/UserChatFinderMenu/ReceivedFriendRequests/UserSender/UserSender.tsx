@@ -46,11 +46,9 @@ export const UserSender = ({
 
     // Изтривам заявка:
     const rejectRequestHandler = async () => {
-        debugger;
         const myUsername = userSender.receiverUsername;
         const wishedFriendUsername = userSender.senderUsername;
 
-        debugger;
         try {
             await axios.delete(
                 `${BASE_URL}/reject-received-friend-request/${wishedFriendUsername}/${myUsername}`,

@@ -11,7 +11,6 @@ import { Footer } from "../../../../../../../Footer/Footer";
 
 export const ActorDetails = () => {
     const location = useLocation();
-
     const backgroundImg_URL = location.state?.backgroundImg_URL;
     const actor = location.state?.actor as ActorType;
 
@@ -30,7 +29,6 @@ export const ActorDetails = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
 
     return (
         <div className={style['details-container-wrapper']}>

@@ -22,7 +22,6 @@ export const User = ({
         });
     };
 
-
     return (
         <div
             onClick={showUserDetailsHandler}

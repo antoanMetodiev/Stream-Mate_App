@@ -25,9 +25,8 @@ export const UserPictures = ({
     };
 
     const closeBigImage = (event: React.MouseEvent<HTMLElement>) => {
-        debugger;
         if (event.currentTarget.tagName !== "IMG" && currentBigImage) setCurrentBigImage("");
-    }
+    };
 
 
     console.log(myData);

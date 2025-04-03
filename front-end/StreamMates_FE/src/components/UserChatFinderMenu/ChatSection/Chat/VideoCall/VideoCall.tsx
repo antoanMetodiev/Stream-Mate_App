@@ -74,7 +74,7 @@ export const VideoCall = ({
 
 
     const joinChannel = async () => {
-        debugger;
+
         try {
             // Присъединяваме се към зададения канал
             await client.join(APP_ID, CHANNEL, TOKEN, null);
@@ -126,7 +126,6 @@ export const VideoCall = ({
     }, []);
 
     const leaveChannel = async () => {
-        debugger;
         await client.leave();
         localVideoTrack?.stop();
         localVideoTrack?.close();

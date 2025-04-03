@@ -25,7 +25,6 @@ export const WriteComment = ({
 
     const postCommentHandler = async () => {
         setIsCommentFetch(true);
-        debugger;
         const commentValue = commentText.current?.value.trim();
         if (!commentValue || commentValue.length === 0) return; // Поправен if, преди проверката за myData
         if (!myData) return;
@@ -58,7 +57,6 @@ export const WriteComment = ({
             console.log(error);
         };
     };
-
 
     return (
         <>

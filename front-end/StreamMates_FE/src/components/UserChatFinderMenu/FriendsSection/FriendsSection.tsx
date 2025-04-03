@@ -14,8 +14,6 @@ export const FriendsSection = ({
 
     return (
         <section className={style['received-friend-requests-container']}>
-           
-
             <h3 className={style['friend-requests-h3']}>Friends</h3>
             <span className={style['bound-line']}></span>
 

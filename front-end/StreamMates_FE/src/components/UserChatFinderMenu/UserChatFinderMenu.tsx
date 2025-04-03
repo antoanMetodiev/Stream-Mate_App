@@ -60,7 +60,6 @@ export const UserChatFinderMenu = ({
     const setShowMenuHandler = () => setShowMenu(!showMenu);
 
     const openConcreteSection = (location: string) => {
-        debugger;
         if (location == "FindUsers") {
             setShowRecFriendRequestsSection(false);
             setShowFriendSection(false);

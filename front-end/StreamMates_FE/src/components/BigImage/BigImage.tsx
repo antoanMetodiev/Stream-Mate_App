@@ -13,10 +13,9 @@ export const BigImage = ({
 }: BigImageProps) => {
 
     const closeImage = (event: React.MouseEvent<HTMLDivElement>) => {
-        debugger;
         if ((event.target as HTMLElement).tagName === "DIV") {
             setShowBigImage(false);
-        }
+        };
     };
 
     return (

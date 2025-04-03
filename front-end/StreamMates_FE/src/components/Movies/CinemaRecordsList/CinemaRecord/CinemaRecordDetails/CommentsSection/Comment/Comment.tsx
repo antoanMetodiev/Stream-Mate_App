@@ -53,7 +53,6 @@ export const Comment = ({
     const [showMoreOptions, setShowMoreOptions] = useState(false);
 
     const removeComment = async (commentId: string) => {
-        debugger;
         if (commentId.trim().length == 0) return;
 
         const additionalUrl = location.pathname.includes("/movies/") ? "movie" : "series";

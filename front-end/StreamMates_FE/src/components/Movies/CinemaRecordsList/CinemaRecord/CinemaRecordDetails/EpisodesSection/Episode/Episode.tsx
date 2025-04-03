@@ -17,7 +17,6 @@ export const EpisodeComponent = ({
 }: EpisodeProps) => {
 
     function playEpisode(videoURL: string) {
-        debugger;
         setCurrentEpisodeURL(videoURL);
         setShowPlayerSection(true);
         // Скролва до плеъра

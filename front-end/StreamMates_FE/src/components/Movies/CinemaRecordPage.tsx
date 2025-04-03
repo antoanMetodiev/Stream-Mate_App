@@ -42,7 +42,6 @@ export const CinemaRecordPage = ({
 
     console.log(lastPathName);
     useEffect(() => {
-        debugger;
         if (genres.length == 0) return;
         if (searchedMovieTitle.length > 0) return;
         const additionalURL = location.pathname.includes("movies") ? "/get-next-twenty-movies-by-genre" : "/get-next-twenty-series-by-genre";
@@ -83,9 +82,7 @@ export const CinemaRecordPage = ({
     }, [genres, currentPaginationPage]);
 
 
-
     useEffect(() => {
-        debugger;
         if (genres.length > 0) return;
         if (searchedMovieTitle.length > 0) return;
 

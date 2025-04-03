@@ -21,9 +21,8 @@ export const FindUsers = ({
     const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 
     useEffect(() => {
-        debugger;
         const getLastTenUsers = async () => {
-            debugger;
+
             try {
                 const databaseReponse = await axios.get(BASE_URL + "/getLastTenUsers", {
                     withCredentials: true,
@@ -48,7 +47,6 @@ export const FindUsers = ({
             .elements.namedItem("searchInput") as HTMLInputElement)
             .value;
 
-        debugger;
         try {
             const databaseReponse = await axios.post(BASE_URL + "/getUsersByPattern", { searchedUser }, { withCredentials: true });
             console.log(databaseReponse.data);
@@ -64,7 +62,6 @@ export const FindUsers = ({
             <div
                 className={style['close-section']}
                 onClick={() => {
-                    debugger;
                     setShowFindUsersSection(false);
                 }}
             >

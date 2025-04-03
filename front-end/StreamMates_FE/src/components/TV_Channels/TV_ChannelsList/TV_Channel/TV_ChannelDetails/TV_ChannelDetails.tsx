@@ -1,6 +1,6 @@
 import style from "./TV_ChannelDetails.module.css";
 import { useLocation } from "react-router-dom";
-import backgroundImage from "./../../channel-images/details-background.jpg";
+import backgroundImage from "./../../channel-images/details-background.webp";
 
 import { Header } from "../../../../Movies/Header/Header";
 import { ChannelLifeVideo } from "./ChannelLifeVideo/ChannelLiveVideo";

@@ -11,8 +11,6 @@ export const MyFriend = ({
     friend,
 }: MyFriendProps) => {
 
-
-    console.log(friend);
     return (
         <div
             // onClick={showUserDetailsHandler}

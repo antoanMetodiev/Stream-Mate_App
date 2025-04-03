@@ -43,7 +43,6 @@ export const ChatSection = ({
     const openMessagesWithConcreteUser = async (friendId: string) => {
         setIsOpenMessagesWithUser(true);
 
-        debugger;
         try {
             const apiResponse = await axios.get(BASE_URL + "/get-messages-with-friend", {
                 withCredentials: true,

@@ -19,7 +19,6 @@ export const Pagination = ({
             {/* Бутон за предишна страница */}
             <button
                 onClick={() => () => {
-                    debugger;
                     localStorage.removeItem("LAST_CINEMA_RECORDS");
                     // localStorage.setItem("LAST_CURRENT_PAGE", JSON.stringify(currentPaginationPage - 1));
                     setCurrentPaginationPage(currentPaginationPage - 1);

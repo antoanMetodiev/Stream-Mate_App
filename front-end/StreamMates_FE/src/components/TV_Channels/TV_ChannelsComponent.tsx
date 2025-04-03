@@ -1,11 +1,10 @@
 import style from "./TV_ChannelsComponent.module.css";
-import backgroundImage from "./TV_ChannelsList/channel-images/details-background.jpg";
+import backgroundImage from "./TV_ChannelsList/channel-images/details-background.webp";
 
 import { TV_ChannelsList } from "./TV_ChannelsList/TV_ChannelsList";
 import { Header } from "../Movies/Header/Header";
 
 export const TV_ChannelsComponent = () => {
-
 
 
     return (

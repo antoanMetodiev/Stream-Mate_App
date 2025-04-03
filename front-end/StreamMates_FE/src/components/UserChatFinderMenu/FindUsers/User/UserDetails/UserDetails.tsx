@@ -24,7 +24,6 @@ export const UserDetails = () => {
     const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
     useEffect(() => {
         const getSearchedUserData = async () => {
-            debugger;
             const count: number = window.location.href.split("/").length;
             const username = window.location.href.split("/")[count - 1];
             console.log(username);

@@ -31,7 +31,6 @@ export const Navigation = ({
     const navigate = useNavigate();
 
     const logout = async () => {
-        debugger;
         const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 
         try {
@@ -48,9 +47,7 @@ export const Navigation = ({
         };
     };
 
-
     const specialNavigateToCinemaRecord = (locationPath: string) => {
-        debugger;
         if (location.pathname.includes(locationPath)) return; // Ако вече сме на този път, не правим нищо
 
         localStorage.removeItem("LAST_CINEMA_RECORDS");

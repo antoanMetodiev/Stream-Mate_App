@@ -39,33 +39,37 @@ dependencies {
     implementation 'org.springframework.session:spring-session-data-redis'
 
     // Redis клиент (Lettuce или Jedis - избираме Lettuce, защото е препоръчителен)
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.session:spring-session-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-    // Kafka Broker:
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    // WebSocket
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'com.google.code.gson:gson:2.8.9'
 
-    // Feign Client:
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'io.github.openfeign:feign-jackson:12.3'
 
+    // Spring Boot Test (включва нужните JUnit зависимости)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.mockito:mockito-core:5.6.0' // Основната библиотека
-    testImplementation 'org.mockito:mockito-junit-jupiter:5.6.0' // За JUnit 5
-    testImplementation 'org.mockito:mockito-inline:3.12.4'  // Или по-нова версия
 
+    // Mockito
+    testImplementation 'org.mockito:mockito-core:5.6.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.6.0'
+    testImplementation 'org.mockito:mockito-inline:3.12.4'
+
+    // JUnit Vintage за изпълнение на JUnit 4 тестове
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.8.1'
+
+    // PowerMockito за мокиране на статични методи с JUnit 4
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+
+    // Ако е необходимо – JUnit Platform Launcher
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 

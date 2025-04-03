@@ -35,7 +35,7 @@ export const GenreCategories = ({
     const additionalURL = location.pathname.includes("movies") ? "/get-movies-count-by-genre" : "/get-series-count-by-genre";
 
     const getCinemaRecordsByGenre = async (receivedGenre: string) => {
-        debugger;
+        
         if (genres === receivedGenre) {
            
             localStorage.removeItem("LAST_CURRENT_PAGE");

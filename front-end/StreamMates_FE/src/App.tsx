@@ -34,7 +34,6 @@ function App() {
 	}, [location.pathname]);
 
 	useEffect(() => {
-		debugger;
 		const BASE_URL = window.location.href.includes("local") ? "http://localhost:8080" : "https://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 		const fetchUser = async () => {
 			try {
@@ -53,18 +52,15 @@ function App() {
 
 	// FriendRequests operations WebSocket:
 	useEffect(() => {
-		debugger;
 		if (!user) return;
 
 		const BASE_WS_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
 		const socket = new WebSocket(BASE_WS_URL + `/frRequest?username=${user.username}`);
 
 		socket.onmessage = (event) => {
-			debugger;
 			try {
 				const data = JSON.parse(event.data);
 				if (data.type === "received_friend_request_cancellation") {
-					debugger;
 					console.log("Received Friend request was canceled:", data.message);
 					const userCanceledUsername = data.message;
 
@@ -81,7 +77,6 @@ function App() {
 					});
 
 				} else if (data.type === "sended_friend_request_cancellation") {
-					debugger;
 					console.log("Sended Friend request was canceled:", data.message);
 					const userCanceledUsername = data.message;
 
@@ -131,7 +126,6 @@ function App() {
 
 	// ChatWebSocket:
 	useEffect(() => {
-		debugger;
 		if (!user) return;
 
 		const BASE_URL = window.location.href.includes("local") ? "ws://localhost:8080" : "wss://married-miquela-stream-mate-org-original-ce114be1.koyeb.app";
@@ -141,7 +135,6 @@ function App() {
 			console.log("Received message:", event.data);
 			let newMessage: Message = JSON.parse(event.data);
 
-			debugger;
 			if (newMessage.messageType == MessageType.TEXT) {
 				if (newMessage.owner == currentChatFriend?.realUserId) {
 
@@ -150,7 +143,6 @@ function App() {
 
 			} else {
 
-				debugger;
 				const callNotification: CallNotification = JSON.parse(event.data);
 
 				if ((callNotification.callType === MessageType.VIDEO_CALL || callNotification.callType === MessageType.AUDIO_CALL)

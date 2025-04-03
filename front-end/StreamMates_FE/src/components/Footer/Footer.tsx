@@ -5,8 +5,6 @@ import { useLocation } from 'react-router-dom';
 export const Footer = () => {
     const location = useLocation();
 
-
-
     // Проверка дали location.pathname е празен или равен на "/"
     const footerClass = location.pathname === "" || location.pathname === "/" ? `${styles.main} ${styles.blackMain}` : styles.main;
     return (

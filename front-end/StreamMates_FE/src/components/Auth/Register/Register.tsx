@@ -23,7 +23,6 @@ export const Register = ({
     const [choosedImgFile, setChoosedImgFile] = useState<File | null>(null);
     const [choosedImgUrl, setChoosedImgUrl] = useState("");
 
-
     async function registerUser(event: FormEvent) {
         event.preventDefault();
         const formData = event.target as HTMLFormElement;
@@ -49,7 +48,6 @@ export const Register = ({
             setInvalidDataMessage("Не успяхме да запазим профилната снимка!");
         };
 
-        debugger;
         const user: RegisterUser = { username, email, fullName, password, profileImageURL }
 
         const validatorResponse = validateUserInput(user);

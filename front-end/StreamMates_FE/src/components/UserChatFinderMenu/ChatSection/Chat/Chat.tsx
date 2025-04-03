@@ -107,7 +107,6 @@ export const Chat = ({
             createdOn: new Date().toISOString(),
         };
 
-        debugger;
         setMessagesWithCurrentFriend(prevMessages => [...(prevMessages || []), message]);
         webSocket.send(JSON.stringify(message));
         textMessageRef.current.value = "";
@@ -129,7 +128,6 @@ export const Chat = ({
                 messageText: `${user?.fullName} започна обаждане!`,
             };
 
-            debugger;
             const currentMessageType: MessageType = receivedCallType == "VIDEO_CALL" ? MessageType.VIDEO_CALL : MessageType.AUDIO_CALL;
             let saveMessage: Message = {
                 owner: callNotification.caller,

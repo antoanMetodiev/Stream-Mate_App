@@ -44,7 +44,6 @@ export const Header = ({
     const pathNameRef = useRef(location.pathname);
 
     useEffect(() => {
-        debugger;
         pathNameRef.current = location.pathname;
     }, [location.pathname]);
 

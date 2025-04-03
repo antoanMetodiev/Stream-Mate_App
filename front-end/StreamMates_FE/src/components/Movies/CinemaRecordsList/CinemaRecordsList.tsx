@@ -22,7 +22,6 @@ export const CinemaRecordsList = ({
     user
 }: CinemaRecordsListProps) => {
 
-   
 
     return (
         <>

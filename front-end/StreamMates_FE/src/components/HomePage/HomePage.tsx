@@ -15,9 +15,6 @@ export const HomePage = ({
     setUser,
 }: HomePageProps) => {
 
-
-
-
     return (
         <article className={style['home-page-container']}>
             <WelcomeComponent user={user} setUser={setUser} />
