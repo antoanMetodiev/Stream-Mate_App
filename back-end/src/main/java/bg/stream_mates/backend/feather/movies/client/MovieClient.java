@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "stream-mate-movie-svc", url = "thoughtless-nikki-stream-mate-movies-org-d2cf5d62.koyeb.app", configuration = FeignConfig.class)
-//@FeignClient(name = "stream-mate-movie-svc", url = "http://localhost:8081", configuration = FeignConfig.class)
+//@FeignClient(name = "stream-mate-movie-svc", url = "thoughtless-nikki-stream-mate-movies-org-d2cf5d62.koyeb.app", configuration = FeignConfig.class)
+@FeignClient(name = "stream-mate-movie-svc", url = "http://localhost:8081", configuration = FeignConfig.class)
 public interface MovieClient {
 
     @PostMapping("/post-movie-comment")
