@@ -58,7 +58,7 @@ export const UserFriendList = ({
                                                 src={friend.profileImageURL ? friend.profileImageURL : deffaultImage}
                                                 alt="friend.imgURL"
                                             />
-                                            <h3 className={style['friend-username-h3']}>{friend.username}</h3>
+                                            <h3 className={style['friend-username-h3']}>{"@" + friend.username}</h3>
                                             <h5 className={style['friend-name']}>{friend.fullName}</h5>
                                         </div>
                                     </>
